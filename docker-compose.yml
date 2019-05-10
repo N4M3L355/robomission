@@ -14,6 +14,8 @@ services:
       - ./backend/conftest.py:/code/backend/conftest.py
       - ./backend/manage.py:/code/backend/manage.py
       - ./frontend/src:/code/frontend/src
+      - ./frontend/.env.development:/code/frontend/.env.development
+      - ./frontend/package.json:/code/frontend/package.json
       - ./Makefile:/code/Makefile
     ports:
       - "8000:8000"

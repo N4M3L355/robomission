@@ -31,7 +31,7 @@ server:
 .PHONY: liveserver
 liveserver:
 	# Run both Django and Webpack servers simultaneously:
-	python backend/manage.py run_liveserver
+	python backend/manage.py run_liveserver 0.0.0.0:8000
 
 
 .PHONY: shell
