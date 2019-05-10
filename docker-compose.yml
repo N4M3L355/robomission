@@ -7,7 +7,13 @@ services:
     image: robomission
     command: make server
     volumes:
-      - ./backend:/code/backend
+      - ./backend/domain:/code/backend/domain
+      - ./backend/learn:/code/backend/learn
+      - ./backend/monitoring:/code/backend/monitoring
+      - ./backend/robomission:/code/backend/robomission
+      - ./backend/conftest.py:/code/backend/conftest.py
+      - ./backend/manage.py:/code/backend/manage.py
       - ./frontend/src:/code/frontend/src
+      - ./Makefile:/code/Makefile
     ports:
       - "8000:8000"

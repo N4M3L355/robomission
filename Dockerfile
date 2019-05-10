@@ -1,6 +1,6 @@
 FROM python:3.6
 ENV PYTHONUNBUFFERED 1
-WORKDIR /code
+WORKDIR /code/
 
 RUN apt-get update -qq && apt-get install -yqq curl
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
@@ -10,11 +10,17 @@ RUN apt-get clean -y
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 
-WORKDIR /code/frontend
+WORKDIR /code/frontend/
 COPY frontend/package.json /code/frontend/
 RUN npm install
 
 WORKDIR /code/
 COPY . /code/
-RUN make install
+RUN mkdir -p logs
+RUN make db
 RUN cp backend/robomission/settings_secret_template.py backend/robomission/settings_secret.py
+
+WORKDIR /code/frontend/
+RUN npm run build
+
+WORKDIR /code/
