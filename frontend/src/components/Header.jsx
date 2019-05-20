@@ -119,7 +119,7 @@ class Header extends React.Component {
           <Instructable key="fullscreen" instruction="env-fullscreen" position="bottom">
 
             {<IconButton
-              tooltip={translate('Exit fullscreen')}
+              tooltip={this.state.isInFullscreen ? translate('Exit fullscreen') : translate('Fullscreen') }
               onClick={() => {
                 this.toggleFullscreen();
                 this.setState(prevState => ({isInFullscreen: !prevState.isInFullscreen}))
