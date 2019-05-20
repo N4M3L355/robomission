@@ -18,7 +18,6 @@ WORKDIR /code/
 COPY . /code/
 RUN mkdir -p logs
 RUN make db
-RUN cp backend/robomission/settings_secret_template.py backend/robomission/settings_secret.py
 
 WORKDIR /code/frontend/
 RUN npm run build

@@ -125,6 +125,26 @@ at [Masaryk University][4].
 13. Celebrate the developed feature with some physical exercise and healthy snack.
 
 
+## Docker alternative
+
+1. Install Docker and Docker Compose.
+
+2. Create settings_secret.py configuration file:
+
+        $ cp backend/robomission/settings_secret_template.py backend/robomission/settings_secret.py 
+
+3. Build the container:
+
+        $ docker-compose build
+
+4. Run the container in development friendly mode:
+
+        $ docker-compose run web make liveserver
+    
+    This will run Django and Webpack simultaneously. Webpack will output network address for testing.
+    
+    Important files for development are linked(in `docker-compose.yml`). If you want to rerun setup,
+    stop container and build it.
 ## Tips
 
 * Use `export SHOW_SQL_QUERIES=True` to log all performed SQL queries.

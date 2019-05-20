@@ -12,6 +12,8 @@ export default {
   'Previous': 'Předchozí',
   'Feedback': 'Napište nám',
   'Help': 'Nápověda',
+  'Fullscreen': 'Na celou obrazovku',
+  'Exit fullscreen': 'Ukončit režim celé obrazovky',
   'ALG': 'Laboratoř adaptabilního učení',
   'FI-MU': 'Fakulta informatiky MU',
   'For hackers': 'Pro hackery',

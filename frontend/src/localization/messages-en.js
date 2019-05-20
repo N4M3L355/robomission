@@ -12,6 +12,8 @@ export default {
   'Previous': 'Previous',
   'Feedback': 'Feedback',
   'Help': 'Help',
+  'Fullscreen': 'Fullscreen',
+  'Exit fullscreen': 'Exit fullscreen',
   'ALG': 'Adaptive Learning group',
   'FI-MU': 'Faculty of Informatics MU',
   'For hackers': 'For hackers',
