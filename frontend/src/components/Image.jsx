@@ -7,7 +7,7 @@ export default function Image({ imageId, style, ...otherProps }) {
   // eslint-disable-next-line global-require
   const sourcePath = require(`../images/${name}`);
   return (
-    <img src={sourcePath} alt={imageId} style={style} {...otherProps} />
+    <image href={sourcePath} alt={imageId} style={style} {...otherProps} />
   );
 }
 

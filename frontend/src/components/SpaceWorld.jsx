@@ -5,18 +5,14 @@ import SpaceBackgroundGrid from './SpaceBackgroundGrid';
 import Instructable from '../containers/Instructable';
 
 export default function SpaceWorld({ fields, width }) {
-  const { cols, backgrounds, objects } = prepareFields(fields);
+  const { cols, backgrounds, objects, rows } = prepareFields(fields);
   const fieldSize = width / cols;
-  // const height = fieldSize * rows;
-  const worldStyle = {
-    display: 'block',
-    position: 'relative',
-  };
+  const height = fieldSize * rows;
   return (
     <Instructable instruction="task-space-world" position="bottom">
-      <span style={worldStyle}>
-        <SpaceBackgroundGrid backgroundColors={backgrounds} fieldSize={fieldSize} />
-        <span>
+      <svg width={width} height={height}>
+        <SpaceBackgroundGrid backgroundColors={backgrounds} fieldSize={fieldSize} width={width} height={height}/>
+        <svg width={width} height={height}>
           {objects.map((object, index) =>
             <GameObject
               // The key must change if the object type changes in order to
@@ -25,13 +21,12 @@ export default function SpaceWorld({ fields, width }) {
               imageId={object.imageId}
               width={fieldSize}
               height={fieldSize}
-              position="absolute"
-              bottom={object.row * fieldSize}
-              left={object.col * fieldSize}
+              y={object.row * fieldSize}
+              x={object.col * fieldSize}
             />
           )}
-        </span>
-      </span>
+        </svg>
+      </svg>
     </Instructable>
   );
 }
@@ -84,7 +79,7 @@ function prepareFields(fields) {
   const backgrounds = fields.map(row => row.map(field => field[0]));
   const objects = [];
   fields.forEach((row, i) => row.forEach((field, j) => field[1].forEach(object => {
-    objects.push({ imageId: IMAGE_TYPES[object], row: rows - i - 1, col: j });
+    objects.push({ imageId: IMAGE_TYPES[object], row: i, col: j });
   })));
   return { rows, cols, backgrounds, objects };
 }

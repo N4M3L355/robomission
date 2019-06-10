@@ -5,32 +5,15 @@ import redBackgroundPath from '../images/background-red.png';
 import greenBackgroundPath from '../images/background-green.png';
 import yellowBackgroundPath from '../images/background-yellow.png';
 
-export default function FieldBackground({ color, size }) {
+export default function FieldBackground({ color, size, keyX, keyY }) {
   const backgroundImgPath = {
     r: redBackgroundPath,
     g: greenBackgroundPath,
     b: blueBackgroundPath,
     y: yellowBackgroundPath,
   }[color];
-  let fieldStyle = {
-    display: 'table-cell',
-    position: 'relative',
-    borderStyle: 'solid',
-    borderColor: '#555',
-    borderWidth: 1,
-    boxSizing: 'border-box',
-    width: size,
-    height: size,
-  };
-  if (color !== 'k') {
-    fieldStyle = {
-      ...fieldStyle,
-      backgroundImage: `url(${backgroundImgPath})`,
-      backgroundSize: '100% 100%',
-    };
-  }
   return (
-    <span style={fieldStyle} />
+    <image width={size} height={size} x={keyX*size} y={keyY*size} href={backgroundImgPath} />
   );
 }
 

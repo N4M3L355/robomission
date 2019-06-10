@@ -22,7 +22,7 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state ={
-      isInFullscreen: false
+      isInFullscreen: !!document.fullscreenElement
     };
 
     this.toggleFullscreen = () => {
