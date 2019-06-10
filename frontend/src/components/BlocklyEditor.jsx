@@ -85,7 +85,7 @@ export default class BlocklyEditor extends React.Component {
     return this.workspaceComponent.state.workspace;
   }
 
-  // Return ReactBlocklyComponent.BlocklyWorkspace
+  // Return ReactBlocklyComponent.BlocklyWorkspaceworkspaceCo
   // (node_modules/react-blockly-component/src/BlocklyWorkspace.jsx)
   get workspaceComponent() {
     return this.blocklyEditor.refs.workspace;

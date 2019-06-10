@@ -1,7 +1,7 @@
 import { parseRoboCode } from './roboCodeParser';
 import { parseSpaceWorld } from './spaceWorldDescription';
 import { generateMiniRoboCode } from './miniRoboCodeGenerator';
-const pegTaskSourceParser = require('./pegTaskSourceParser');
+import pegTaskSourceParser from './pegTaskSourceParser';
 /**
  * Parse task source text (markdown) and returned js object representing the
  * task

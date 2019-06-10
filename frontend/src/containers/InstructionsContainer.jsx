@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import Joyride from 'react-joyride';
-import 'react-joyride/lib/react-joyride-compiled.css';
+//import 'react-joyride/lib/react-joyride-compiled.css';
 import { translate } from '../localization';
 import { showInstructions, seeInstruction } from '../actions';
 import { getScheduledInstructions } from '../selectors/instructions';
