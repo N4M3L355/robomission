@@ -14,6 +14,7 @@ import fiBackgroundPath from '../images/fi-slide.jpg';
 import spaceBackgroundPath from '../images/background-space.png';
 import spaceshipInSpaceWorldPath from '../images/spaceship-in-spaceworld.png';
 import Text from '../localization/Text';
+import {theme} from "../theme";
 
 
 class Home extends React.Component {
@@ -53,30 +54,24 @@ class Home extends React.Component {
           color: '#fff',
         },
         content: (
-          <Paper
-            style={{
-              display: 'inline-block',
-              paddingTop: 10,
-              paddingBottom: 35,
-              paddingLeft: 50,
-              paddingRight: 50,
-              minWidth: 500,
-              backgroundColor: 'rgba(50, 50, 50, 0.9)',
-            }}
-            zDepth={2}
-          >
-            <h2><Text id="intro.learn-programming" /></h2>
+          <div >
+            <h1 style={{ fontSize: "3em", fontWeight: 400}}><Text id="intro.learn-programming" /></h1>
             <span style={{ marginRight: 20 }}>
               <NextTaskButtonContainer />
             </span>
             <Link to="/tasks">
               <RaisedButton label={<Text id="Tasks" />} />
             </Link>
-          </Paper>
+          </div>
         ),
         footer: (
           <Scroll.Link to="intro-slide-1" smooth={true} duration={500}>
-            <FloatingActionButton secondary={true}>
+            <FloatingActionButton backgroundColor={"#00000000"} iconStyle={{fill:theme.palette.accent1Color}} style={{
+              backgroundColor: "#00000000",
+              borderColor: theme.palette.accent1Color,
+              borderStyle: "solid",
+              borderWidth: "2px"
+            }} secondary={false}>
               <ArrowDown />
             </FloatingActionButton>
           </Scroll.Link>

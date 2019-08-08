@@ -5,12 +5,16 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TaskIcon from 'material-ui/svg-icons/av/play-arrow';
 import Instructable from '../containers/Instructable';
 import TaskName from './TaskName';
+import { theme } from '../theme';
 
 
 export default function NextTaskButton({ task }) {
   const style = {
     minWidth: 200,
     display: 'inline-block',
+    border: '1px solid white',
+    borderColor: theme.palette.primary1Color,
+    backgroundColor: "#00000000"
   };
   if (task === null) {
     // When all mission are completed (or recommendation is unavailable for
@@ -32,8 +36,10 @@ export default function NextTaskButton({ task }) {
         <RaisedButton
           icon={<TaskIcon style={{ marginLeft: 8 }}/>}
           style={style}
+          backgroundColor="#00000000"
+          labelColor={theme.palette.primary1Color}
           label={<span style={{ position: 'relative', top: 1 }}><TaskName taskId={task.taskId} /></span>}
-          primary={true}
+          primary={false}
         />
       </Instructable>
     </Link>

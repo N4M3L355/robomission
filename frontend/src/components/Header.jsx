@@ -169,7 +169,7 @@ class Header extends React.Component {
       <AppBar
         title={this.renderTitle()}
         style={{
-          backgroundColor: this.props.muiTheme.palette.primary1Color,
+          backgroundColor: "#00000000",//this.props.muiTheme.palette.primary1Color,
           margin: 0,
         }}
         iconElementLeft={
