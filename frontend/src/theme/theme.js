@@ -1,12 +1,10 @@
-import {
-  grey400, grey600, grey700,
-  amber500, amber700, amber100,
-  cyan500, cyan700, cyan100,
-  //green700, green200, green800, green900,
-  white, fullWhite,
-} from 'material-ui/styles/colors';
-import { fade } from 'material-ui/utils/colorManipulator';
+import cyan from '@material-ui/core/colors/cyan';
+import amber from '@material-ui/core/colors/amber';
+import grey from '@material-ui/core/colors/grey';
+//green700, green200, green800, green900,
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
+const white = "#FFF";
 // for defaults, meaning and customization, see:
 // https://github.com/callemall/material-ui/blob/master/src/styles/getMuiTheme.js
 const theme = {
@@ -14,29 +12,29 @@ const theme = {
   fontFamily: 'Roboto, sans-serif',
   borderRadius: 2,
   palette: {
-    primary1Color: cyan500,
-    primary2Color: cyan700,
-    primary3Color: cyan100,
-    accent1Color: amber500,
-    accent2Color: amber700,
-    accent3Color: amber100,
-    textColor: fullWhite,
-    secondaryTextColor: fade(fullWhite, 0.7),
+    primary1Color: cyan[500],
+    primary2Color: cyan[700],
+    primary3Color: cyan[100],
+    accent1Color: amber[500],
+    accent2Color: amber[700],
+    accent3Color: amber[100],
+    textColor: white,
+    secondaryTextColor: fade(white, 0.7),
     alternateTextColor: '#303030',
     canvasColor: '#303030',
-    borderColor: fade(fullWhite, 0.3),
-    disabledColor: fade(fullWhite, 0.3),
-    pickerHeaderColor: fade(fullWhite, 0.12),
-    clockCircleColor: fade(fullWhite, 0.12),
+    borderColor: fade(white, 0.3),
+    disabledColor: fade(white, 0.3),
+    pickerHeaderColor: fade(white, 0.12),
+    clockCircleColor: fade(white, 0.12),
 
-    successColor: cyan700,
+    successColor: cyan[700],
   },
   raisedButton: {
-    color: grey700,
+    color: grey[700],
   },
   toggle: {
-    thumbOffColor: grey400,
-    trackOffColor: grey600,
+    thumbOffColor: grey[400],
+    trackOffColor: grey[600],
   },
   dialog: {
     bodyFontSize: 18,

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from '@material-ui/core/Button';
 import SpeedControl from '../components/SpeedControl';
 import { translate } from '../localization';
 import Instructable from '../containers/Instructable';

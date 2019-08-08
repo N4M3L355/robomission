@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Dialog from 'material-ui/Dialog';
-import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from '@material-ui/core/Dialog';
+import RaisedButton from '@material-ui/core/Button';
 import NextTaskButtonContainer from '../containers/NextTaskButtonContainer';
 import LevelBar from '../components/LevelBar';
 import Text from '../localization/Text';

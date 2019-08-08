@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import { Card, CardTitle, CardText } from 'material-ui/Card';
-import { List, ListItem } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
-import DownloadIcon from 'material-ui/svg-icons/file/file-download';
-import ChartIcon from 'material-ui/svg-icons/action/assessment';
-import CodeIcon from 'material-ui/svg-icons/action/code';
-import DBIcon from 'material-ui/svg-icons/device/storage';
-import APIIcon from 'material-ui/svg-icons/social/public';
-import ErrorReportIcon from 'material-ui/svg-icons/action/report-problem';
+import withStyles from '@material-ui/styles/withStyles';
+import Card from '@material-ui/core/Card';
+import CardTitle from '@material-ui/core/CardHeader';
+import CardText from '@material-ui/core/CardContent';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
+import DownloadIcon from '@material-ui/icons/GetApp';
+import ChartIcon from '@material-ui/icons/Assessment';
+import CodeIcon from '@material-ui/icons/Code';
+import DBIcon from '@material-ui/icons/Storage';
+import APIIcon from '@material-ui/icons/Public';
+import ErrorReportIcon from '@material-ui/icons/ReportProblem';
 import {
   LineChart, XAxis, YAxis, Line, Bar, BarChart,
   CartesianGrid, Tooltip } from 'recharts';
@@ -406,5 +409,5 @@ function getDataForTasksPlot(metrics, name) {
 }
 
 
-MonitoringPage = muiThemeable()(MonitoringPage);
+MonitoringPage = withStyles()(MonitoringPage);
 export default MonitoringPage;

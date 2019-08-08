@@ -1,9 +1,10 @@
 import React from 'react';
-import Dialog from 'material-ui/Dialog';
-import RaisedButton from 'material-ui/RaisedButton';
-import {GridList, GridTile} from 'material-ui/GridList';
-import TextField from 'material-ui/TextField';
-import EmailIcon from 'material-ui/svg-icons/communication/email';
+import Dialog from '@material-ui/core/Dialog';
+import RaisedButton from '@material-ui/core/Button';
+import GridList from '@material-ui/core/GridList';
+import GridTile from '@material-ui/core/GridListTile';
+import TextField from '@material-ui/core/TextField';
+import EmailIcon from '@material-ui/icons/Email';
 import { FacebookLoginButton, GoogleLoginButton } from 'react-social-login-buttons';
 import { translate } from '../localization';
 

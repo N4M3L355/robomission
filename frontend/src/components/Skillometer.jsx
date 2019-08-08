@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Circle as ProgressCircle } from 'rc-progress';
-import Avatar from 'material-ui/Avatar';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import Avatar from '@material-ui/core/Avatar';
+import muiThemeable from '@material-ui/core/styles/muiThemeable';
 
 
 const propTypes = {

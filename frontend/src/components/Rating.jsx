@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-//import Star from 'material-ui/svg-icons/toggle/star';
-import Puzzle from 'material-ui/svg-icons/action/extension';
+//import StarBorder from '@material-ui/core/svg-icons/toggle/star-border';
+//import Star from '@material-ui/core/svg-icons/toggle/star';
+import Puzzle from '@material-ui/icons/Extension';
 
 
 const propTypes = {

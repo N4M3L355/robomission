@@ -1,6 +1,6 @@
 import React from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import Dialog from '@material-ui/core/Dialog';
+import FlatButton from '@material-ui/core/Button';
 import { FormattedMessage } from 'react-intl';
 
 

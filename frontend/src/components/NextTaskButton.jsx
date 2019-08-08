@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import RaisedButton from 'material-ui/RaisedButton';
-import TaskIcon from 'material-ui/svg-icons/av/play-arrow';
+import RaisedButton from '@material-ui/core/Button';
+import TaskIcon from '@material-ui/icons/PlayArrow';
 import Instructable from '../containers/Instructable';
 import TaskName from './TaskName';
 

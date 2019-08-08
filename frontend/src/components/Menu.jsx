@@ -1,17 +1,17 @@
 import React from 'react';
-import Drawer from 'material-ui/Drawer';
-import { Menu as MaterialMenu } from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
-import Divider from 'material-ui/Divider';
-import Subheader from 'material-ui/Subheader';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import HomeIcon from 'material-ui/svg-icons/action/home';
-import TaskIcon from 'material-ui/svg-icons/av/play-arrow';
-import TasksOverviewIcon from 'material-ui/svg-icons/image/view-comfy';
-import TaskEditorIcon from 'material-ui/svg-icons/action/note-add';
-import FeedbackIcon from 'material-ui/svg-icons/action/feedback';
-import EyeIcon from 'material-ui/svg-icons/image/remove-red-eye';
-import DBIcon from 'material-ui/svg-icons/device/storage';
+import Drawer from '@material-ui/core/Drawer';
+import MaterialMenu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Divider from '@material-ui/core/Divider';
+import Subheader from '@material-ui/core/ListSubheader';
+import withStyles from '@material-ui/styles/withStyles';
+import HomeIcon from '@material-ui/icons/Home';
+import TaskIcon from '@material-ui/icons/PlayArrow';
+import TasksOverviewIcon from '@material-ui/icons/ViewComfy';
+import TaskEditorIcon from '@material-ui/icons/NoteAdd';
+import FeedbackIcon from '@material-ui/icons/Feedback';
+import EyeIcon from '@material-ui/icons/RemoveRedEye';
+import DBIcon from '@material-ui/icons/Storage';
 import { Link } from 'react-router-dom';
 import GHIcon from '../components/GitHubIcon';
 import Text from '../localization/Text';
@@ -88,7 +88,7 @@ class Menu extends React.Component {
         >
         { /* Note that disabling auto focus on menu is important to avoid
         material-ui bug of menu steeling focus to text fields when typing, see
-        https://github.com/callemall/material-ui/issues/4387 */ }
+        https://github.com/callemall/@material-ui/core/issues/4387 */ }
           <Divider style={{ marginTop: 0 }} />
           <MenuItem
             value="intro"
@@ -133,6 +133,6 @@ class Menu extends React.Component {
   }
 }
 
-Menu = muiThemeable()(Menu);
+Menu = withStyles()(Menu);
 
 export default Menu;

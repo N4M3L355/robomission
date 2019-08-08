@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AceEditor from 'react-ace';
-import Toggle from 'material-ui/Toggle';
-import { List, ListItem } from 'material-ui/List';
-import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/Divider';
-import IconDescription from 'material-ui/svg-icons/action/description';
-import IconUpload from 'material-ui/svg-icons/content/unarchive';
-import IconDownload from 'material-ui/svg-icons/content/move-to-inbox';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import TextField from 'material-ui/TextField';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import Toggle from '@material-ui/core/Switch';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
+import IconDescription from '@material-ui/icons/Description';
+import IconUpload from '@material-ui/icons/Unarchive';
+import IconDownload from '@material-ui/icons/MoveToInbox';
+import SelectField from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import withStyles from '@material-ui/styles/withStyles';
 import Instructable from '../containers/Instructable';
 
 import 'brace/theme/solarized_dark';
@@ -156,4 +157,4 @@ SettingEditor.propTypes = {
 };
 
 
-export default muiThemeable()(SettingEditor);
+export default withStyles()(SettingEditor);

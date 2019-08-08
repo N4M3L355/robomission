@@ -1,17 +1,17 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
-import Avatar from 'material-ui/Avatar';
-import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
-import FeedbackIcon from 'material-ui/svg-icons/action/feedback';
-import HelpIcon from 'material-ui/svg-icons/action/help';
-import UserIcon from 'material-ui/svg-icons/social/person';
-import MenuIcon from 'material-ui/svg-icons/navigation/menu';
-import Fullscreen from 'material-ui/svg-icons/navigation/fullscreen';
-import FullscreenExit from 'material-ui/svg-icons/navigation/fullscreen-exit';
-import IconButton from 'material-ui/IconButton';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import AppBar from '@material-ui/core/AppBar';
+import Avatar from '@material-ui/core/Avatar';
+import Toolbar from '@material-ui/core/Toolbar';
+import FeedbackIcon from '@material-ui/icons/Feedback';
+import HelpIcon from '@material-ui/icons/Help';
+import UserIcon from '@material-ui/icons/Person';
+import MenuIcon from '@material-ui/icons/Menu';
+import Fullscreen from '@material-ui/icons/Fullscreen';
+import FullscreenExit from '@material-ui/icons/FullscreenExit';
+import IconButton from '@material-ui/core/IconButton';
+import IconMenu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import withStyles from '@material-ui/styles/withStyles';
 import logo from '../images/logo.png'
 import Instructable from '../containers/Instructable';
 import LevelBar from '../components/LevelBar';
@@ -107,15 +107,15 @@ class Header extends React.Component {
       <Toolbar style={{ backgroundColor: 'transparent', color: 'white' }}>
         {this.props.mode !== 'monitoring' && [(
           <Instructable key="levelbar" instruction="env-levelbar" position="bottom">
-            <ToolbarGroup
+            <div
               key="levelbar"
               style={{ marginRight: 10 }}>
                 <LevelBar mini {...this.props.levelInfo} />
-            </ToolbarGroup>
+            </div>
           </Instructable>
         )
         ]}
-        <ToolbarGroup key="user-toolbar" lastChild={true}>
+        <div key="user-toolbar" lastChild={true}>
           <Instructable key="fullscreen" instruction="env-fullscreen" position="bottom">
 
             {<IconButton
@@ -162,7 +162,7 @@ class Header extends React.Component {
             </IconButton>
           </Instructable>
           {userMenu}
-        </ToolbarGroup>
+        </div>
       </Toolbar>
     );
     return (
@@ -185,6 +185,6 @@ class Header extends React.Component {
   }
 }
 
-Header = muiThemeable()(Header);
+Header = withStyles()(Header);
 
 export default Header;

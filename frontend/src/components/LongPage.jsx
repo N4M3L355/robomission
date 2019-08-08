@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import withStyles from '@material-ui/styles/withStyles';
 
 
 class LongPage extends React.Component {
@@ -32,5 +32,5 @@ LongPage.defaultProps = {
 };
 
 
-LongPage = muiThemeable()(LongPage);
+LongPage = withStyles()(LongPage);
 export default LongPage;
