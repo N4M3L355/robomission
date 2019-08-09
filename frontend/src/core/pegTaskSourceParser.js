@@ -7,6 +7,8 @@
 
 "use strict";
 
+import parseRoboCode from "./roboCodeParser";
+
 function peg$subclass(child, parent) {
   function ctor() { this.constructor = child; }
   ctor.prototype = parent.prototype;
@@ -134,7 +136,7 @@ peg$SyntaxError.buildMessage = function(expected, found) {
   return "Expected " + describeExpected(expected) + " but " + describeFound(found) + " found.";
 };
 
-function peg$parse(input, options) {
+export function peg$parse(input, options) {
   options = options !== void 0 ? options : {};
 
   var peg$FAILED = {},
@@ -959,7 +961,10 @@ function peg$parse(input, options) {
   }
 }
 
+export default peg$parse;
+/*
 module.exports = {
   SyntaxError: peg$SyntaxError,
   parse:       peg$parse
 };
+*/

@@ -1,4 +1,4 @@
-import pegTaskSourceParser from './pegTaskSourceParser';
+import { peg$parse } from './pegTaskSourceParser';
 import { parseRoboCode } from './roboCodeParser';
 import { parseSpaceWorld } from './spaceWorldDescription';
 import { generateMiniRoboCode } from './miniRoboCodeGenerator';
@@ -8,7 +8,7 @@ import { generateMiniRoboCode } from './miniRoboCodeGenerator';
  * task
  */
 export function parseTaskSourceText(sourceText) {
-  const chunkedTaskSource = pegTaskSourceParser.parse(sourceText);
+  const chunkedTaskSource = peg$parse(sourceText);
   const { errors } = parseSpaceWorld(chunkedTaskSource.setting.fields);
   if (errors.length > 0) {
     throw errors[0];

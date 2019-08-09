@@ -10,10 +10,10 @@
     "babel-preset-env": "^1.6.1",
     "js-interpreter": "github:effa/JS-Interpreter#f7afaf9d4862f85394bf4860f8ba8e57f67fbdf2",
     "jupyter-react-js": "^0.5.1",
-    "material-ui": "^0.19.4",
-    "node-blockly": "^1.0.29",
+    "material-ui": "^0.20.2",
+    "node-blockly": "^1.1.1",
     "normalize.css": "^7.0.0",
-    "prop-types": "^15.6.0",
+    "prop-types": "^15.7.2",
     "rc-progress": "^2.2.2",
     "react": "^15.6.2",
     "react-ace": "^5.5.0",
@@ -26,7 +26,7 @@
     "react-joyride": "^1.11.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "^1.0.14",
+    "react-scripts": "^3.0.1",
     "react-scroll": "^1.6.4",
     "react-social-login-buttons": "^1.3.5",
     "react-split-pane": "^0.1.68",
@@ -47,6 +47,17 @@
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.13",
     "@storybook/addon-links": "^3.2.13",
-    "@storybook/react": "^3.2.13"
+    "@storybook/react": "^3.4.12"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
