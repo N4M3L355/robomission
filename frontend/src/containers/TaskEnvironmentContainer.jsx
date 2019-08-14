@@ -58,5 +58,5 @@ const actionCreators = { createTaskEnvironment, changeGamePanelWidth };
 const TaskEnvironmentContainer = connect(mapStateToProps,
                                          actionCreators,
                                          null,
-                                         { withRef: true })(TaskEnvironmentWrapper);
+                                         { forwardRef: true })(TaskEnvironmentWrapper);
 export default TaskEnvironmentContainer;

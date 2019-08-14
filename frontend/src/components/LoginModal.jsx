@@ -3,7 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
 import {GridList, GridTile} from 'material-ui/GridList';
 import TextField from 'material-ui/TextField';
-import EmailIcon from 'material-ui/svg-icons/communication/email';
+import EmailIcon from '@material-ui/icons/Email';
 import { FacebookLoginButton, GoogleLoginButton } from 'react-social-login-buttons';
 import { translate } from '../localization';
 

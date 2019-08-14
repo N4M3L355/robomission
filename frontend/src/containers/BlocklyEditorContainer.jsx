@@ -119,5 +119,5 @@ const actionCreators = {
 const BlocklyEditorContainer = connect(mapStateToProps,
                                        actionCreators,
                                        null,
-                                       { withRef: true })(BlocklyEditorWrapper);
+                                       { forwardRef: true })(BlocklyEditorWrapper);
 export default BlocklyEditorContainer;

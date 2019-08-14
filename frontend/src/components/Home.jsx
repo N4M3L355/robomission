@@ -4,7 +4,7 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import ArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
+import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import Scroll from 'react-scroll';
 import SpaceGameContainer from '../containers/SpaceGameContainer';
 //import TaskEnvironmentContainer from '../containers/TaskEnvironmentContainer';

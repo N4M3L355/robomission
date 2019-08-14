@@ -3,8 +3,8 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /code/
 
 RUN apt-get update -qq && apt-get install -yqq curl
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
-RUN apt-get install -yqq nodejs
+RUN curl -sL https://deb.nodesource.com/setup_9.x | bash
+RUN apt-get install -yqq nodejs npm
 RUN apt-get clean -y
 
 COPY requirements.txt /code/
