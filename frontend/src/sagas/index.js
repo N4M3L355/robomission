@@ -122,13 +122,13 @@ function* doActionMove(taskEnvironmentId, actionName, interruptible) {
     return;
   }
   yield put(actions.doAction(taskEnvironmentId, actionName));
-  yield call(delay, pause);
+  yield delay(pause);
   interpreting = yield select(isInterpreting, taskEnvironmentId);
   if (interruptible && !interpreting) {
     return;
   }
   yield put(actions.move(taskEnvironmentId));
-  yield call(delay, pause);
+  yield delay(pause);
   interpreting = yield select(isInterpreting, taskEnvironmentId);
   if (interruptible && !interpreting) {
     return;
@@ -143,7 +143,7 @@ function* highlightBlock(taskEnvironmentId, blockId) {
   const highlightPause = 0.33 * (yield select(getPauseLength, taskEnvironmentId));
   if (highlightPause > 0) {
     yield put(actions.highlightBlock(taskEnvironmentId, blockId))
-    yield call(delay, highlightPause);
+    yield delay(highlightPause);
   }
 }
 
@@ -188,7 +188,7 @@ function* taskFlow(taskEnvironmentId, task) {
         }
       }
       // wait to allow the student to see the world after the last step
-      yield call(delay, 300);
+      yield delay(300);
       yield put(actions.interpretationFinished(taskEnvironmentId));
     }
   }

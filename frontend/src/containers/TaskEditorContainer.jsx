@@ -7,7 +7,7 @@ import { stripIndentation } from '../utils/text'
 
 
 class TaskEditorWrapper extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.setTask(this.props.taskEnvironmentId, this.props.initialTask);
   }
 

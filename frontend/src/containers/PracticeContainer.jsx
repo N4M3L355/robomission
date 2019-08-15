@@ -40,11 +40,11 @@ class PracticeContainer extends React.Component {
     this.resetGame = this.props.resetGame.bind(this, this.props.taskEnvironmentId);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.startTask(this.props.taskId);
   }
 
-  componentWillReceiveProps(props) {
+  componentDidUpdate(props) {
     //if (!this.props.solved && props.solved) {
     //  this.solveTask();
     //}

@@ -24,7 +24,7 @@ const actionCreators = {
 };
 
 class TasksTableContainer extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     // make sure to load updated practiceOverivew on transition to this page
     if (this.props.isPracticeOverviewInvalidated) {
       this.props.fetchPracticeOverview(this.props.practiceOverviewUrl);

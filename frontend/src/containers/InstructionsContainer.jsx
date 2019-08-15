@@ -35,11 +35,8 @@ class InstructionsContainer extends React.Component {
     this.setInstructions(props.scheduledInstructions);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setInstructions(nextProps.scheduledInstructions);
-  }
-
   componentDidUpdate(prevProps) {
+    this.setInstructions(prevProps.scheduledInstructions);
     if (!prevProps.shown && this.props.shown) {
       this.joyride.reset(true);
     }

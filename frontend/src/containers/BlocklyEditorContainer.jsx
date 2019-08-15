@@ -22,6 +22,7 @@ class BlocklyEditorWrapper extends React.Component {
     const generalInstructions =  ['task-toolbox', 'task-snapping'];
     const blockInstructions = getAllBlocksList().map(id => `task-block-${id}`);
     this.allInstructions = generalInstructions.concat(blockInstructions);
+    this.blocklyEditor = React.createRef();
   }
 
   componentDidMount() {
@@ -46,10 +47,10 @@ class BlocklyEditorWrapper extends React.Component {
     // Toolbox.
     let instructables = [ { instructionId: 'task-toolbox', position: 'right' } ];
     // TODO: Find a way through a public API.
-    const toolboxSvg = this.blocklyEditor.blocklyToolbox.svgGroup_;
+    const toolboxSvg = this.blocklyEditor.current.blocklyToolbox.svgGroup_;
     toolboxSvg.classList.add('instructable-task-toolbox');
     // Snapping.
-    const programBlocks = this.blocklyEditor.blocklyWorkspace.getAllBlocks();
+    const programBlocks = this.blocklyEditor.current.blocklyWorkspace.getAllBlocks();
     for (const block of programBlocks) {
       if (block.type === 'start') {
         const svgElement = block.getSvgRoot();
@@ -58,7 +59,7 @@ class BlocklyEditorWrapper extends React.Component {
       }
     }
     // Blocks.
-    const toolboxBlocks = this.blocklyEditor.blocklyToolbox.getAllBlocks();
+    const toolboxBlocks = this.blocklyEditor.current.blocklyToolbox.getAllBlocks();
     for (const block of toolboxBlocks) {
       const svgElement = block.getSvgRoot();
       // TODO: Sync the class with store.instructions.
@@ -80,7 +81,7 @@ class BlocklyEditorWrapper extends React.Component {
   render() {
     return (
       <BlocklyEditor
-        ref={ref => { this.blocklyEditor = ref; }}
+        ref={ this.blocklyEditor }
         roboAst={this.props.roboAst}
         toolboxBlocks={expandBlocks(this.props.toolbox)}
         lengthLimit={this.props.lengthLimit}

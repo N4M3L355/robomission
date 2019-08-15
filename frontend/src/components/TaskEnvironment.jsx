@@ -12,6 +12,7 @@ export default class TaskEnvironment extends React.Component {
   constructor(props) {
     super(props);
     this.onGamePanelWidthChange = this.changeGamePanelWidth.bind(this);
+    this.blocklyEditor = React.createRef();
   }
 
   changeGamePanelWidth(width) {
@@ -20,8 +21,8 @@ export default class TaskEnvironment extends React.Component {
   }
 
   resize() {
-    if (this.blocklyEditor != null) {
-      this.blocklyEditor.resize();
+    if (this.blocklyEditor.current != null) {
+      this.blocklyEditor.current.resize();
     }
   }
 
@@ -77,7 +78,8 @@ export default class TaskEnvironment extends React.Component {
           { editorType === 'blockly' &&
             <BlocklyEditorContainer
               taskEnvironmentId={taskEnvironmentId}
-              ref={ref => { this.blocklyEditor = ref ? ref.getWrappedInstance() : null; }}
+              //ref={ref => { this.blocklyEditor = ref ? ref.getWrappedInstance() : null; }}
+              ref = {this.blocklyEditor}
             />
           }
         </span>
