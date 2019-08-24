@@ -1,6 +1,6 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
-import Avatar from 'material-ui/Avatar';
+import AppBar from '@material-ui/core/AppBar';
+import Avatar from '@material-ui/core/Avatar';
 import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import HelpIcon from '@material-ui/icons/Help';
@@ -8,9 +8,9 @@ import UserIcon from '@material-ui/icons/Person';
 import MenuIcon from '@material-ui/icons/Menu';
 import Fullscreen from '@material-ui/icons/Fullscreen';
 import FullscreenExit from '@material-ui/icons/FullscreenExit';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import logo from '../images/logo.png'
 import Instructable from '../containers/Instructable';
