@@ -1,21 +1,12 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Avatar from '@material-ui/core/Avatar';
-import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
-import FeedbackIcon from '@material-ui/icons/Feedback';
-import HelpIcon from '@material-ui/icons/Help';
-import UserIcon from '@material-ui/icons/Person';
-import MenuIcon from '@material-ui/icons/Menu';
-import Fullscreen from '@material-ui/icons/Fullscreen';
-import FullscreenExit from '@material-ui/icons/FullscreenExit';
-import IconButton from '@material-ui/core/IconButton';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from '@material-ui/core/MenuItem';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import {Fullscreen, FullscreenExit, Feedback as FeedbackIcon,
+  Help as HelpIcon, Person as UserIcon, Menu as MenuIcon} from '@material-ui/icons';
 import logo from '../images/logo.png'
 import Instructable from '../containers/Instructable';
 import LevelBar from '../components/LevelBar';
 import { translate } from '../localization';
+import {Menu, Avatar, IconButton, MenuItem, AppBar, Toolbar} from "@material-ui/core";
+ import {withStyles} from "@material-ui/styles";
 
 
 class Header extends React.Component {
@@ -40,7 +31,7 @@ class Header extends React.Component {
         alt='RoboMission logo'
         src={ logo }
         style={{
-          height: '100%',
+          height: '5rem',
           padding: 14,
           boxSizing: 'border-box',
         }}
@@ -74,117 +65,113 @@ class Header extends React.Component {
         </Avatar>
       </IconButton>
     );
+
     let userMenu = (
-      <Instructable key="login" instruction="env-login" position="bottom">
-        <IconMenu
-          iconButtonElement={avatar}>
-            <MenuItem
-              primaryText={translate('user.login')}
-              onClick={this.props.openLoginModal}
-            />
-            <MenuItem
-              primaryText={translate('user.signup')}
-              onClick={this.props.openSignUpModal}
-            />
-            <MenuItem
-              primaryText={translate('user.delete-history')}
-              onClick={this.props.logout}
-            />
-        </IconMenu>
+      <Instructable key="login" instruction="env-login">
+        <div>
+        {avatar}
+        <Menu id="user-menu">
+          <MenuItem
+            onClick={this.props.openLoginModal}
+          >
+            {translate('user.login')}</MenuItem>
+          <MenuItem
+            onClick={this.props.openSignUpModal}
+          >
+            {translate('user.signup')}</MenuItem>
+          <MenuItem
+            onClick={this.props.logout}
+          >
+            {translate('user.delete-history')}</MenuItem>
+        </Menu>
+        </div>
       </Instructable>
     );
     if (!this.props.user.isLazy) {
       userMenu = (
-        <IconMenu iconButtonElement={avatar}>
+        <Menu iconButtonElement={avatar}>
           <MenuItem
             primaryText={translate('user.logout')}
             onClick={this.props.logout}
           />
-        </IconMenu>
+        </Menu>
       );
     }
-    const toolbar = (
-      <Toolbar style={{ backgroundColor: 'transparent', color: 'white' }}>
-        {this.props.mode !== 'monitoring' && [(
-          <Instructable key="levelbar" instruction="env-levelbar" position="bottom">
-            <ToolbarGroup
-              key="levelbar"
-              style={{ marginRight: 10 }}>
-                <LevelBar mini {...this.props.levelInfo} />
-            </ToolbarGroup>
-          </Instructable>
-        )
-        ]}
-        <ToolbarGroup key="user-toolbar" lastChild={true}>
-          <Instructable key="fullscreen" instruction="env-fullscreen" position="bottom">
-
-            {<IconButton
-              tooltip={this.state.isInFullscreen ? translate('Exit fullscreen') : translate('Fullscreen') }
-              onClick={() => {
-                this.toggleFullscreen();
-                this.setState(prevState => ({isInFullscreen: !prevState.isInFullscreen}))
-              }}
-            >
-              {this.state.isInFullscreen ? <FullscreenExit color='white'/> : <Fullscreen color='white'/>}
-            </IconButton>}
-
-
-          </Instructable>
-          <Instructable key="help" instruction="env-help" position="bottom">
-            <IconMenu
-              iconButtonElement={
-                <IconButton tooltip={translate('Help')} >
-                  <HelpIcon color={ (nNewInstructions > 0) ?
-                    this.props.muiTheme.palette.accent1Color : 'white' } />
-                </IconButton>
-              }
-            >
-              <MenuItem
-                primaryText={`${translate('New instructions')} (${nNewInstructions})`}
-                onClick={this.showNewInstructions}
-                disabled={nNewInstructions === 0}
-              />
-              <MenuItem
-                primaryText={translate('All instructions')}
-                onClick={this.showAllInstructions}
-              />
-            </IconMenu>
-
-
-
-          </Instructable>
-          <Instructable key="feedback" instruction="env-feedback" position="bottom">
-            <IconButton
-              tooltip={translate('Feedback')}
-              onClick={this.props.openFeedbackModal}
-            >
-              <FeedbackIcon />
-            </IconButton>
-          </Instructable>
-          {userMenu}
-        </ToolbarGroup>
-      </Toolbar>
-    );
     return (
-      <AppBar
-        title={this.renderTitle()}
-        style={{
-          backgroundColor: this.props.muiTheme.palette.primary1Color,
-          margin: 0,
-        }}
-        iconElementLeft={
-          <IconButton>
+      <AppBar position="static">
+        <Toolbar>
+
+          <IconButton  edge="start" onClick={this.props.onMenuIconTouchTap}>
             <Instructable instruction="env-menu" position="bottom">
               <MenuIcon />
             </Instructable>
-          </IconButton>}
-        onLeftIconButtonTouchTap={this.props.onMenuIconTouchTap}
-        iconElementRight={toolbar}
-      />
+          </IconButton>
+          {this.renderTitle()}
+
+          <div style={{flexGrow: 1}}/>
+          {this.props.mode !== 'monitoring' && [(
+            <Instructable key="levelbar" instruction="env-levelbar" position="bottom">
+              <div
+                key="levelbar"
+                style={{ marginRight: 10 }}>
+                <LevelBar mini {...this.props.levelInfo} />
+              </div>
+            </Instructable>
+          )
+          ]}
+          <div key="user-toolbar">
+            <Instructable key="fullscreen" instruction="env-fullscreen" position="bottom">
+
+              <IconButton
+                tooltip={this.state.isInFullscreen ? translate('Exit fullscreen') : translate('Fullscreen') }
+                onClick={() => {
+                  this.toggleFullscreen();
+                  this.setState(prevState => ({isInFullscreen: !prevState.isInFullscreen}))
+                }}
+              >
+                {this.state.isInFullscreen ? <FullscreenExit color='white'/> : <Fullscreen color='white'/>}
+              </IconButton>
+
+
+            </Instructable>
+            <Instructable key="help" instruction="env-help" position="bottom">
+              <Menu
+                iconButtonElement={
+                  <IconButton tooltip={translate('Help')} >
+                    <HelpIcon color={ (nNewInstructions > 0) ?
+                      'yellow' : 'white' } />
+                  </IconButton>
+                }
+              >
+                <MenuItem
+                  primaryText={`${translate('New instructions')} (${nNewInstructions})`}
+                  onClick={this.showNewInstructions}
+                  disabled={nNewInstructions === 0}
+                />
+                <MenuItem
+                  primaryText={translate('All instructions')}
+                  onClick={this.showAllInstructions}
+                />
+              </Menu>
+            </Instructable>
+            <Instructable key="feedback" instruction="env-feedback" position="bottom">
+              <IconButton
+                tooltip={translate('Feedback')}
+                onClick={this.props.openFeedbackModal}
+              >
+                <FeedbackIcon />
+              </IconButton>
+            </Instructable>
+          </div>
+          <div>
+            {userMenu}
+          </div>
+        </Toolbar>
+      </AppBar>
     );
   }
 }
 
-Header = muiThemeable()(Header);
+Header = withStyles({})(Header);
 
 export default Header;
