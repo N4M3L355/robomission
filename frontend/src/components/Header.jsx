@@ -8,10 +8,15 @@ import Instructable from '../containers/Instructable';
 import LevelBar from '../components/LevelBar';
 import {translate} from '../localization';
 import {Menu, Avatar, IconButton, MenuItem, AppBar, Toolbar} from "@material-ui/core";
-import {withStyles} from "@material-ui/styles";
+
+import { useTheme } from '@material-ui/styles';
+
 
 
 export default function Header(props) {
+
+  const theme = useTheme();
+
 
   const [isFullscreen, setIsFullscreen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -141,7 +146,7 @@ export default function Header(props) {
                   return toggleFullscreen();
                 }}
               >
-                {isFullscreen ? <FullscreenExit color='white'/> : <Fullscreen color='white'/>}
+                {isFullscreen ? <FullscreenExit color={theme.palette.secondary.main}/> : <Fullscreen color={theme.palette.secondary.main}/>}
               </IconButton>
 
 
@@ -151,7 +156,7 @@ export default function Header(props) {
                 iconButtonElement={
                   <IconButton tooltip={translate('Help')}>
                     <HelpIcon color={(nNewInstructions > 0) ?
-                      'yellow' : 'white'}/>
+                      theme.palette.secondary.main : 'white'}/>
                   </IconButton>
                 }
               >
@@ -183,6 +188,3 @@ export default function Header(props) {
     );
 
 }
-
-
-Header = (Header);

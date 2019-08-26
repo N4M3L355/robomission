@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Line as ProgressBar } from 'rc-progress';
-import muiThemeable from 'material-ui/styles/muiThemeable';
 
 
 const propTypes = {
@@ -77,6 +76,5 @@ class LevelBar extends React.Component {
 
 LevelBar.propTypes = propTypes;
 LevelBar.defaultProps = defaultProps;
-LevelBar = muiThemeable()(LevelBar);
 
 export default LevelBar;

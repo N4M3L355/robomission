@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
+import {Paper, Fab, Button} from '@material-ui/core';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import Scroll from 'react-scroll';
 import SpaceGameContainer from '../containers/SpaceGameContainer';
@@ -16,8 +13,13 @@ import spaceshipInSpaceWorldPath from '../images/spaceship-in-spaceworld.png';
 import Text from '../localization/Text';
 
 
-class Home extends React.Component {
-  renderSlide({ style, content, footer }, index) {
+import { useTheme } from '@material-ui/styles';
+
+export default function Home(props) {
+  
+  const theme = useTheme();
+  
+  function renderSlide({ style, content, footer }, index) {
     return (
       <Scroll.Element key={index} name={`intro-slide-${index}`}>
         <section
@@ -42,7 +44,6 @@ class Home extends React.Component {
     );
   }
 
-  render() {
     const slides = [
       // slide 0
       {
@@ -53,39 +54,28 @@ class Home extends React.Component {
           color: '#fff',
         },
         content: (
-          <Paper
-            style={{
-              display: 'inline-block',
-              paddingTop: 10,
-              paddingBottom: 35,
-              paddingLeft: 50,
-              paddingRight: 50,
-              minWidth: 500,
-              backgroundColor: 'rgba(50, 50, 50, 0.9)',
-            }}
-            zDepth={2}
-          >
-            <h2><Text id="intro.learn-programming" /></h2>
+          <div>
+            <h1><Text id="intro.learn-programming" /></h1>
             <span style={{ marginRight: 20 }}>
               <NextTaskButtonContainer />
             </span>
             <Link to="/tasks">
-              <RaisedButton label={<Text id="Tasks" />} />
+              <Button variant='outlined'><Text id="Tasks" /></Button>
             </Link>
-          </Paper>
+          </div>
         ),
         footer: (
           <Scroll.Link to="intro-slide-1" smooth={true} duration={500}>
-            <FloatingActionButton secondary={true}>
+            <Fab color='secondary'>
               <ArrowDown />
-            </FloatingActionButton>
+            </Fab>
           </Scroll.Link>
         ),
       },
       // slide 1
       {
         style: {
-          backgroundColor: this.props.muiTheme.palette.canvasColor,
+          backgroundColor: theme.canvasColor,
           color: '#fff',
         },
         content: (
@@ -98,16 +88,16 @@ class Home extends React.Component {
                 controls={['fly', 'left', 'right', 'reset']}
               />
             </div>
-            <p style={{ visibility: this.props.spaceWorldDemoSolved ? 'visible' : 'hidden' }}>
+            <p style={{ visibility: props.spaceWorldDemoSolved ? 'visible' : 'hidden' }}>
             <Text id='excellent-task-solved' />
             </p>
           </div>
         ),
         footer: (
           <Scroll.Link to="intro-slide-2" smooth={true} duration={500}>
-            <FloatingActionButton secondary={true} disabled={!this.props.spaceWorldDemoSolved}>
+            <Fab color='secondary' disabled={!props.spaceWorldDemoSolved}>
               <ArrowDown />
-            </FloatingActionButton>
+            </Fab>
           </Scroll.Link>
         ),
       },
@@ -116,7 +106,7 @@ class Home extends React.Component {
       /*
       {
         style: {
-          backgroundColor: this.props.muiTheme.palette.primary1Color,
+          backgroundColor: theme.palette.primary.main,
         },
         content: (
           <div>
@@ -140,16 +130,16 @@ class Home extends React.Component {
                 controls={['run', 'reset']}
               />
             </div>
-            <p style={{ visibility: this.props.programDemoSolved ? 'visible' : 'hidden' }}>
+            <p style={{ visibility: props.programDemoSolved ? 'visible' : 'hidden' }}>
               <Text id='excellent-task-solved' />
             </p>
           </div>
         ),
         footer: (
           <Scroll.Link to="intro-slide-3" smooth={true} duration={500}>
-            <FloatingActionButton secondary={true} disabled={!this.props.programDemoSolved}>
+            <Fab secondary={true} disabled={!props.programDemoSolved}>
               <ArrowDown />
-            </FloatingActionButton>
+            </Fab>
           </Scroll.Link>
         ),
       },
@@ -170,9 +160,9 @@ class Home extends React.Component {
         ),
         footer: (
           <Scroll.Link to="intro-slide-3" smooth={true} duration={500}>
-            <FloatingActionButton secondary={true}>
+            <Fab color='secondary'>
               <ArrowDown />
-            </FloatingActionButton>
+            </Fab>
           </Scroll.Link>
         ),
       },
@@ -201,19 +191,19 @@ class Home extends React.Component {
             </h2>
             <span style={{ marginRight: 20 }}>
               <a href="https://www.fi.muni.cz/adaptivelearning/?a=projects" target="_blank" rel="noreferrer noopener">
-                <RaisedButton label={<Text id="ALG" />} />
+                <Button variant='outlined'>{<Text id="ALG" />}</Button>
               </a>
             </span>
             <a href="https://www.fi.muni.cz/about/index.xhtml.cs" target="_blank" rel="noreferrer noopener">
-              <RaisedButton label={<Text id="FI-MU" />} style={{ minWidth: 265 }} />
+              <Button variant='outlined' style={{ minWidth: 265 }} ><Text id="FI-MU" /></Button>
             </a>
           </Paper>
         ),
         footer: (
           <Scroll.Link to="intro-slide-4" smooth={true} duration={500}>
-            <FloatingActionButton secondary={true}>
+            <Fab color='secondary'>
               <ArrowDown />
-            </FloatingActionButton>
+            </Fab>
           </Scroll.Link>
         ),
       },
@@ -235,10 +225,9 @@ class Home extends React.Component {
     ];
     return (
       <div style={longPageStyle}>
-        {slides.map(this.renderSlide)}
+        {slides.map(renderSlide)}
       </div>
     );
-  }
 }
 
 const longPageStyle = {
@@ -274,6 +263,3 @@ const slideFooterStyle = {
   textAlign: 'center',
 };
 
-Home = muiThemeable()(Home);
-
-export default Home;

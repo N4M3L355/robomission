@@ -1,6 +1,6 @@
 import React from 'react';
-import Dialog from 'material-ui/Dialog';
-import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
 import {GridList, GridTile} from 'material-ui/GridList';
 import TextField from 'material-ui/TextField';
 import EmailIcon from '@material-ui/icons/Email';
@@ -56,15 +56,17 @@ export default class LoginModal extends React.Component {
               style={buttonStyle}
               onClick={loginViaFacebook}
             />
-            <RaisedButton
-              label={translate('user.signup')}
-              primary={true}
+            <Button
+              color='primary'
+              variant='contained'
               style={{ height: 50 }}
               buttonStyle={{ textAlign: 'left' }}
               fullWidth={true}
               onClick={this.props.openSignUpModal}
-              icon={<EmailIcon />}
-            />
+            >
+              <EmailIcon />
+              {translate('user.signup')}
+            </Button>
           </GridTile>
           <GridTile>
             <TextField
@@ -85,13 +87,13 @@ export default class LoginModal extends React.Component {
               type="password"
               errorText={this.props.loginFailed ? translate('user.login-failed') : null}
             />
-            <RaisedButton
-              label={translate('user.login')}
-              primary={true}
+            <Button
+              color='primary'
+              variant='contained'
               onClick={login}
               fullWidth={true}
-              style={{ marginTop: 10 }}
-            />
+              style={{ marginTop: 10 }}>{translate('user.login')}</Button>
+
           </GridTile>
         </GridList>
       </Dialog>
