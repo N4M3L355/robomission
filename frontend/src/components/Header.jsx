@@ -109,7 +109,7 @@ export default function Header(props) {
         </Menu>
       );
     }
-    return withStyles({})(
+    return (
       <AppBar position="static">
         <Toolbar>
 
@@ -183,3 +183,6 @@ export default function Header(props) {
     );
 
 }
+
+
+Header = (Header);
