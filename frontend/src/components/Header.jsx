@@ -1,35 +1,39 @@
 import React from 'react';
-import {Fullscreen, FullscreenExit, Feedback as FeedbackIcon,
-  Help as HelpIcon, Person as UserIcon, Menu as MenuIcon} from '@material-ui/icons';
+import {
+  Fullscreen, FullscreenExit, Feedback as FeedbackIcon,
+  Help as HelpIcon, Person as UserIcon, Menu as MenuIcon
+} from '@material-ui/icons';
 import logo from '../images/logo.png'
 import Instructable from '../containers/Instructable';
 import LevelBar from '../components/LevelBar';
-import { translate } from '../localization';
+import {translate} from '../localization';
 import {Menu, Avatar, IconButton, MenuItem, AppBar, Toolbar} from "@material-ui/core";
- import {withStyles} from "@material-ui/styles";
+import {withStyles} from "@material-ui/styles";
 
 
-class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state ={
-      isInFullscreen: false
-    };
+export default function Header(props) {
 
-    this.toggleFullscreen = () => {
-      if (this.state.isInFullscreen) document.exitFullscreen();
-      else document.documentElement.requestFullscreen();
-    };
-    this.showNewInstructions = props.showInstructions.bind(this, { onlyNew: true });
-    this.showAllInstructions = props.showInstructions.bind(this, { onlyNew: false });
+  const [isFullscreen, setIsFullscreen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const toggleFullscreen = () => isFullscreen ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+
+  const showNewInstructions = props.showInstructions.bind(this, {onlyNew: true});
+  const showAllInstructions = props.showInstructions.bind(this, {onlyNew: false});
+
+  function handleMenu(event) {
+    setAnchorEl(event.currentTarget);
   }
 
-  renderTitle() {
+
+  const open = Boolean(anchorEl);
+
+  function renderTitle() {
     const logoImg = (
       <img
         key='header-logo'
         alt='RoboMission logo'
-        src={ logo }
+        src={logo}
         style={{
           height: '5rem',
           padding: 14,
@@ -38,13 +42,13 @@ class Header extends React.Component {
       />
     );
     let modeTitleText = '';
-    if (this.props.mode === 'monitoring') {
+    if (props.mode === 'monitoring') {
       modeTitleText = 'Monitoring';
     }
     const modeTitle = (
       <span
         key='header-mode-title'
-        style={{ position: 'absolute', top: 0, marginLeft: 15, color: 'white' }}
+        style={{position: 'absolute', top: 0, marginLeft: 15, color: 'white'}}
       >
         {modeTitleText}
       </span>
@@ -52,14 +56,13 @@ class Header extends React.Component {
     return [logoImg, modeTitle];
   }
 
-  render() {
-    const { nNewInstructions } = this.props;
-    let userIcon = (<UserIcon />);
-    if (!this.props.user.isLazy) {
-      userIcon = this.props.user.initial;
+    const {nNewInstructions} = props;
+    let userIcon = (<UserIcon/>);
+    if (!props.user.isLazy) {
+      userIcon = props.user.initial;
     }
     const avatar = (
-      <IconButton style={{padding: 0}}>
+      <IconButton style={{padding: 0}} onClick={handleMenu}>
         <Avatar>
           {userIcon}
         </Avatar>
@@ -69,52 +72,61 @@ class Header extends React.Component {
     let userMenu = (
       <Instructable key="login" instruction="env-login">
         <div>
-        {avatar}
-        <Menu id="user-menu">
-          <MenuItem
-            onClick={this.props.openLoginModal}
+          {avatar}
+          <Menu id="user-menu" anchorEl={anchorEl} keepMounted open={open}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
           >
-            {translate('user.login')}</MenuItem>
-          <MenuItem
-            onClick={this.props.openSignUpModal}
-          >
-            {translate('user.signup')}</MenuItem>
-          <MenuItem
-            onClick={this.props.logout}
-          >
-            {translate('user.delete-history')}</MenuItem>
-        </Menu>
+            <MenuItem
+              onClick={props.openLoginModal}
+            >
+              {translate('user.login')}</MenuItem>
+            <MenuItem
+              onClick={props.openSignUpModal}
+            >
+              {translate('user.signup')}</MenuItem>
+            <MenuItem
+              onClick={props.logout}
+            >
+              {translate('user.delete-history')}</MenuItem>
+          </Menu>
         </div>
       </Instructable>
     );
-    if (!this.props.user.isLazy) {
+    if (!props.user.isLazy) {
       userMenu = (
         <Menu iconButtonElement={avatar}>
           <MenuItem
             primaryText={translate('user.logout')}
-            onClick={this.props.logout}
+            onClick={props.logout}
           />
         </Menu>
       );
     }
-    return (
+    return withStyles({})(
       <AppBar position="static">
         <Toolbar>
 
-          <IconButton  edge="start" onClick={this.props.onMenuIconTouchTap}>
+          <IconButton edge="start" onClick={props.onMenuIconTouchTap}>
             <Instructable instruction="env-menu" position="bottom">
-              <MenuIcon />
+              <MenuIcon/>
             </Instructable>
           </IconButton>
-          {this.renderTitle()}
+          {renderTitle()}
 
           <div style={{flexGrow: 1}}/>
-          {this.props.mode !== 'monitoring' && [(
+          {props.mode !== 'monitoring' && [(
             <Instructable key="levelbar" instruction="env-levelbar" position="bottom">
               <div
                 key="levelbar"
-                style={{ marginRight: 10 }}>
-                <LevelBar mini {...this.props.levelInfo} />
+                style={{marginRight: 10}}>
+                <LevelBar mini {...props.levelInfo} />
               </div>
             </Instructable>
           )
@@ -123,13 +135,13 @@ class Header extends React.Component {
             <Instructable key="fullscreen" instruction="env-fullscreen" position="bottom">
 
               <IconButton
-                tooltip={this.state.isInFullscreen ? translate('Exit fullscreen') : translate('Fullscreen') }
+                tooltip={isFullscreen ? translate('Exit fullscreen') : translate('Fullscreen')}
                 onClick={() => {
-                  this.toggleFullscreen();
-                  this.setState(prevState => ({isInFullscreen: !prevState.isInFullscreen}))
+                  setIsFullscreen(!isFullscreen);
+                  return toggleFullscreen();
                 }}
               >
-                {this.state.isInFullscreen ? <FullscreenExit color='white'/> : <Fullscreen color='white'/>}
+                {isFullscreen ? <FullscreenExit color='white'/> : <Fullscreen color='white'/>}
               </IconButton>
 
 
@@ -137,29 +149,29 @@ class Header extends React.Component {
             <Instructable key="help" instruction="env-help" position="bottom">
               <Menu
                 iconButtonElement={
-                  <IconButton tooltip={translate('Help')} >
-                    <HelpIcon color={ (nNewInstructions > 0) ?
-                      'yellow' : 'white' } />
+                  <IconButton tooltip={translate('Help')}>
+                    <HelpIcon color={(nNewInstructions > 0) ?
+                      'yellow' : 'white'}/>
                   </IconButton>
                 }
               >
                 <MenuItem
                   primaryText={`${translate('New instructions')} (${nNewInstructions})`}
-                  onClick={this.showNewInstructions}
+                  onClick={showNewInstructions}
                   disabled={nNewInstructions === 0}
                 />
                 <MenuItem
                   primaryText={translate('All instructions')}
-                  onClick={this.showAllInstructions}
+                  onClick={showAllInstructions}
                 />
               </Menu>
             </Instructable>
             <Instructable key="feedback" instruction="env-feedback" position="bottom">
               <IconButton
                 tooltip={translate('Feedback')}
-                onClick={this.props.openFeedbackModal}
+                onClick={props.openFeedbackModal}
               >
-                <FeedbackIcon />
+                <FeedbackIcon/>
               </IconButton>
             </Instructable>
           </div>
@@ -169,9 +181,5 @@ class Header extends React.Component {
         </Toolbar>
       </AppBar>
     );
-  }
+
 }
-
-Header = withStyles({})(Header);
-
-export default Header;
