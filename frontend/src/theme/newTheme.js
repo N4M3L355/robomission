@@ -4,13 +4,23 @@ import {cyan700, fullWhite} from "material-ui/styles/colors";
 import {fade} from "material-ui/utils/colorManipulator";
 
 
-let theme = createMuiTheme({
+const theme = createMuiTheme({
+
+  overrides: {
+    MuiButton:{
+      outlined:{
+        color: "rgba(255, 255, 255, 0.7)",
+        borderColor: "rgba(255, 255, 255, 0.7)",
+      }
+    }
+  },
   palette: {
     primary: cyan,
     secondary: amber,
     text: {
       primary: "#FFF",
       secondary: "rgba(255, 255, 255, 0.7)"
+
     }
   },
 

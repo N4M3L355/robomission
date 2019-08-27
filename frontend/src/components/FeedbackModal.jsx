@@ -1,6 +1,6 @@
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { translate } from '../localization';
 
@@ -9,11 +9,10 @@ export default class FeedbackModal extends React.Component {
   render() {
     if (this.props.justSent) {
       const actions = [
-        <FlatButton
-          label={translate('Close')}
-          primary={true}
-          onClick={this.props.closeFeedbackModal}
-        />,
+        <Button
+          color='primary'
+          variant='contained'
+          onClick={this.props.closeFeedbackModal}>{translate('Close')}</Button>,
       ];
       return (
         <Dialog
@@ -47,11 +46,10 @@ export default class FeedbackModal extends React.Component {
       this.props.submitFeedback(feedback);
     };
     const actions = [
-      <FlatButton
-        label={translate('feedback.submit')}
-        primary={true}
-        onClick={submitFeedback}
-      />,
+      <Button
+        color='primary'
+        variant='contained'
+        onClick={submitFeedback}>{translate('feedback.submit')}</Button>,
     ];
     return (
       <Dialog

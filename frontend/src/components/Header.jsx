@@ -9,14 +9,26 @@ import LevelBar from '../components/LevelBar';
 import {translate} from '../localization';
 import {Menu, Avatar, IconButton, MenuItem, AppBar, Toolbar} from "@material-ui/core";
 
-import { useTheme } from '@material-ui/styles';
+import {makeStyles, useTheme} from '@material-ui/styles';
 
 
+const useStyles = makeStyles(theme => ({
+  fab: {
+    borderWidth: '2px',
+    borderStyle: 'solid',
+    borderColor: theme.palette.secondary.main,
+    boxShadow: 'none',
+    backgroundColor:'rgba(0,0,0,0)',
+  },
+  appBar: {
+    backgroundColor: 'rgba(0,0,0,1)',
+  }
+}));
 
 export default function Header(props) {
 
   const theme = useTheme();
-
+  const classes = useStyles();
 
   const [isFullscreen, setIsFullscreen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -115,8 +127,8 @@ export default function Header(props) {
       );
     }
     return (
-      <AppBar position="static">
-        <Toolbar>
+      <AppBar position="static" color='primary' className={classes.appBar}>
+        <Toolbar >
 
           <IconButton edge="start" onClick={props.onMenuIconTouchTap}>
             <Instructable instruction="env-menu" position="bottom">

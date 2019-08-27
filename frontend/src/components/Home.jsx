@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {Paper, Fab, Button} from '@material-ui/core';
+import { useTheme, makeStyles } from '@material-ui/styles';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import Scroll from 'react-scroll';
 import SpaceGameContainer from '../containers/SpaceGameContainer';
@@ -9,16 +10,34 @@ import NextTaskButtonContainer from '../containers/NextTaskButtonContainer';
 import neuronsBackgroundPath from '../images/neurons-tile.png';
 import fiBackgroundPath from '../images/fi-slide.jpg';
 import spaceBackgroundPath from '../images/background-space.png';
-import spaceshipInSpaceWorldPath from '../images/spaceship-in-spaceworld.png';
+import spaceshipInSpaceWorldPath from '../images/banner-image.png';
 import Text from '../localization/Text';
 
 
-import { useTheme } from '@material-ui/styles';
+const useStyles = makeStyles(theme => ({
+  fab: {
+    borderWidth: '2px',
+    borderStyle: 'solid',
+    borderColor: theme.palette.secondary.main,
+    boxShadow: 'none',
+    backgroundColor:'rgba(0,0,0,0)',
+  },
+  banner: {
+    fontSize: '6em',
+    fontWeight: '200'
+  },
+  button: {
+    borderWidth: '2px'
+  }
+}));
+
 
 export default function Home(props) {
   
   const theme = useTheme();
-  
+  const classes = useStyles();
+
+
   function renderSlide({ style, content, footer }, index) {
     return (
       <Scroll.Element key={index} name={`intro-slide-${index}`}>
@@ -50,24 +69,23 @@ export default function Home(props) {
         style: {
           backgroundImage: `url(${spaceshipInSpaceWorldPath})`,
           backgroundSize: 'cover',
-          backgroundColor: '#111122',
           color: '#fff',
         },
         content: (
-          <div>
-            <h1><Text id="intro.learn-programming" /></h1>
+          <div style={{width:"50%"}}>
+            <h1 className={classes.banner}><Text id="intro.learn-programming" /></h1>
             <span style={{ marginRight: 20 }}>
               <NextTaskButtonContainer />
             </span>
             <Link to="/tasks">
-              <Button variant='outlined'><Text id="Tasks" /></Button>
+              <Button className={classes.button} variant='outlined'><Text id="Tasks" /></Button>
             </Link>
           </div>
         ),
         footer: (
           <Scroll.Link to="intro-slide-1" smooth={true} duration={500}>
-            <Fab color='secondary'>
-              <ArrowDown />
+            <Fab color='secondary' className={classes.fab}>
+              <ArrowDown color='secondary'/>
             </Fab>
           </Scroll.Link>
         ),
@@ -95,8 +113,8 @@ export default function Home(props) {
         ),
         footer: (
           <Scroll.Link to="intro-slide-2" smooth={true} duration={500}>
-            <Fab color='secondary' disabled={!props.spaceWorldDemoSolved}>
-              <ArrowDown />
+            <Fab color='secondary' disabled={!props.spaceWorldDemoSolved} className={classes.fab}>
+              <ArrowDown color='secondary'/>
             </Fab>
           </Scroll.Link>
         ),
@@ -137,8 +155,8 @@ export default function Home(props) {
         ),
         footer: (
           <Scroll.Link to="intro-slide-3" smooth={true} duration={500}>
-            <Fab secondary={true} disabled={!props.programDemoSolved}>
-              <ArrowDown />
+            <Fab secondary={true} disabled={!props.programDemoSolved} className={classes.fab}>
+              <ArrowDown color='secondary'/>
             </Fab>
           </Scroll.Link>
         ),
@@ -160,8 +178,8 @@ export default function Home(props) {
         ),
         footer: (
           <Scroll.Link to="intro-slide-3" smooth={true} duration={500}>
-            <Fab color='secondary'>
-              <ArrowDown />
+            <Fab color='secondary' className={classes.fab}>
+              <ArrowDown color='secondary'/>
             </Fab>
           </Scroll.Link>
         ),
@@ -191,18 +209,18 @@ export default function Home(props) {
             </h2>
             <span style={{ marginRight: 20 }}>
               <a href="https://www.fi.muni.cz/adaptivelearning/?a=projects" target="_blank" rel="noreferrer noopener">
-                <Button variant='outlined'>{<Text id="ALG" />}</Button>
+                <Button className={classes.button} variant='outlined'>{<Text id="ALG" />}</Button>
               </a>
             </span>
             <a href="https://www.fi.muni.cz/about/index.xhtml.cs" target="_blank" rel="noreferrer noopener">
-              <Button variant='outlined' style={{ minWidth: 265 }} ><Text id="FI-MU" /></Button>
+              <Button className={classes.button} variant='outlined' style={{ minWidth: 265 }} ><Text id="FI-MU" /></Button>
             </a>
           </Paper>
         ),
         footer: (
           <Scroll.Link to="intro-slide-4" smooth={true} duration={500}>
-            <Fab color='secondary'>
-              <ArrowDown />
+            <Fab color='secondary' className={classes.fab}>
+              <ArrowDown color='secondary' />
             </Fab>
           </Scroll.Link>
         ),

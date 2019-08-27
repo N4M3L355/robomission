@@ -1,5 +1,5 @@
 import React from 'react';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const wrapperStyle = {
   display: 'inline-block',
@@ -19,12 +19,13 @@ const indicatorStyle = {};
 export default function LoadingIndicator() {
   return (
     <div style={wrapperStyle}>
-      <RefreshIndicator
+      <CircularProgress
         size={40}
         left={0}
         top={0}
         status="loading"
         style={indicatorStyle}
+        color="primary"
       />
     </div>
   );

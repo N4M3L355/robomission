@@ -1,8 +1,8 @@
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
-import {GridList, GridTile} from 'material-ui/GridList';
-import TextField from 'material-ui/TextField';
+import {GridList, GridListTile as GridTile} from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import EmailIcon from '@material-ui/icons/Email';
 import { FacebookLoginButton, GoogleLoginButton } from 'react-social-login-buttons';
 import { translate } from '../localization';

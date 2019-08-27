@@ -1,9 +1,8 @@
 import React from 'react';
-import Drawer from 'material-ui/Drawer';
-import { Menu as MaterialMenu } from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
-import Divider from 'material-ui/Divider';
-import Subheader from 'material-ui/Subheader';
+import Drawer from '@material-ui/core/Drawer';
+import {ListItemText} from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
+import Subheader from '@material-ui/core/ListSubheader';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import HomeIcon from '@material-ui/icons/Home';
 import TaskIcon from '@material-ui/icons/PlayArrow';
@@ -12,11 +11,14 @@ import TaskEditorIcon from '@material-ui/icons/NoteAdd';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import EyeIcon from '@material-ui/icons/RemoveRedEye';
 import DBIcon from '@material-ui/icons/Storage';
-import { Link } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 import GHIcon from '../components/GitHubIcon';
 import Text from '../localization/Text';
 //import logoMenuPath from '../images/logo-menu.png';
 import Image from'../components/Image';
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
 
 
 class Menu extends React.Component {
@@ -34,7 +36,7 @@ class Menu extends React.Component {
       (<Divider key="divivider-admin" />),
       (<Subheader key="subheader-admin" >Admin</Subheader>),
       (
-        <MenuItem
+        <ListItem button
           value="admin"
           key="admin"
           leftIcon={<DBIcon />}
@@ -43,18 +45,18 @@ class Menu extends React.Component {
           rel="noreferrer noopener"
         >
           DB Admin
-        </MenuItem>
+        </ListItem>
       ), (
-        <MenuItem
+        <ListItem button
           value="monitoring"
           key="monitoring"
           leftIcon={<EyeIcon />}
           containerElement={<Link to="/monitoring" />}
         >
           Monitoring
-        </MenuItem>
+        </ListItem>
       ), (
-        <MenuItem
+        <ListItem button
           value="github"
           key="github"
           leftIcon={<GHIcon />}
@@ -63,7 +65,7 @@ class Menu extends React.Component {
           rel="noreferrer noopener"
         >
           Repo
-        </MenuItem>
+        </ListItem>
       ),
     ];
   }
@@ -75,59 +77,58 @@ class Menu extends React.Component {
     }
     return (
       <Drawer
-        docked={false}
         open={this.props.open}
         onRequestChange={this.setOpen}
+
       >
         <Image imageId="menu-banner" style={{ width: "100%", marginBottom: -12 }} />
-        <MaterialMenu
-          value={this.props.mode}
-          autoWidth={false}
-          width={this.props.muiTheme.drawer.width}
-          disableAutoFocus={true}
-        >
+        <List>
         { /* Note that disabling auto focus on menu is important to avoid
         material-ui bug of menu steeling focus to text fields when typing, see
         https://github.com/callemall/material-ui/issues/4387 */ }
           <Divider style={{ marginTop: 0 }} />
-          <MenuItem
-            value="intro"
-            leftIcon={<HomeIcon />}
-            containerElement={<Link to="/" />}
-          >
-            <Text id="Intro" />
-          </MenuItem>
-          {practiceTaskUrl && <MenuItem
-            value="task"
-            leftIcon={<TaskIcon />}
-            containerElement={<Link to={practiceTaskUrl} />}
-          >
-            <Text id="Practice" />
-          </MenuItem>}
-          <MenuItem
-            value="tasks"
-            leftIcon={<TasksOverviewIcon />}
-            containerElement={<Link to="/tasks" />}
-          >
-            <Text id="Tasks" />
-          </MenuItem>
+          <Link href="/">
+            <ListItem button key="intro">
+              <ListItemIcon>
+                <HomeIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Intro"/>
+            </ListItem>
+          </Link>
+          {practiceTaskUrl &&
+          <Link href={practiceTaskUrl}>
+            <ListItem button key="task">
+              <ListItemIcon>
+                <TaskIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Practice"/>
+            </ListItem>
+          </Link>}
+          <Link to="/tasks">
+            <ListItem button key="tasks">
+              <ListItemIcon>
+                <TasksOverviewIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Tasks"/>
+            </ListItem>
+          </Link>
           <Divider />
-          <MenuItem
-            value="task-editor"
-            leftIcon={<TaskEditorIcon />}
-            containerElement={<Link to="/task-editor" />}
-          >
-            <Text id="Task Editor" />
-          </MenuItem>
-          <MenuItem
-            value="feedback"
-            leftIcon={<FeedbackIcon />}
-            onClick={this.openFeedbackModal}
-          >
-            <Text id="Feedback" />
-          </MenuItem>
+          <Link to="/task-editor">
+            <ListItem button key="task-editor">
+              <ListItemIcon>
+                <TaskEditorIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Task Editor"/>
+            </ListItem>
+          </Link>
+          <ListItem button key="feedback" onClick={this.openFeedbackModal}>
+            <ListItemIcon>
+              <FeedbackIcon/>
+            </ListItemIcon>
+            <ListItemText primary="Feedback"/>
+          </ListItem>
           {this.renderAdminMenu()}
-        </MaterialMenu>
+        </List>
       </Drawer>
     );
   }

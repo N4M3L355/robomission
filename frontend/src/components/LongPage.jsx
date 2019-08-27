@@ -3,23 +3,25 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import {useTheme} from "@material-ui/styles";
 
 
-class LongPage extends React.Component {
-  render() {
-    const { children, muiTheme } = this.props;
-    const longPageStyle = {
-      maxWidth: 1200,
-      margin: '20px auto',
-      minHeight: '90vh',
-      backgroundColor: muiTheme.palette.canvasColor,
-    };
-    return (
-      <div style={longPageStyle}>
-        {children}
-      </div>
-    );
-  }
+
+export default function LongPage(props){
+
+  const theme = useTheme();
+  const { children } = props;
+  const longPageStyle = {
+    maxWidth: 1200,
+    margin: '20px auto',
+    minHeight: '90vh',
+    backgroundColor: theme.palette.canvasColor,
+  };
+  return (
+    <div style={longPageStyle}>
+      {children}
+    </div>
+  );
 }
 
 LongPage.propTypes = {
@@ -30,4 +32,3 @@ LongPage.propTypes = {
 LongPage.defaultProps = {
 };
 
-export default LongPage;
