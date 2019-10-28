@@ -1,13 +1,13 @@
 //import csLocaleData from 'react-intl/locale-data/cs';
 //import enLocaleData from 'react-intl/locale-data/en';
-//import {  IntlProvider } from 'react-intl';
+import {IntlProvider } from 'react-intl';
 import { getDomainLabels } from '../utils/url';
 import messagesCs from './messages-cs';
 import messagesEn from './messages-en';
-//import Text from './Text';
-
-
+import Text from './Text';
 //addLocaleData([...csLocaleData, ...enLocaleData]);
+
+
 const availableDomains = ['cs', 'en'];
 const defaultLocale = 'cs';
 const allMessages = {
@@ -34,13 +34,12 @@ export function getLocalizationSetting() {
 
 // temporary hack to allow easily localizing non-component messages in 3rd
 // party librarires (Blockly), TODO: unhack
-/*const { intl } = new IntlProvider(getLocalizationSetting(), {}).getChildContext();
-*/
+const intl = new IntlProvider(getLocalizationSetting(), {}).state.intl;
+
 export function translate(id, values = {}) {
-  return id;
-  //return intl.formatMessage({ id, values });
+  return intl.formatMessage({ id:id}, values );
 }
-/*
+
 export function possiblyTranslate(id, fallback) {
   const locale = getLocale();
   const messages = allMessages[locale];
@@ -51,4 +50,3 @@ export function possiblyTranslate(id, fallback) {
 }
 
 export { Text };
-*/

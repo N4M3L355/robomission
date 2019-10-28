@@ -13,12 +13,13 @@ import EyeIcon from '@material-ui/icons/RemoveRedEye';
 import DBIcon from '@material-ui/icons/Storage';
 import Link from '@material-ui/core/Link';
 import GHIcon from '../components/GitHubIcon';
-import Text from '../localization/Text';
+//import Text from '../localization/Text';
 //import logoMenuPath from '../images/logo-menu.png';
 import Image from'../components/Image';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
+import {translate} from "../localization";
 
 
 class Menu extends React.Component {
@@ -92,7 +93,7 @@ class Menu extends React.Component {
               <ListItemIcon>
                 <HomeIcon/>
               </ListItemIcon>
-              <ListItemText primary="Intro"/>
+              <ListItemText primary= {translate("Intro")}/>
             </ListItem>
           </Link>
           {practiceTaskUrl &&
@@ -101,7 +102,7 @@ class Menu extends React.Component {
               <ListItemIcon>
                 <TaskIcon/>
               </ListItemIcon>
-              <ListItemText primary="Practice"/>
+              <ListItemText primary={translate("Practice")}/>
             </ListItem>
           </Link>}
           <Link to="/tasks">
@@ -109,7 +110,7 @@ class Menu extends React.Component {
               <ListItemIcon>
                 <TasksOverviewIcon/>
               </ListItemIcon>
-              <ListItemText primary="Tasks"/>
+              <ListItemText primary={translate("Tasks")}/>
             </ListItem>
           </Link>
           <Divider />
@@ -118,14 +119,14 @@ class Menu extends React.Component {
               <ListItemIcon>
                 <TaskEditorIcon/>
               </ListItemIcon>
-              <ListItemText primary="Task Editor"/>
+              <ListItemText primary={translate("Task Editor")}/>
             </ListItem>
           </Link>
           <ListItem button key="feedback" onClick={this.openFeedbackModal}>
             <ListItemIcon>
               <FeedbackIcon/>
             </ListItemIcon>
-            <ListItemText primary="Feedback"/>
+            <ListItemText primary={translate("Feedback")}/>
           </ListItem>
           {this.renderAdminMenu()}
         </List>
