@@ -2,7 +2,7 @@
 import 'normalize.css';
 import './styles.css';
 
-import theme from './theme';
+import theme from './newTheme';
 
 export { theme };
 

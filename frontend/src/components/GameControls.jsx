@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RaisedButton from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 import SpeedControl from '../components/SpeedControl';
 import { translate } from '../localization';
 import Instructable from '../containers/Instructable';
@@ -23,15 +23,15 @@ export default function GameControls({ controls, speed, onClick }) {
       return null;
     }
     let button = (
-      <RaisedButton
+      <Button
         disabled={disabled(name)}
         style={{ margin: 2, minWidth }}
         onClick={() => onClick(name)}
-        color={emph}
+        color="primary"
         variant='contained'
       >
         {label}
-      </RaisedButton>
+      </Button>
     );
     if (name === 'run') {
       button = (

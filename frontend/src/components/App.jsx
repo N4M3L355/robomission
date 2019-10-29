@@ -17,50 +17,48 @@ const propTypes = {
   openSignUpModal: PropTypes.func.isRequired,
 };
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <div
-        style={{
-          backgroundImage: `url(${backgroundPath})`,
-          backgroundSize: '500px auto',
-          backgroundColor: '#111122',
-          paddingBottom: 25,
-          overflowX: 'hidden',
-        }}
-      >
-        <InstructionsContainer />
-        <HeaderContainer />
-        <MenuContainer />
-        { this.props.children }
-        <FeedbackModalContainer />
-        <LoginModal
-          open={this.props.showLoginModal}
-          credentials={this.props.credentials}
-          loginFailed={this.props.loginFailed}
-          changeCredentials={this.props.changeCredentials}
-          closeLoginModal={this.props.closeLoginModal}
-          openSignUpModal={this.props.openSignUpModal}
-          login={this.props.login}
-        />
-        <SignUpModal
-          open={this.props.showSignUpModal}
-          credentials={this.props.credentials}
-          profile={this.props.profile}
-          fieldErrors={this.props.signUpModalErrors}
-          changeCredentials={this.props.changeCredentials}
-          changeProfile={this.props.changeProfile}
-          closeSignUpModal={this.props.closeSignUpModal}
-          signup={this.props.signUp}
-        />
-        <Snackbar
-          open={this.props.snackbarMessageId !== null}
-          message={this.props.snackbarMessageId ? translate(this.props.snackbarMessageId) : ''}
-          autoHideDuration={4000}
-        />
-      </div>
-    );
-  }
+export default function App(props) {
+  return (
+    <div
+      style={{
+        backgroundImage: `url(${backgroundPath})`,
+        backgroundSize: '500px auto',
+        backgroundColor: '#111122',
+        paddingBottom: 25,
+        overflowX: 'hidden',
+      }}
+    >
+      <InstructionsContainer />
+      <HeaderContainer />
+      <MenuContainer />
+      { props.children }
+      <FeedbackModalContainer />
+      <LoginModal
+        open={props.showLoginModal}
+        credentials={props.credentials}
+        loginFailed={props.loginFailed}
+        changeCredentials={props.changeCredentials}
+        closeLoginModal={props.closeLoginModal}
+        openSignUpModal={props.openSignUpModal}
+        login={props.login}
+      />
+      <SignUpModal
+        open={props.showSignUpModal}
+        credentials={props.credentials}
+        profile={props.profile}
+        fieldErrors={props.signUpModalErrors}
+        changeCredentials={props.changeCredentials}
+        changeProfile={props.changeProfile}
+        closeSignUpModal={props.closeSignUpModal}
+        signup={props.signUp}
+      />
+      <Snackbar
+        open={props.snackbarMessageId !== null}
+        message={props.snackbarMessageId ? translate(props.snackbarMessageId) : ''}
+        autoHideDuration={4000}
+      />
+    </div>
+  );
 }
 
 

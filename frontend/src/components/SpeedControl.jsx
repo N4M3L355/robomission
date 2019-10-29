@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Slider from 'material-ui/Slider';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import Slider from '@material-ui/core/Slider';
 import Image from '../components/Image';
 import Text from '../localization/Text';
 
@@ -57,6 +56,5 @@ class SpeedControl extends React.Component {
 
 SpeedControl.propTypes = propTypes;
 SpeedControl.defaultProps = defaultProps;
-SpeedControl = muiThemeable()(SpeedControl);
 
 export default SpeedControl;

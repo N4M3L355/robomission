@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Circle as ProgressCircle } from 'rc-progress';
 import Avatar from 'material-ui/Avatar';
-import muiThemeable from 'material-ui/styles/muiThemeable';
 
 
 const propTypes = {
@@ -57,6 +56,5 @@ class Skillometer extends React.Component {
 
 Skillometer.propTypes = propTypes;
 Skillometer.defaultProps = defaultProps;
-Skillometer = muiThemeable()(Skillometer);
 
 export default Skillometer;

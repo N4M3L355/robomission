@@ -1,10 +1,8 @@
-FROM python:3.6
+FROM nikolaik/python-nodejs:python3.6-nodejs10
 ENV PYTHONUNBUFFERED 1
 WORKDIR /code/
 
-RUN apt-get update -qq && apt-get install -yqq curl
-RUN curl -sL https://deb.nodesource.com/setup_9.x | bash
-RUN apt-get install -yqq nodejs npm
+RUN apt-get update -qq && apt-get install -yqq curl build-essential
 RUN apt-get clean -y
 
 COPY requirements.txt /code/

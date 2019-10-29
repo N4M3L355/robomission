@@ -11,7 +11,6 @@ import IconDownload from '@material-ui/icons/MoveToInbox';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import muiThemeable from 'material-ui/styles/muiThemeable';
 import Instructable from '../containers/Instructable';
 
 import 'brace/theme/solarized_dark';
@@ -156,4 +155,4 @@ SettingEditor.propTypes = {
 };
 
 
-export default muiThemeable()(SettingEditor);
+export default SettingEditor;

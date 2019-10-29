@@ -1,7 +1,6 @@
 import {createMuiTheme} from "@material-ui/core";
 import {amber, cyan, grey} from "@material-ui/core/colors";
-import {cyan700, fullWhite} from "material-ui/styles/colors";
-import {fade} from "material-ui/utils/colorManipulator";
+let fullWhite = "#FFF";
 
 
 const theme = createMuiTheme({
@@ -15,25 +14,26 @@ const theme = createMuiTheme({
     }
   },
   palette: {
+    type: 'dark',
     primary: cyan,
     secondary: amber,
     text: {
-      primary: "#FFF",
+      primary: fullWhite,
       secondary: "rgba(255, 255, 255, 0.7)"
 
     }
   },
 
   textColor: fullWhite,
-  secondaryTextColor: fade(fullWhite, 0.7),
+  secondaryTextColor: grey[700],
   alternateTextColor: '#303030',
   canvasColor: '#303030',
-  borderColor: fade(fullWhite, 0.3),
-  disabledColor: fade(fullWhite, 0.3),
-  pickerHeaderColor: fade(fullWhite, 0.12),
-  clockCircleColor: fade(fullWhite, 0.12),
+  borderColor: grey[300],
+  disabledColor: grey[300],
+  pickerHeaderColor: grey[100],
+  clockCircleColor: grey[100],
 
-  successColor: cyan700,
+  successColor: cyan[700],
 
   raisedButton: {
     color: grey[700],
@@ -44,7 +44,7 @@ const theme = createMuiTheme({
   },
   dialog: {
     bodyFontSize: 18,
-    bodyColor: "#FFF",
+    bodyColor: fullWhite,
   },
 });
 

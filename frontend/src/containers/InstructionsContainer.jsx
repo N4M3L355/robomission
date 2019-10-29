@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import muiThemeable from 'material-ui/styles/muiThemeable';
 import Joyride from 'react-joyride';
 import 'react-joyride/lib/index.js';
 import { translate } from '../localization';
@@ -99,7 +98,6 @@ class InstructionsContainer extends React.Component {
 }
 
 InstructionsContainer = connect(getProps, actionCreators)(InstructionsContainer);
-InstructionsContainer = muiThemeable()(InstructionsContainer);
 
 
 export default InstructionsContainer;

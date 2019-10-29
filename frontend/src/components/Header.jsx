@@ -13,10 +13,7 @@ import {makeStyles, useTheme} from '@material-ui/styles';
 
 
 const useStyles = makeStyles(theme => ({
-  fab: {
-    borderWidth: '2px',
-    borderStyle: 'solid',
-    borderColor: theme.palette.secondary.main,
+  fontAwesomeIcon: {
     boxShadow: 'none',
     backgroundColor:'rgba(0,0,0,0)',
   },
@@ -152,6 +149,7 @@ export default function Header(props) {
             <Instructable key="fullscreen" instruction="env-fullscreen" position="bottom">
 
               <IconButton
+                className={classes.fontAwesomeIcon}
                 tooltip={isFullscreen ? translate('Exit fullscreen') : translate('Fullscreen')}
                 onClick={() => {
                   setIsFullscreen(!isFullscreen);
@@ -166,7 +164,7 @@ export default function Header(props) {
             <Instructable key="help" instruction="env-help" position="bottom">
               <Menu
                 iconButtonElement={
-                  <IconButton tooltip={translate('Help')}>
+                  <IconButton tooltip={translate('Help')} className = {classes.fontAwesomeIcon}>
                     <HelpIcon color={(nNewInstructions > 0) ?
                       theme.palette.secondary.main : 'white'}/>
                   </IconButton>
@@ -187,6 +185,7 @@ export default function Header(props) {
               <IconButton
                 tooltip={translate('Feedback')}
                 onClick={props.openFeedbackModal}
+                className={classes.fontAwesomeIcon}
               >
                 <FeedbackIcon/>
               </IconButton>

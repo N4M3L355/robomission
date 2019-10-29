@@ -3,7 +3,6 @@ import Drawer from '@material-ui/core/Drawer';
 import {ListItemText} from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import Subheader from '@material-ui/core/ListSubheader';
-import muiThemeable from 'material-ui/styles/muiThemeable';
 import HomeIcon from '@material-ui/icons/Home';
 import TaskIcon from '@material-ui/icons/PlayArrow';
 import TasksOverviewIcon from '@material-ui/icons/ViewComfy';
@@ -20,17 +19,22 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import {translate} from "../localization";
+//import {makeStyles, useTheme} from '@material-ui/styles';
 
+export default function Menu(props) {
+  let setOpen = props.setOpen.bind(this);
+  let openFeedbackModal = props.openFeedbackModal.bind(this);
 
-class Menu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.setOpen = this.props.setOpen.bind(this);
-    this.openFeedbackModal = this.props.openFeedbackModal.bind(this);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  function handleClick(event) {
+    setAnchorEl(event.currentTarget);
+  }
+  function handleClose() {
+    setAnchorEl(null);
   }
 
-  renderAdminMenu() {
-    if (!this.props.user.isStaff) {
+  function renderAdminMenu() {
+    if (!props.user.isStaff) {
       return null;
     }
     return [
@@ -71,70 +75,64 @@ class Menu extends React.Component {
     ];
   }
 
-  render() {
-    let practiceTaskUrl = '';
-    if (this.props.recommendedTask !== null) {
-      practiceTaskUrl = this.props.recommendedTask.url;
-    }
-    return (
-      <Drawer
-        open={this.props.open}
-        onRequestChange={this.setOpen}
-
-      >
-        <Image imageId="menu-banner" style={{ width: "100%", marginBottom: -12 }} />
-        <List>
-        { /* Note that disabling auto focus on menu is important to avoid
-        material-ui bug of menu steeling focus to text fields when typing, see
-        https://github.com/callemall/material-ui/issues/4387 */ }
-          <Divider style={{ marginTop: 0 }} />
-          <Link href="/">
-            <ListItem button key="intro">
-              <ListItemIcon>
-                <HomeIcon/>
-              </ListItemIcon>
-              <ListItemText primary= {translate("Intro")}/>
-            </ListItem>
-          </Link>
-          {practiceTaskUrl &&
-          <Link href={practiceTaskUrl}>
-            <ListItem button key="task">
-              <ListItemIcon>
-                <TaskIcon/>
-              </ListItemIcon>
-              <ListItemText primary={translate("Practice")}/>
-            </ListItem>
-          </Link>}
-          <Link to="/tasks">
-            <ListItem button key="tasks">
-              <ListItemIcon>
-                <TasksOverviewIcon/>
-              </ListItemIcon>
-              <ListItemText primary={translate("Tasks")}/>
-            </ListItem>
-          </Link>
-          <Divider />
-          <Link to="/task-editor">
-            <ListItem button key="task-editor">
-              <ListItemIcon>
-                <TaskEditorIcon/>
-              </ListItemIcon>
-              <ListItemText primary={translate("Task Editor")}/>
-            </ListItem>
-          </Link>
-          <ListItem button key="feedback" onClick={this.openFeedbackModal}>
-            <ListItemIcon>
-              <FeedbackIcon/>
-            </ListItemIcon>
-            <ListItemText primary={translate("Feedback")}/>
-          </ListItem>
-          {this.renderAdminMenu()}
-        </List>
-      </Drawer>
-    );
+  let practiceTaskUrl = '';
+  if (props.recommendedTask !== null) {
+    practiceTaskUrl = props.recommendedTask.url;
   }
+  return (
+    <Drawer
+      open={props.open}
+      onRequestChange={setOpen}
+    >
+      <Image imageId="menu-banner" style={{ width: "100%", marginBottom: -12 }} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} />
+      <List>
+      { /* Note that disabling auto focus on menu is important to avoid
+      material-ui bug of menu steeling focus to text fields when typing, see
+      https://github.com/callemall/material-ui/issues/4387 */ }
+        <Divider style={{ marginTop: 0 }} />
+        <Link href="/">
+          <ListItem button key="intro">
+            <ListItemIcon>
+              <HomeIcon/>
+            </ListItemIcon>
+            <ListItemText primary= {translate("Intro")}/>
+          </ListItem>
+        </Link>
+        {practiceTaskUrl &&
+        <Link href={practiceTaskUrl}>
+          <ListItem button key="task">
+            <ListItemIcon>
+              <TaskIcon/>
+            </ListItemIcon>
+            <ListItemText primary={translate("Practice")}/>
+          </ListItem>
+        </Link>}
+        <Link to="/tasks">
+          <ListItem button key="tasks">
+            <ListItemIcon>
+              <TasksOverviewIcon/>
+            </ListItemIcon>
+            <ListItemText primary={translate("Tasks")}/>
+          </ListItem>
+        </Link>
+        <Divider />
+        <Link to="/task-editor">
+          <ListItem button key="task-editor">
+            <ListItemIcon>
+              <TaskEditorIcon/>
+            </ListItemIcon>
+            <ListItemText primary={translate("Task Editor")}/>
+          </ListItem>
+        </Link>
+        <ListItem button key="feedback" onClick={openFeedbackModal}>
+          <ListItemIcon>
+            <FeedbackIcon/>
+          </ListItemIcon>
+          <ListItemText primary={translate("Feedback")}/>
+        </ListItem>
+        {renderAdminMenu()}
+      </List>
+    </Drawer>
+  );
 }
 
-Menu = muiThemeable()(Menu);
-
-export default Menu;

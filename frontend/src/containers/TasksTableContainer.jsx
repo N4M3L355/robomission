@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import muiThemeable from 'material-ui/styles/muiThemeable';
 import TasksTable from '../components/TasksTable';
 import { fetchPracticeOverview } from '../actions';
 import { isPracticeOverviewInvalidated } from '../selectors/app';
@@ -52,7 +51,6 @@ class TasksTableContainer extends React.Component {
   }
 }
 
-TasksTableContainer = muiThemeable()(TasksTableContainer);
 TasksTableContainer = connect(getProps, actionCreators)(TasksTableContainer);
 
 export default TasksTableContainer;
