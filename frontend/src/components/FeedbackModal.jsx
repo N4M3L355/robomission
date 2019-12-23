@@ -3,6 +3,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { translate } from '../localization';
+import {DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
 
 
 export default class FeedbackModal extends React.Component {
@@ -16,11 +17,15 @@ export default class FeedbackModal extends React.Component {
       ];
       return (
         <Dialog
-          title={translate('feedback.thanks')}
           open={this.props.open}
-          actions={actions}
-          onRequestClose={this.props.closeFeedbackModal}
+          onClose={this.props.closeFeedbackModal}
         >
+          <DialogTitle>
+            {translate('feedback.thanks')}
+          </DialogTitle>
+          <DialogActions>
+            {actions}
+          </DialogActions>
         </Dialog>
       );
     }
@@ -53,30 +58,36 @@ export default class FeedbackModal extends React.Component {
     ];
     return (
       <Dialog
-        title={translate('feedback.title')}
-        actions={actions}
         open={this.props.open}
-        onRequestClose={this.props.closeFeedbackModal}
+        onClose={this.props.closeFeedbackModal}
         contentStyle={{ width: 500 }}
       >
+        <DialogTitle>{translate('feedback.title')}</DialogTitle>
+        <DialogContent>
+          {translate('feedback.question')}
         <TextField
           id='feedback-comment'
-          floatingLabelText={translate('feedback.question')}
-          value={this.props.comment}
+          placeholder={this.props.comment}
           onChange={changeComment}
           multiLine={true}
           rows={5}
           fullWidth={true}
           errorText={this.props.fieldErrors.comment}
+          multiline
         />
         <TextField
           id='feedback-email'
-          floatingLabelText={translate('feedback.email')}
-          value={this.props.email}
+          label={translate('feedback.email')}
+          placeholder={this.props.email}
           onChange={changeEmail}
           fullWidth={true}
           errorText={this.props.fieldErrors.email}
+          multiline
         />
+        </DialogContent>
+        <DialogActions>
+          {actions}
+        </DialogActions>
       </Dialog>
     );
   }

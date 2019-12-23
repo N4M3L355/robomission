@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Line as ProgressBar } from 'rc-progress';
+import {useTheme} from "@material-ui/styles";
 
 
 const propTypes = {
@@ -15,8 +16,9 @@ const defaultProps = {
   mini: false,
 };
 
-class LevelBar extends React.Component {
-  render() {
+export default function LevelBar(props) {
+  const theme = useTheme();
+
     const styleDefault = {
       display: 'inline-block',
       width: 250,
@@ -31,18 +33,18 @@ class LevelBar extends React.Component {
       lineHeight: '9px',
       textAlign: 'center',
     };
-    let percent = this.props.percent;
+    let percent = props.percent;
     if (percent === undefined || percent === null) {
-      percent = Math.floor(100 * this.props.activeCredits / this.props.maxCredits);
+      percent = Math.floor(100 * props.activeCredits / props.maxCredits);
     }
-    if (this.props.mini) {
+    if (props.mini) {
       return (
         <span>
           <span style={{ fontSize: 18 }}>
-            L{ this.props.level }
+            L{ props.level }
           </span>
           <span style={styleMini}>
-            {this.props.activeCredits} / {this.props.maxCredits}
+            {props.activeCredits} / {props.maxCredits}
             <ProgressBar
               percent={percent}
               strokeWidth={8}
@@ -56,25 +58,22 @@ class LevelBar extends React.Component {
     return (
       <span>
         <span style={{ fontSize: 18 }}>
-          L{ this.props.level }
+          L{ props.level }
         </span>
         <span style={styleDefault}>
           <ProgressBar
             percent={percent}
             strokeWidth={5}
             trailWidth={5}
-            strokeColor={this.props.muiTheme.palette.accent2Color}
+            strokeColor={theme.palette.secondary.main}
             trailColor="#a3a3a3"
           />
         </span>
-        {this.props.activeCredits} / {this.props.maxCredits}
+        {props.activeCredits} / {props.maxCredits}
       </span>
     );
-  }
 }
 
 
 LevelBar.propTypes = propTypes;
 LevelBar.defaultProps = defaultProps;
-
-export default LevelBar;

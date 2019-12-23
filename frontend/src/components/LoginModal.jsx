@@ -1,7 +1,7 @@
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
-import {GridList, GridListTile as GridTile} from '@material-ui/core';
+import {DialogContent, DialogTitle, GridList, GridListTile as GridTile} from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import EmailIcon from '@material-ui/icons/Email';
 import { FacebookLoginButton, GoogleLoginButton } from 'react-social-login-buttons';
@@ -35,11 +35,16 @@ export default class LoginModal extends React.Component {
     };
     return (
       <Dialog
-        title={translate('user.login')}
         open={this.props.open}
-        onRequestClose={this.props.closeLoginModal}
+        onClose={this.props.closeLoginModal}
         contentStyle={{ width: 540 }}
       >
+        <DialogTitle>
+          {translate('user.login')}
+        </DialogTitle>
+        <DialogContent>
+
+
         <GridList
           cellHeight="auto"
           cols={2}
@@ -96,6 +101,7 @@ export default class LoginModal extends React.Component {
 
           </GridTile>
         </GridList>
+        </DialogContent>
       </Dialog>
     );
   }

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
-import RaisedButton from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 import NextTaskButtonContainer from '../containers/NextTaskButtonContainer';
 import LevelBar from '../components/LevelBar';
 import Text from '../localization/Text';
 import { translate } from '../localization';
+import {DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
 
 
 export default class CompleteTaskModal extends React.Component {
@@ -60,11 +61,11 @@ export default class CompleteTaskModal extends React.Component {
 
   renderContinueButton(active = true) {
     return (
-      <RaisedButton
-        primary={true}
+      <Button
+        variant='outlined'
         onClick={this.showLevelProgress}
         disabled={!active}
-      >Pokračovat</RaisedButton>
+      >Pokračovat</Button>
     );
   }
 
@@ -92,31 +93,34 @@ export default class CompleteTaskModal extends React.Component {
       actions = [
         <NextTaskButtonContainer />,
         <Link to="/tasks">
-          <RaisedButton label={<Text id="Tasks" />} style={{ marginLeft: 10 }} />
+          <Button variant="outlined">{<Text id="Tasks" />}</Button>
         </Link>
       ];
     }
 
     return (
       <Dialog
-        title={translate('excellent-task-solved')}
-        actions={actions}
         open={this.props.open}
-        onRequestClose={this.props.handleClose}
+        onClose={this.props.handleClose}
         contentStyle={{ textAlign: 'center' }}
-        actionsContainerStyle={{ textAlign: 'center', paddingBottom: 20, minHeight: 80 }}
       >
-        <LevelBar
-          level={this.props.levelStatus.level}
-          activeCredits={this.state.shownCredits}
-          maxCredits={this.props.levelStatus.maxCredits}
-          percent={this.state.shownPercent}
-        />
-        {bottomMessages.map((message, index) => (
-          <div key={index} style={{ marginTop: 25 }}>
-            {message}
-          </div>
-        ))}
+        <DialogTitle>{translate('excellent-task-solved')}</DialogTitle>
+        <DialogContent>
+          <LevelBar
+            level={this.props.levelStatus.level}
+            activeCredits={this.state.shownCredits}
+            maxCredits={this.props.levelStatus.maxCredits}
+            percent={this.state.shownPercent}
+          />
+          {bottomMessages.map((message, index) => (
+            <div key={index} style={{ marginTop: 25 }}>
+              {message}
+            </div>
+          ))}
+        </DialogContent>
+        <DialogActions>
+          {actions}
+        </DialogActions>
       </Dialog>
     );
   }
