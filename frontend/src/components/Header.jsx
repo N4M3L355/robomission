@@ -38,9 +38,9 @@ export default function Header(props) {
   function handleMenu(event) {
     setAnchorEl(event.currentTarget);
   }
-
-
-  const open = Boolean(anchorEl);
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   function renderTitle() {
     const logoImg = (
@@ -87,15 +87,20 @@ export default function Header(props) {
       <Instructable key="login" instruction="env-login">
         <div>
           {avatar}
-          <Menu id="user-menu" anchorEl={anchorEl} keepMounted open={open}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
+          <Menu
+            id="user-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
           >
             <MenuItem
               onClick={props.openLoginModal}

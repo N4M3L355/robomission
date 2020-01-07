@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Image from './Image';
+import SvgImage from './SvgImage';
 
 export default function Icon({ name, style }) {
   const iconStyle = {
@@ -11,7 +11,7 @@ export default function Icon({ name, style }) {
   };
 
   return (
-    <Image imageId={`icon-${name}.svg`} style={iconStyle} />
+    <SvgImage imageId={`icon-${name}.svg`} style={iconStyle} />
   );
 }
 

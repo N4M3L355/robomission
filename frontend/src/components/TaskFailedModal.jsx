@@ -1,28 +1,33 @@
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
-import FlatButton from 'material-ui/FlatButton';
 import { FormattedMessage } from 'react-intl';
+import {DialogActions, DialogContent, DialogTitle, Button} from "@material-ui/core";
 
 
 export default class TaskFailedModal extends React.Component {
   render() {
     const actions = [
-      <FlatButton
-        label="Reset"
+      <Button
+        variant='outlined'
         secondary={true}
         keyboardFocused={true}
-        onClick={this.props.resetGame}
-      />,
+        onClick={this.props.resetGame}>Reset</Button>,
     ];
     return (
       <Dialog
-        actions={actions}
         open={this.props.open}
-        onRequestClose={this.props.resetGame}
+        onClose={this.props.resetGame}
         overlayStyle={{ backgroundColor: 'transparent' }}
-        contentStyle={{ width: 500 }}
+        //contentStyle={{ width: 500 }}   TODO: remove this entirely
       >
-        <FormattedMessage id={`fail-reason.${this.props.reason}`} />
+        <DialogTitle/>
+        <DialogContent>
+          <FormattedMessage id={`fail-reason.${this.props.reason}`} />
+        </DialogContent>
+        <DialogActions>
+          {actions}
+        </DialogActions>
+
       </Dialog>
     );
   }

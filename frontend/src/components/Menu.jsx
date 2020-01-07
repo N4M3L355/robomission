@@ -25,13 +25,13 @@ export default function Menu(props) {
   let setOpen = props.setOpen.bind(this);
   let openFeedbackModal = props.openFeedbackModal.bind(this);
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  function handleClick(event) {
-    setAnchorEl(event.currentTarget);
-  }
-  function handleClose() {
-    setAnchorEl(null);
-  }
+  const handleDrawerOpen = () => {
+    props.setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    props.setOpen(false);
+  };
 
   function renderAdminMenu() {
     if (!props.user.isStaff) {
@@ -82,9 +82,9 @@ export default function Menu(props) {
   return (
     <Drawer
       open={props.open}
-      onRequestChange={setOpen}
+      onClose={handleDrawerClose}
     >
-      <Image imageId="menu-banner" style={{ width: "100%", marginBottom: -12 }} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} />
+      <Image imageId="menu-banner" style={{ width: "100%", marginBottom: -12 }} aria-controls="simple-menu" aria-haspopup="true"/>
       <List>
       { /* Note that disabling auto focus on menu is important to avoid
       material-ui bug of menu steeling focus to text fields when typing, see

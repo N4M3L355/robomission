@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from '@material-ui/core/Slider';
-import Image from '../components/Image';
+import SvgImage from '../components/SvgImage';
 import Text from '../localization/Text';
 
 
@@ -30,7 +30,7 @@ class SpeedControl extends React.Component {
   render() {
     return (
       <div className="text" style={{ marginTop: 15 }}>
-        <Image
+        <SvgImage
           imageId="speedometer"
           style={{ height: 35, marginRight: 10, float: 'left' }} />
         <div

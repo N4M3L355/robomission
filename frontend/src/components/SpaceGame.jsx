@@ -17,6 +17,7 @@ export default function SpaceGame({
     showHeader,
   }) {
   const { fields, stage, diamonds, energy } = gameState;
+  console.log(gameState);
   const gameOver = (stage === 'solved' || stage === 'dead');
   const initialStage = (stage === 'initial');
   const preparing = (stage === 'preparing');

@@ -60,7 +60,7 @@ export default class FeedbackModal extends React.Component {
       <Dialog
         open={this.props.open}
         onClose={this.props.closeFeedbackModal}
-        contentStyle={{ width: 500 }}
+        //contentStyle={{ width: 500 }} //TODO: remove this as it is not valid for new version
       >
         <DialogTitle>{translate('feedback.title')}</DialogTitle>
         <DialogContent>
@@ -69,10 +69,9 @@ export default class FeedbackModal extends React.Component {
           id='feedback-comment'
           placeholder={this.props.comment}
           onChange={changeComment}
-          multiLine={true}
           rows={5}
           fullWidth={true}
-          errorText={this.props.fieldErrors.comment}
+          //errortext={this.props.fieldErrors.comment} //TODO: remove this as it is not valid for new version
           multiline
         />
         <TextField
@@ -81,8 +80,7 @@ export default class FeedbackModal extends React.Component {
           placeholder={this.props.email}
           onChange={changeEmail}
           fullWidth={true}
-          errorText={this.props.fieldErrors.email}
-          multiline
+          //errorText={this.props.fieldErrors.email} //TODO: remove this as it is not valid for new version
         />
         </DialogContent>
         <DialogActions>
