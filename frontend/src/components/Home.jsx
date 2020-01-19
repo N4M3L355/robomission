@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {Paper, Fab, Button} from '@material-ui/core';
 import { useTheme, makeStyles } from '@material-ui/styles';
@@ -63,6 +64,19 @@ export default function Home(props) {
     );
   }
 
+
+  let styleSheet = document.styleSheets[0];
+
+  let animationName = `animation${Math.round(Math.random() * 2**16)}`;
+  animationName = "abc";
+  let keyframes =
+    `@-webkit-keyframes ${animationName} {
+        0% {-webkit-transform:0px, 0px)} 
+        100% {-webkit-transform:translate(100%, 0px)}
+    }`;
+
+  styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+
     const slides = [
       // slide 0
       {
@@ -72,6 +86,15 @@ export default function Home(props) {
           color: '#fff',
         },
         content: (
+          <div>
+
+            <svg width="100%" height="100%" id="sky" style={{
+              position: "absolute",
+              top: 0,
+              left: 0}}>
+
+
+            </svg>
           <div style={{width:"50%"}}>
             <h1 className={classes.banner}><Text id="intro.learn-programming" /></h1>
             <span style={{ marginRight: 20 }}>
@@ -80,6 +103,7 @@ export default function Home(props) {
             <Link to="/tasks">
               <Button className={classes.button} variant='outlined'><Text id="Tasks" /></Button>
             </Link>
+          </div>
           </div>
         ),
         footer: (
@@ -241,7 +265,44 @@ export default function Home(props) {
         ),
       },
     ];
-    return (
+
+  /*
+  let circle =
+    <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" style={{
+    animationName:"abc",
+    animationDuration:"4s",
+    animationTimingFunction:"linear",
+    animationIterationCount: "infinite"
+  }}/> */
+  useEffect(() => {
+
+    const svgns = "http://www.w3.org/2000/svg";
+    const container = document.getElementById( 'sky' );
+    for(let i = 0;i<40;i++){
+      let weight = Math.random();
+      let circle = document.createElementNS(svgns, 'circle');
+      circle.setAttributeNS(null, 'cx', 0);
+      circle.setAttributeNS(null, 'cy', Math.random()*100+"%");
+      circle.setAttributeNS(null, 'r', weight*10);
+      circle.setAttributeNS(null, 'style', `
+    fill: white; 
+    stroke: none; 
+    stroke-width: 1px; 
+    animation-name: "abc"; 
+    animation-duration:${1/weight*32}s; 
+    animation-offset
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    ` );
+      container.appendChild(circle);
+    }
+
+
+  });
+  /*
+  */
+
+  return (
       <div style={longPageStyle}>
         {slides.map(renderSlide)}
       </div>
@@ -280,4 +341,3 @@ const slideFooterStyle = {
   height: 90,
   textAlign: 'center',
 };
-

@@ -22,12 +22,7 @@ import {translate} from "../localization";
 //import {makeStyles, useTheme} from '@material-ui/styles';
 
 export default function Menu(props) {
-  let setOpen = props.setOpen.bind(this);
   let openFeedbackModal = props.openFeedbackModal.bind(this);
-
-  const handleDrawerOpen = () => {
-    props.setOpen(true);
-  };
 
   const handleDrawerClose = () => {
     props.setOpen(false);
