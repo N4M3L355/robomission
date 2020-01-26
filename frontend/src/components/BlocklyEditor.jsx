@@ -80,7 +80,6 @@ export default class BlocklyEditor extends React.Component {
   // Return Blockly.Toolbox
   // (node_modules/node-blockly/blockly/core/toolbox.js)
   get blocklyToolbox() {
-    console.log(this.blocklyWorkspace);
     return this.blocklyWorkspace.flyout_.workspace_;
   }
 
@@ -93,7 +92,6 @@ export default class BlocklyEditor extends React.Component {
   // Return ReactBlocklyComponent.BlocklyWorkspace
   // (node_modules/react-blockly-component/src/BlocklyWorkspace.jsx)
   get workspaceComponent() {
-    console.log(this.blocklyEditor);
     return this.blocklyEditor.current.workspace;
   }
 

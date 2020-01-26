@@ -72,7 +72,7 @@ export default function Home(props) {
   let keyframes =
     `@-webkit-keyframes ${animationName} {
         0% {-webkit-transform:0px, 0px)} 
-        100% {-webkit-transform:translate(100%, 0px)}
+        100% {-webkit-transform:translate(110%, 0px)}
     }`;
 
   styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
@@ -281,7 +281,7 @@ export default function Home(props) {
     for(let i = 0;i<40;i++){
       let weight = Math.random();
       let circle = document.createElementNS(svgns, 'circle');
-      circle.setAttributeNS(null, 'cx', 0);
+      circle.setAttributeNS(null, 'cx', "-5%");
       circle.setAttributeNS(null, 'cy', Math.random()*100+"%");
       circle.setAttributeNS(null, 'r', weight*10);
       circle.setAttributeNS(null, 'style', `
@@ -290,7 +290,7 @@ export default function Home(props) {
     stroke-width: 1px; 
     animation-name: "abc"; 
     animation-duration:${1/weight*32}s; 
-    animation-offset
+    animation-delay:${-1/weight*32*Math.random()}s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     ` );

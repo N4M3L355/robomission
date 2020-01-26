@@ -122,7 +122,7 @@ MissionOverview.propTypes = {
 function TaskTile({ task, urlBase, recommendation }) {
   let background = '#888';
   if (task.id === recommendation.task) {
-    background = theme.palette.accent2Color;
+    background = theme.palette.accent2Color;  //TODO: new theme
   } else if (task.solved) {
     background = theme.palette.successColor;
   } else if (task.problemSet === recommendation.phase) {

@@ -9,15 +9,16 @@ export default function SpaceGame({
     taskId,
     level,
     gameState,
+    pastActions,
     lengthLimit,
     width,
     controls,
     speed,
+    pauseLength,
     onControlClicked,
     showHeader,
   }) {
   const { fields, stage, diamonds, energy } = gameState;
-  console.log(gameState);
   const gameOver = (stage === 'solved' || stage === 'dead');
   const initialStage = (stage === 'initial');
   const preparing = (stage === 'preparing');
@@ -58,7 +59,9 @@ export default function SpaceGame({
       {showHeader && gameStatus}
       <SpaceWorld
         fields={fields}
+        pastActions = {pastActions}
         width={width}
+        pauseLength = {pauseLength}
       />
       <GameControls
         controls={controlsSetting}

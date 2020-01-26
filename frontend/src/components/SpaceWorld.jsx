@@ -4,10 +4,11 @@ import GameObject from './GameObject';
 import SpaceBackgroundGrid from './SpaceBackgroundGrid';
 import Instructable from '../containers/Instructable';
 
-export default function SpaceWorld({ fields, width }) {
+export default function SpaceWorld({ fields, width, pastActions, pauseLength }) {
   const { cols, backgrounds, objects, rows } = prepareFields(fields);
   const fieldSize = width / cols;
   const height = fieldSize * rows;
+  console.log(pastActions,pastActions[pastActions.length-1]);
   /*const worldStyle = {
     display: 'block',
     position: 'relative',
@@ -19,8 +20,10 @@ export default function SpaceWorld({ fields, width }) {
         <svg width={width} height={height}>
           {objects.map((object, index) =>
             <GameObject
+              pauseLength={pauseLength}
               // The key must change if the object type changes in order to
               // unregister old instructable and register the new one.
+              lastAction = {pastActions[pastActions.length-1]}
               key={`${index}-${object.imageId}`}
               imageId={object.imageId}
               width={fieldSize}

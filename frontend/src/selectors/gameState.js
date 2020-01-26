@@ -43,26 +43,14 @@ export function isSolved(state, taskEnvironmentId) {
 export function getFailReason(state, taskEnvironmentId) {
   const { fields, spaceship, diamonds, stage } = getGameState(state, taskEnvironmentId);
   if (stage === 'dead') {
-    if (beyondLastRow(fields, spaceship)) {
-      return 'crashed-last-row';
-    }
-    if (beyondEdges(fields, spaceship)) {
-      return 'crashed-edge';
-    }
-    if (onAsteoroid(fields, spaceship)) {
-      return 'crashed-asteoroid';
-    }
-    if (onMeteoroid(fields, spaceship)) {
-      return 'crashed-meteoroid';
-    }
+    if (beyondLastRow(fields, spaceship)) return 'crashed-last-row';
+    if (beyondEdges(fields, spaceship)) return 'crashed-edge';
+    if (onAsteoroid(fields, spaceship)) return 'crashed-asteoroid';
+    if (onMeteoroid(fields, spaceship)) return 'crashed-meteoroid';
   }
   if (stage === 'stopped') {
-    if (!lastRowReached(spaceship)) {
-      return 'last-row-not-reached';
-    }
-    if (diamonds.taken < diamonds.total) {
-      return 'missing-diamonds';
-    }
+    if (!lastRowReached(spaceship)) return 'last-row-not-reached';
+    if (diamonds.taken < diamonds.total) return 'missing-diamonds';
   }
   return null;
 }
@@ -95,6 +83,10 @@ export function getGameStage(state, taskEnvironmentId) {
   return gameState.stage;
 }
 
+export function getPastActions(state, taskEnvironmentId){
+  const taskEnvironment = getTaskEnvironment(state, taskEnvironmentId);
+  return taskEnvironment.pastActions;
+}
 
 export function getGameState(state, taskEnvironmentId) {
   const taskEnvironment = getTaskEnvironment(state, taskEnvironmentId);

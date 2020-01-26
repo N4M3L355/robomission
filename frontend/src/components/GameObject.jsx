@@ -4,24 +4,39 @@ import SvgImage from './SvgImage';
 import Instructable from '../containers/Instructable';
 //import { Keyframes, Frame } from 'react-keyframes';
 
-export default function GameObject({ imageId, width, height, position, x, y }) {
-  /*
-  let styleSheet = document.styleSheets[0];
+export default function GameObject({ imageId, width, height, position, x, y, lastAction, pauseLength }) {
+  let animationName = `animation${Math.round(Math.random() * 2 ** 16)}`;
+  let startPosition = `0% {-webkit-transform:translate(0px, 0px)}`;
+  if(imageId === "spaceship"){
+    switch (lastAction) {
+      case "fly":
+        startPosition = `0% {-webkit-transform:translate(0px, ${height}px)}`;
+        break;
+      case "left":
+        startPosition = `0% {-webkit-transform:translate(${height}px, ${height}px)}`;
+        break;
+      case "right":
+        startPosition = `0% {-webkit-transform:translate(${-height}px, ${height}px)}`;
+        break;
+    }
+  }
 
-  let animationName = `animation${Math.round(Math.random() * 2**16)}`;
-  let keyframes =
-    `@-webkit-keyframes ${animationName} {
-        10% {-webkit-transform:translate(${Math.random() * 300}px, ${Math.random() * 300}px)} 
-        90% {-webkit-transform:translate(${Math.random() * 300}px, ${Math.random() * 300}px)}
-        100% {-webkit-transform:translate(${Math.random() * 300}px, ${Math.random() * 300}px)}
+    let styleSheet = document.styleSheets[0];
+
+    let keyframes =
+      `@-webkit-keyframes ${animationName} {
+        ${startPosition}
+        100% {-webkit-transform:translate(0px, 0px)}
     }`;
 
-  styleSheet.insertRule(keyframes, styleSheet.cssRules.length);*/
+    styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+
 
   const imageStyle = {
+    webkitTransform: "translate(0px, 0px)",
     position,
-    //animationName: animationName,
-    animationDuration: "4s",
+    animationName: animationName,
+    animationDuration: `${pauseLength*0.5}ms`,
   };
   return (
       <Instructable instruction={`task-${imageId}`} position="bottom-left">
