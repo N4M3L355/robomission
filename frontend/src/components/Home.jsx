@@ -13,6 +13,8 @@ import fiBackgroundPath from '../images/fi-slide.jpg';
 import spaceBackgroundPath from '../images/background-space.png';
 import spaceshipInSpaceWorldPath from '../images/banner-image.png';
 import Text from '../localization/Text';
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 
 const useStyles = makeStyles(theme => ({
@@ -24,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor:'rgba(0,0,0,0)',
   },
   banner: {
-    fontSize: '6em',
+    fontSize: '6rem',
     fontWeight: '200'
   },
   button: {
@@ -95,15 +97,16 @@ export default function Home(props) {
 
 
             </svg>
-          <div style={{width:"50%"}}>
-            <h1 className={classes.banner}><Text id="intro.learn-programming" /></h1>
-            <span style={{ marginRight: 20 }}>
-              <NextTaskButtonContainer />
-            </span>
-            <Link to="/tasks">
-              <Button className={classes.button} variant='outlined'><Text id="Tasks" /></Button>
-            </Link>
-          </div>
+            <Grid container>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="h1" className={classes.banner}><Text id="intro.learn-programming" /></Typography>
+                <span style={{ marginRight: 20 }}><NextTaskButtonContainer /></span>
+                <Link to="/tasks">
+                  <Button className={classes.button} variant='outlined'><Text id="Tasks" /></Button>
+                </Link>
+
+              </Grid>
+            </Grid>
           </div>
         ),
         footer: (
