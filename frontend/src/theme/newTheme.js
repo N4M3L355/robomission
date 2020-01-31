@@ -1,7 +1,6 @@
-import {createMuiTheme} from "@material-ui/core";
+import {createMuiTheme, responsiveFontSizes} from "@material-ui/core";
 import {amber, cyan, grey} from "@material-ui/core/colors";
 let fullWhite = "#FFF";
-
 
 const theme = createMuiTheme({
 
@@ -10,8 +9,13 @@ const theme = createMuiTheme({
       outlined:{
         color: "rgba(255, 255, 255, 0.7)",
         borderColor: "rgba(255, 255, 255, 0.7)",
+        borderWidth: '2px'
+      },
+      outlinedPrimary:{
+        borderWidth: '2px'
+
       }
-    }
+    },
   },
   palette: {
     type: 'dark',
@@ -48,4 +52,4 @@ const theme = createMuiTheme({
   },
 });
 
-export default theme;
+export default responsiveFontSizes(theme);

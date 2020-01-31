@@ -12,6 +12,8 @@ import neuronsBackgroundPath from '../images/neurons-tile.png';
 import fiBackgroundPath from '../images/fi-slide.jpg';
 import spaceBackgroundPath from '../images/background-space.png';
 import spaceshipInSpaceWorldPath from '../images/banner-image.png';
+import rocketWithFlame from '../images/RocketWithFlame.svg';
+import diamond from '../images/diamond.svg';
 import Text from '../localization/Text';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -26,11 +28,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor:'rgba(0,0,0,0)',
   },
   banner: {
-    fontSize: '6rem',
     fontWeight: '200'
-  },
-  button: {
-    borderWidth: '2px'
   }
 }));
 
@@ -73,8 +71,16 @@ export default function Home(props) {
   animationName = "abc";
   let keyframes =
     `@-webkit-keyframes ${animationName} {
-        0% {-webkit-transform:0px, 0px)} 
+        0% {-webkit-transform:translate(0px, 0px)} 
         100% {-webkit-transform:translate(110%, 0px)}
+    }`;
+
+  styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+  keyframes =
+    `@-webkit-keyframes rocketAnimation {
+        0% {-webkit-transform: rotate(30deg) translate(600px, 400px)} 
+        50% {-webkit-transform: rotate(0deg) translate(600px, 400px)}
+        100% {-webkit-transform: rotate(-30deg) translate(600px, 400px)}
     }`;
 
   styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
@@ -98,7 +104,7 @@ export default function Home(props) {
 
             </svg>
             <Grid container>
-              <Grid item xs={12} sm={6}>
+              <Grid item sm={12} md={6}>
                 <Typography variant="h1" className={classes.banner}><Text id="intro.learn-programming" /></Typography>
                 <span style={{ marginRight: 20 }}><NextTaskButtonContainer /></span>
                 <Link to="/tasks">
@@ -299,7 +305,17 @@ export default function Home(props) {
     ` );
       container.appendChild(circle);
     }
-
+    let rocket = document.createElementNS(svgns, 'image');
+    rocket.setAttributeNS(null,'href', rocketWithFlame);
+    rocket.setAttributeNS(null,'width', "400");
+    rocket.setAttributeNS(null,'height', "auto");
+    rocket.setAttributeNS(null, 'style', `
+    animation-name: rocketAnimation; 
+    animation-duration:10s; 
+    animation-iteration-count: infinite;
+    transform-origin: center center;
+    ` );
+    container.appendChild(rocket);
 
   });
   /*

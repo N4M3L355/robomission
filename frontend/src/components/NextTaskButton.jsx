@@ -31,7 +31,7 @@ export default function NextTaskButton({ task }) {
           variant="outlined"
         >
           <TaskIcon/>
-          <span style={{ position: 'relative', top: 1 }}><TaskName taskId={task.taskId} /></span>
+          <TaskName taskId={task.taskId} />
         </Button>
       </Instructable>
     </Link>
