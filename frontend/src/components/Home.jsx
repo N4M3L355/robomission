@@ -8,12 +8,14 @@ import Scroll from 'react-scroll';
 import SpaceGameContainer from '../containers/SpaceGameContainer';
 //import TaskEnvironmentContainer from '../containers/TaskEnvironmentContainer';
 import NextTaskButtonContainer from '../containers/NextTaskButtonContainer';
-import neuronsBackgroundPath from '../images/neurons-tile.png';
+//import neuronsBackgroundPath from '../images/neurons-tile.png';
 import fiBackgroundPath from '../images/fi-slide.jpg';
 import spaceBackgroundPath from '../images/background-space.png';
 import spaceshipInSpaceWorldPath from '../images/banner-image.png';
 import rocketWithFlame from '../images/RocketWithFlame.svg';
-import diamond from '../images/diamond.svg';
+import asteroid from '../images/asteroid.svg';
+import meteoroid from '../images/meteoroid.svg';
+//import diamond from '../images/diamond.svg';
 import Text from '../localization/Text';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -71,16 +73,21 @@ export default function Home(props) {
   animationName = "abc";
   let keyframes =
     `@-webkit-keyframes ${animationName} {
-        0% {-webkit-transform:translate(0px, 0px)} 
-        100% {-webkit-transform:translate(110%, 0px)}
+        0% {-webkit-transform:translate(-5%, -5%)} 
+        100% {-webkit-transform:translate(105%, 105%)}
     }`;
-
   styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
   keyframes =
     `@-webkit-keyframes rocketAnimation {
-        0% {-webkit-transform: rotate(30deg) translate(600px, 400px)} 
-        50% {-webkit-transform: rotate(0deg) translate(600px, 400px)}
-        100% {-webkit-transform: rotate(-30deg) translate(600px, 400px)}
+        0% {-webkit-transform: translate(0px, 0px)} 
+        50% {-webkit-transform: translate(-50px, 50px)}
+        100% {-webkit-transform: translate(0px, 0px)}
+    }`;
+  styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+  keyframes =
+    `@-webkit-keyframes diamondAnimation {
+        0% {-webkit-transform:translate(-5%, -5%)} 
+        100% {-webkit-transform:translate(105%, 105%)}
     }`;
 
   styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
@@ -100,8 +107,6 @@ export default function Home(props) {
               position: "absolute",
               top: 0,
               left: 0}}>
-
-
             </svg>
             <Grid container>
               <Grid item sm={12} md={6}>
@@ -111,6 +116,10 @@ export default function Home(props) {
                   <Button className={classes.button} variant='outlined'><Text id="Tasks" /></Button>
                 </Link>
 
+              </Grid>
+              <Grid item sm={12} md={6}>
+                <svg width="100%" height="100%" id="rocket">
+                </svg>
               </Grid>
             </Grid>
           </div>
@@ -131,17 +140,32 @@ export default function Home(props) {
         },
         content: (
           <div>
-            <h2><Text id="intro.explore-universe" /><br /><Text id="intro.collect-diamonds" /></h2>
-            <div>
-              <SpaceGameContainer
-                taskEnvironmentId="home-commands"
-                showHeader={false}
-                controls={['fly', 'left', 'right', 'reset']}
-              />
-            </div>
-            <p style={{ visibility: props.spaceWorldDemoSolved ? 'visible' : 'hidden' }}>
-            <Text id='excellent-task-solved' />
-            </p>
+            <Grid container>
+              <Grid item sm={12} md={6}>
+                <h2><Text id="intro.explore-universe" /><br /><Text id="intro.collect-diamonds" /></h2>
+                <div>
+                  <SpaceGameContainer
+                    taskEnvironmentId="home-commands"
+                    showHeader={false}
+                    controls={['fly', 'left', 'right', 'reset']}
+                  />
+                </div>
+                <p style={{ visibility: props.spaceWorldDemoSolved ? 'visible' : 'hidden' }}>
+                  <Text id='excellent-task-solved' />
+                </p>
+              </Grid>
+              <Grid item sm={12} md={6}>
+
+                <div>
+                  <h2>
+                    <Text id="intro.game-driven-by-ai" />
+                    <br />
+                    <Text id="intro.adapting-to-your-skills" />
+                  </h2>
+                </div>
+              </Grid>
+            </Grid>
+
           </div>
         ),
         footer: (
@@ -196,28 +220,6 @@ export default function Home(props) {
       },
       */
       // slide 3
-      {
-        style: {
-          backgroundImage: `url(${neuronsBackgroundPath})`,
-        },
-        content: (
-          <div>
-            <h2>
-              <Text id="intro.game-driven-by-ai" />
-              <br />
-              <Text id="intro.adapting-to-your-skills" />
-            </h2>
-          </div>
-        ),
-        footer: (
-          <Scroll.Link to="intro-slide-3" smooth={true} duration={500}>
-            <Fab color='secondary' className={classes.fab}>
-              <ArrowDown color='secondary'/>
-            </Fab>
-          </Scroll.Link>
-        ),
-      },
-      // slide 4
       {
         style: {
           backgroundImage: `url(${fiBackgroundPath})`,
@@ -288,34 +290,45 @@ export default function Home(props) {
     const svgns = "http://www.w3.org/2000/svg";
     const container = document.getElementById( 'sky' );
     for(let i = 0;i<40;i++){
-      let weight = Math.random();
+      let radius=Math.random();
+      let distance = 1/(radius)+1;
       let circle = document.createElementNS(svgns, 'circle');
-      circle.setAttributeNS(null, 'cx', "-5%");
-      circle.setAttributeNS(null, 'cy', Math.random()*100+"%");
-      circle.setAttributeNS(null, 'r', weight*10);
+      circle.setAttributeNS(null, 'cy', Math.random()*200-100+"%");
+      circle.setAttributeNS(null, 'r', radius*10);
       circle.setAttributeNS(null, 'style', `
     fill: white; 
     stroke: none; 
     stroke-width: 1px; 
     animation-name: "abc"; 
-    animation-duration:${1/weight*32}s; 
-    animation-delay:${-1/weight*32*Math.random()}s;
+    animation-duration:${distance*64}s; 
+    animation-delay:${-distance*64*Math.random()}s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     ` );
       container.appendChild(circle);
     }
+    for(let i = 0;i<5;i++){
+      let radius=Math.random();
+      let distance = 1/(radius)+1;
+      let stone = document.createElementNS(svgns, 'image');
+      stone.setAttributeNS(null,'href', Math.random()>1/2?meteoroid:asteroid);
+      stone.setAttributeNS(null, 'y', Math.random()*200-100+"%");
+      stone.setAttributeNS(null,'width', radius*200+"px");
+      stone.setAttributeNS(null, 'style', `
+        animation-name: "abc"; 
+        animation-duration:${1/distance*32}s; 
+        animation-delay:${-1/distance*32*Math.random()}s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        ` );
+      container.appendChild(stone);
+    }
+    const rocketContainer = document.getElementById( 'rocket' );
     let rocket = document.createElementNS(svgns, 'image');
     rocket.setAttributeNS(null,'href', rocketWithFlame);
-    rocket.setAttributeNS(null,'width', "400");
-    rocket.setAttributeNS(null,'height', "auto");
-    rocket.setAttributeNS(null, 'style', `
-    animation-name: rocketAnimation; 
-    animation-duration:10s; 
-    animation-iteration-count: infinite;
-    transform-origin: center center;
-    ` );
-    container.appendChild(rocket);
+    rocket.setAttributeNS(null,'x', "0");
+    rocket.setAttributeNS(null,'y', "0");
+    rocketContainer.appendChild(rocket);
 
   });
   /*

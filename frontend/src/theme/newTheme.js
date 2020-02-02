@@ -31,7 +31,7 @@ const theme = createMuiTheme({
   textColor: fullWhite,
   secondaryTextColor: grey[700],
   alternateTextColor: '#303030',
-  canvasColor: '#303030',
+  canvasColor: '#000',
   borderColor: grey[300],
   disabledColor: grey[300],
   pickerHeaderColor: grey[100],

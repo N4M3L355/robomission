@@ -6,7 +6,7 @@ import Instructable from '../containers/Instructable';
 
 export default function GameObject({ imageId, width, height, position, x, y, lastAction, pauseLength }) {
   let animationName = `animation${Math.round(Math.random() * 2 ** 16)}`;
-  let startPosition = `0% {-webkit-transform:translate(0px, 0px)}`;
+  let startPosition;
   if(imageId === "spaceship"){
     switch (lastAction) {
       case "fly":
@@ -18,6 +18,8 @@ export default function GameObject({ imageId, width, height, position, x, y, las
       case "right":
         startPosition = `0% {-webkit-transform:translate(${-height}px, ${height}px)}`;
         break;
+      default:
+        startPosition = `0% {-webkit-transform:translate(0px, 0px)}`;
     }
   }
 
