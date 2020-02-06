@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardTitle, CardText } from 'material-ui/Card';
-import { List, ListItem } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
+import { Card, CardHeader as CardTitle, CardContent as CardText, List, ListItem, Divider } from '@material-ui/core';
 import DownloadIcon from '@material-ui/icons/GetApp';
 import ChartIcon from '@material-ui/icons/Assessment';
 import CodeIcon from '@material-ui/icons/Code';

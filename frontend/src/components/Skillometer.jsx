@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Circle as ProgressCircle } from 'rc-progress';
-import Avatar from 'material-ui/Avatar';
+import { Avatar } from ' @material-ui/core';
 
 
 const propTypes = {

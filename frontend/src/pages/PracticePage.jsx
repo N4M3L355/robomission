@@ -15,8 +15,7 @@ class PracticePage extends React.Component {
     return (
       <div
         style={{
-          position: 'absolute',
-          top: 64,  // TODO: unhardcode using app height in flocs-theme
+          top: 0,
           bottom: 0,
           left: 0,
           right: 0,

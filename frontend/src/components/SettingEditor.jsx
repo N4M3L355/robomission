@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AceEditor from 'react-ace';
-import Toggle from 'material-ui/Toggle';
-import { List, ListItem } from '@material-ui/core';
+import { List, ListItem, Divider, Select as SelectField, Switch as Toggle } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
 import IconDescription from '@material-ui/icons/Description';
 import IconUpload from '@material-ui/icons/Unarchive';
 import IconDownload from '@material-ui/icons/MoveToInbox';
-import SelectField from 'material-ui/SelectField';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Instructable from '../containers/Instructable';

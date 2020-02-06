@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import Avatar from 'material-ui/Avatar';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
-import { GridList, GridTile } from 'material-ui/GridList';
+import { Card, CardHeader, CardContent as CardText, GridList, GridListTile as GridTile, Avatar } from '@material-ui/core';
 import TaskName from './TaskName';
 import Rating from './Rating';
 import { theme } from '../theme';
@@ -14,6 +12,7 @@ import Instructable from '../containers/Instructable';
 
 
 export default function TaskTable({ urlBase, missions, recommendation, levelStatus }) {
+  console.log(theme);
   return (
     <div style={{paddingBottom: 10}}>
       { missions.map(mission =>
@@ -44,12 +43,12 @@ TaskTable.defaultProps = {
 function MissionOverview({ mission, urlBase, recommendation, levelStatus }) {
   const tasks = flatten(mission.phases.map(phase => phase.tasks));
   const isRecommended = recommendation.mission === mission.id
-  let badgeTextColor = theme.palette.canvasColor;
-  let badgeBackgroundColor = theme.palette.disabledColor;
+  let badgeTextColor = theme.canvasColor;
+  let badgeBackgroundColor = theme.disabledColor;
   if (isRecommended) {
     badgeTextColor = theme.palette.accent2Color;
   } else if (mission.level < levelStatus.level) {
-    badgeBackgroundColor = theme.palette.successColor;
+    badgeBackgroundColor = theme.successColor;
   }
   return (
     <Card
