@@ -5,6 +5,7 @@
   "proxy": "http://localhost:8000",
   "dependencies": {
     "axios": "^0.19.2",
+    "babel-node": "0.0.1-security",
     "brace": "^0.11.1",
     "js-interpreter": "github:effa/JS-Interpreter#f7afaf9d4862f85394bf4860f8ba8e57f67fbdf2",
     "node-blockly": "^1.2.8",
