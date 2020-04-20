@@ -1,20 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
-import { Card, CardHeader, CardContent as CardText, GridList, GridListTile as GridTile, Avatar } from '@material-ui/core';
+import {Link} from 'react-router-dom';
+import {FormattedMessage} from 'react-intl';
+import {Avatar, Card, CardContent, CardHeader, GridList, GridListTile} from '@material-ui/core';
 import TaskName from './TaskName';
 import Rating from './Rating';
-import { theme } from '../theme';
-import { translate } from '../localization';
-import { flatten } from '../utils/arrays';
+import {theme} from '../theme';
+import {translate} from '../localization';
+import {flatten} from '../utils/arrays';
 import Instructable from '../containers/Instructable';
+import GridListTileBar from "@material-ui/core/GridListTileBar";
 
 
 export default function TaskTable({ urlBase, missions, recommendation, levelStatus }) {
   console.log(theme);
   return (
-    <div style={{paddingBottom: 10}}>
+    <div>
       { missions.map(mission =>
         <MissionOverview
           key={mission.id}
@@ -51,50 +52,24 @@ function MissionOverview({ mission, urlBase, recommendation, levelStatus }) {
     badgeBackgroundColor = theme.successColor;
   }
   return (
-    <Card
-      style={{ margin: 10 }}
-      initiallyExpanded={isRecommended}
-    >
+    <Card>
       <CardHeader
         avatar={
           <Instructable instruction="overview-levels" position="top">
             <Avatar
-              color={badgeTextColor}
-              backgroundColor={badgeBackgroundColor}
-              style={{ marginRight: 10 }}
             >
               L{mission.level}
             </Avatar>
           </Instructable>}
         title={`${translate(`ps.story.${mission.id}`)}`}
-        titleStyle={{
-          fontSize: 20 }}
-          //color: isRecommended ? theme.palette.accent2Color : null}}
         subtitle={<FormattedMessage id={`ps.${mission.id}`} />}
-        subtitleStyle={{ fontSize: 16 }}
-        actAsExpander={true}
-        showExpandableButton={true}
       />
-      <CardText
-        expandable={true}
+      <CardContent
+        //expandable={true}
       >
-        <div style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-around',
-          //borderStyle: 'solid',
-          //borderWidth: 1,
-          //borderColor: '#535353',
-        }}>
           <GridList
             cellHeight={120}
             rows={1}
-            // Hack to determine number of columns. TODO: unhack (also make it
-            // respond to screen size changes.
-            cols={Math.min(5, Math.ceil(window.innerWidth / 250))}
-            style={{
-              width: '100%',
-            }}
           >
             {tasks.map(task => (
               <TaskTile
@@ -104,8 +79,7 @@ function MissionOverview({ mission, urlBase, recommendation, levelStatus }) {
                 recommendation={recommendation}
               />))}
           </GridList>
-        </div>
-      </CardText>
+      </CardContent>
     </Card>
   );
 }
@@ -119,6 +93,7 @@ MissionOverview.propTypes = {
 
 
 function TaskTile({ task, urlBase, recommendation }) {
+  console.log(task)
   let background = '#888';
   if (task.id === recommendation.task) {
     background = theme.palette.accent2Color;  //TODO: new theme
@@ -138,25 +113,11 @@ function TaskTile({ task, urlBase, recommendation }) {
   };
 
   let tile = (
-    <GridTile
-      title={<TaskName taskId={task.id} />}
-      subtitle={subtitle}
-    >
-      <div
-        style={{
-          backgroundColor: background,
-          //width: 250,
-          height: '100%',
-          padding: '15px 10px',
-        }}
-      >
         <Instructable instruction="overview-difficulty" position="top">
           <Rating value={task.solved ? task.levels[1] : 0} max={task.levels[1]} />
         </Instructable>
-      </div>
-    </GridTile>
   );
-  if (task.solved) {
+  /*if (task.solved) {
     tile = (
       <Instructable instruction="overview-solved-task" position="top">
         {tile}
@@ -168,11 +129,24 @@ function TaskTile({ task, urlBase, recommendation }) {
         {tile}
       </Instructable>
     );
-  }
+  }*/
   return (
-    <Link key={task.id} to={`${urlBase}${task.id}`}>
+
+    <GridListTile
+      key={<TaskName taskId={task.id}/>}
+      subtitle={subtitle}
+      cols={Math.min(5, Math.ceil(window.innerWidth / 250))}
+
+    >
       {tile}
-    </Link>
+      <GridListTileBar
+      actionIcon={
+        <Link key={task.id} to={`${urlBase}${task.id}`}>
+          {tile}
+        </Link>}
+      />
+
+    </GridListTile>
   );
 }
 

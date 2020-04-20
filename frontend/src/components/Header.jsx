@@ -49,8 +49,7 @@ export default function Header(props) {
         alt='RoboMission logo'
         src={logo}
         style={{
-          height: '5rem',
-          padding: 14,
+          height: '3rem',
           boxSizing: 'border-box',
         }}
       />

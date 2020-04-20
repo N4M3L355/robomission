@@ -35,7 +35,7 @@ export default function GameObject({ imageId, width, height, position, x, y, las
 
 
   const imageStyle = {
-    webkitTransform: "translate(0px, 0px)",
+    WebkitTransform: "translate(0px, 0px)",
     position,
     animationName: animationName,
     animationDuration: `${pauseLength*0.5}ms`,

@@ -11,7 +11,7 @@ import NextTaskButtonContainer from '../containers/NextTaskButtonContainer';
 //import neuronsBackgroundPath from '../images/neurons-tile.png';
 import fiBackgroundPath from '../images/fi-slide.jpg';
 import spaceBackgroundPath from '../images/background-space.png';
-import spaceshipInSpaceWorldPath from '../images/banner-image.png';
+//import spaceshipInSpaceWorldPath from '../images/banner-image.png';
 import rocketWithFlame from '../images/RocketWithFlame.svg';
 import asteroid from '../images/asteroid.svg';
 import meteoroid from '../images/meteoroid.svg';
@@ -96,9 +96,8 @@ export default function Home(props) {
       // slide 0
       {
         style: {
-          backgroundImage: `url(${spaceshipInSpaceWorldPath})`,
-          backgroundSize: 'cover',
-          color: '#fff',
+          backgroundColor: "#000",
+          color: '#FFF',
         },
         content: (
           <div>
@@ -140,8 +139,6 @@ export default function Home(props) {
         },
         content: (
           <div>
-            <Grid container>
-              <Grid item sm={12} md={6}>
                 <h2><Text id="intro.explore-universe" /><br /><Text id="intro.collect-diamonds" /></h2>
                 <div>
                   <SpaceGameContainer
@@ -153,18 +150,12 @@ export default function Home(props) {
                 <p style={{ visibility: props.spaceWorldDemoSolved ? 'visible' : 'hidden' }}>
                   <Text id='excellent-task-solved' />
                 </p>
-              </Grid>
-              <Grid item sm={12} md={6}>
 
-                <div>
-                  <h2>
-                    <Text id="intro.game-driven-by-ai" />
-                    <br />
-                    <Text id="intro.adapting-to-your-skills" />
-                  </h2>
-                </div>
-              </Grid>
-            </Grid>
+                <h3>
+                  <Text id="intro.game-driven-by-ai" />
+                  <br />
+                  <Text id="intro.adapting-to-your-skills" />
+                </h3>
 
           </div>
         ),
@@ -289,9 +280,9 @@ export default function Home(props) {
 
     const svgns = "http://www.w3.org/2000/svg";
     const container = document.getElementById( 'sky' );
-    for(let i = 0;i<40;i++){
+    for(let i = 0;i<120;i++){
       let radius=Math.random();
-      let distance = 1/(radius)+1;
+      let distance = 3*(1-radius)+1;
       let circle = document.createElementNS(svgns, 'circle');
       circle.setAttributeNS(null, 'cy', Math.random()*200-100+"%");
       circle.setAttributeNS(null, 'r', radius*10);
@@ -299,7 +290,7 @@ export default function Home(props) {
     fill: white; 
     stroke: none; 
     stroke-width: 1px; 
-    animation-name: "abc"; 
+    animation-name: abc; 
     animation-duration:${distance*64}s; 
     animation-delay:${-distance*64*Math.random()}s;
     animation-iteration-count: infinite;
@@ -315,7 +306,7 @@ export default function Home(props) {
       stone.setAttributeNS(null, 'y', Math.random()*200-100+"%");
       stone.setAttributeNS(null,'width', radius*200+"px");
       stone.setAttributeNS(null, 'style', `
-        animation-name: "abc"; 
+        animation-name: abc; 
         animation-duration:${1/distance*32}s; 
         animation-delay:${-1/distance*32*Math.random()}s;
         animation-iteration-count: infinite;
@@ -326,9 +317,12 @@ export default function Home(props) {
     const rocketContainer = document.getElementById( 'rocket' );
     let rocket = document.createElementNS(svgns, 'image');
     rocket.setAttributeNS(null,'href', rocketWithFlame);
-    rocket.setAttributeNS(null,'x', "0");
-    rocket.setAttributeNS(null,'y', "0");
+    rocket.setAttributeNS(null,'x', "55%");
+    rocket.setAttributeNS(null,'y', "35%");
+    rocket.setAttributeNS(null,"width","25%");
     rocketContainer.appendChild(rocket);
+    container.appendChild(rocket);
+
 
   });
   /*

@@ -49,7 +49,7 @@ class Instructable extends React.Component {
 Instructable.propTypes = {
   instruction: PropTypes.string.isRequired,
   position: PropTypes.string,
-  registerInstructable: PropTypes.func.isRequired,
+  egisterInstructable: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
 };
 
