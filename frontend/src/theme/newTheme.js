@@ -16,6 +16,27 @@ const theme = createMuiTheme({
 
       }
     },
+    MuiGridListTile:{
+      root:{
+        color: "rgba(255, 255, 255, 0.7)",
+        borderColor: "rgba(255, 255, 255, 0.7)",
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        borderRadius: '12px'
+      }
+    },
+    MuiCard:{
+      root:{
+        background: "none"
+      }
+    },
+    MuiPaper:{
+      outlined:{
+        borderColor: "rgba(255, 255, 255, 0.7)",
+        borderWidth: '2px',
+        borderStyle: 'solid'
+      }
+    }
   },
   palette: {
     type: 'dark',
@@ -38,7 +59,9 @@ const theme = createMuiTheme({
   clockCircleColor: grey[100],
 
   successColor: cyan[700],
-
+  typography:{
+    fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif"
+  },
   raisedButton: {
     color: grey[700],
   },
@@ -50,6 +73,9 @@ const theme = createMuiTheme({
     bodyFontSize: 18,
     bodyColor: fullWhite,
   },
+  shape: {
+    borderRadius: 10
+  }
 });
 
 export default responsiveFontSizes(theme);

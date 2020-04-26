@@ -20,7 +20,6 @@ const defaultProps = {
 class Rating extends React.Component {
   createStar(index) {
     // We decided to draw all "stars" filled.
-    // TODO: Rename Star (it's not star anymore.)
     return (
       <Puzzle key={index} color={this.props.color}/>
     );
