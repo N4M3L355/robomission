@@ -20,5 +20,12 @@ services:
     ports:
       - "80:8000"
       - "8000:8000"
-    rules:
-      - "traefik.frontend.rule=Host:robomission.xn--krl-fla.com"
+    labels:
+      traefik.frontend.rule: "Host:robomission.xn--krl-fla.com"
+      traefik.docker.network: traefik_default
+
+
+networks:
+  default:
+    external:
+      name: traefik_default
