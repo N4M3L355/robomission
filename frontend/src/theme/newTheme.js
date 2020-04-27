@@ -2,6 +2,8 @@ import {createMuiTheme, responsiveFontSizes} from "@material-ui/core";
 import {amber, cyan, grey} from "@material-ui/core/colors";
 let fullWhite = "#FFF";
 
+//TODO: clean unused colors and reuse existing
+
 const theme = createMuiTheme({
 
   overrides: {
@@ -35,6 +37,17 @@ const theme = createMuiTheme({
         borderColor: "rgba(255, 255, 255, 0.7)",
         borderWidth: '2px',
         borderStyle: 'solid'
+      }
+    },
+    MuiAvatar:{
+
+      colorDefault:{
+        borderColor: "rgba(255, 255, 255, 0.7)",
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        background: 'none',
+        backgroundColor: 'none'
+
       }
     }
   },

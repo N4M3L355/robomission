@@ -19,6 +19,7 @@ import meteoroid from '../images/meteoroid.svg';
 import Text from '../localization/Text';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import Sky from "./Sky";
 
 
 const useStyles = makeStyles(theme => ({
@@ -101,12 +102,7 @@ export default function Home(props) {
         },
         content: (
           <div>
-
-            <svg width="100%" height="100%" id="sky" style={{
-              position: "absolute",
-              top: 0,
-              left: 0}}>
-            </svg>
+            <Sky/>
             <Grid container>
               <Grid item sm={12} md={6}>
                 <Typography variant="h1" className={classes.banner}><Text id="intro.learn-programming" /></Typography>
@@ -276,55 +272,7 @@ export default function Home(props) {
     animationTimingFunction:"linear",
     animationIterationCount: "infinite"
   }}/> */
-  useEffect(() => {
 
-    const svgns = "http://www.w3.org/2000/svg";
-    const container = document.getElementById( 'sky' );
-    for(let i = 0;i<120;i++){
-      let radius=Math.random();
-      let distance = 3*(1-radius)+1;
-      let circle = document.createElementNS(svgns, 'circle');
-      circle.setAttributeNS(null, 'cy', Math.random()*200-100+"%");
-      circle.setAttributeNS(null, 'r', radius*10);
-      circle.setAttributeNS(null, 'style', `
-    fill: white; 
-    stroke: none; 
-    stroke-width: 1px; 
-    animation-name: abc; 
-    animation-duration:${distance*64}s; 
-    animation-delay:${-distance*64*Math.random()}s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    ` );
-      container.appendChild(circle);
-    }
-    for(let i = 0;i<5;i++){
-      let radius=Math.random();
-      let distance = 1/(radius)+1;
-      let stone = document.createElementNS(svgns, 'image');
-      stone.setAttributeNS(null,'href', Math.random()>1/2?meteoroid:asteroid);
-      stone.setAttributeNS(null, 'y', Math.random()*200-100+"%");
-      stone.setAttributeNS(null,'width', radius*200+"px");
-      stone.setAttributeNS(null, 'style', `
-        animation-name: abc; 
-        animation-duration:${1/distance*32}s; 
-        animation-delay:${-1/distance*32*Math.random()}s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-        ` );
-      container.appendChild(stone);
-    }
-    const rocketContainer = document.getElementById( 'rocket' );
-    let rocket = document.createElementNS(svgns, 'image');
-    rocket.setAttributeNS(null,'href', rocketWithFlame);
-    rocket.setAttributeNS(null,'x', "55%");
-    rocket.setAttributeNS(null,'y', "35%");
-    rocket.setAttributeNS(null,"width","25%");
-    rocketContainer.appendChild(rocket);
-    container.appendChild(rocket);
-
-
-  });
   /*
   */
 

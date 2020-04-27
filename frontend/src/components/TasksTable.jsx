@@ -59,23 +59,25 @@ function MissionOverview({ mission, urlBase, recommendation, levelStatus }) {
   const isRecommended = recommendation.mission === mission.id
   let badgeTextColor = theme.canvasColor;
   let badgeBackgroundColor = theme.disabledColor;
+  let badgeColor;
+
   if (isRecommended) {
-    badgeTextColor = theme.palette.accent2Color;
+    badgeColor = theme.palette.secondary.main;
   } else if (mission.level < levelStatus.level) {
-    badgeBackgroundColor = theme.successColor;
+    badgeColor = theme.palette.success.main;
   }
   return (
-    <Card>
+    <Card variant={"outlined"} style={{margin: "1rem"}}>
       <CardHeader
         avatar={
           <Instructable instruction="overview-levels" position="top">
-            <Avatar
+            <Avatar style={{borderColor:badgeColor, color: badgeColor}}
             >
               L{mission.level}
             </Avatar>
           </Instructable>}
         title={`${translate(`ps.story.${mission.id}`)}`}
-        subtitle={<FormattedMessage id={`ps.${mission.id}`} />}
+        subheader={<FormattedMessage id={`ps.${mission.id}`} />}
       />
       <CardContent
         //expandable={true}
@@ -133,14 +135,13 @@ function TaskTile({ task, urlBase, recommendation, style }) {
             xs={3}
       >
         <Link key={task.id} to={`${urlBase}${task.id}`} style={{color:"initial"}}>
-        <Paper className={classes.paper} variant={"outlined"} square={false}>
-          {subtitle}
-          <br/>
+        <Paper className={classes.paper} variant={"outlined"} square={false} style={{borderColor: color}}>
+          <Typography style={{color: color}}>{subtitle}</Typography>
           <Typography variant="h5">
             {<TaskName taskId={task.id} />}
           </Typography>
           <Instructable instruction="overview-difficulty" position="top">
-            <Rating value={task.solved ? task.levels[1] : 0} max={task.levels[1]} />
+            <Rating style={{color: color}} value={task.solved ? task.levels[1] : 0} max={task.levels[1]} />
           </Instructable>
         </Paper>
         </Link>
