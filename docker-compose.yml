@@ -18,4 +18,7 @@ services:
       - ./frontend/package.json:/code/frontend/package.json
       - ./Makefile:/code/Makefile
     ports:
+      - "80:8000"
       - "8000:8000"
+    rules:
+      - "traefik.frontend.rule=Host:robomission.xn--krl-fla.com"
