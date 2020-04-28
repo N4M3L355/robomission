@@ -129,10 +129,7 @@ export default function Home(props) {
       },
       // slide 1
       {
-        style: {
-          backgroundColor: theme.canvasColor,
-          color: '#fff',
-        },
+        style: {},
         content: (
           <div>
                 <h2><Text id="intro.explore-universe" /><br /><Text id="intro.collect-diamonds" /></h2>
@@ -252,8 +249,7 @@ export default function Home(props) {
         style: {
           backgroundImage: `url(${spaceBackgroundPath})`,
           backgroundSize: '500px auto',
-          backgroundColor: '#111122',
-          color: '#fff',
+          backgroundColor: '#111122'
         },
         content: (
           <div>

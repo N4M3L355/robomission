@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Line as ProgressBar } from 'rc-progress';
 import {useTheme} from "@material-ui/styles";
+import Typography from "@material-ui/core/Typography";
 
 
 const propTypes = {
@@ -40,18 +41,19 @@ export default function LevelBar(props) {
     if (props.mini) {
       return (
         <span>
-          <span style={{ fontSize: 18 }}>
+          <Typography>
             L{ props.level }
-          </span>
           <span style={styleMini}>
             {props.activeCredits} / {props.maxCredits}
             <ProgressBar
-              percent={percent}
-              strokeWidth={8}
-              strokeColor="#E3E3E3"
-              trailColor="#F3F3F3"
+                percent={percent}
+                strokeWidth={8}
+                strokeColor="#E3E3E3"
+                trailColor="#F3F3F3"
             />
           </span>
+          </Typography>
+
         </span>
       );
     }

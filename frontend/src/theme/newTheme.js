@@ -49,19 +49,19 @@ const theme = createMuiTheme({
         backgroundColor: 'none'
 
       }
+    },
+    MuiAppBar:{
+      colorTransparent:{
+        color: "none"         //this was originally inherit and it was making text black
+      }
     }
   },
   palette: {
     type: 'dark',
     primary: cyan,
     secondary: amber,
-    text: {
-      primary: fullWhite,
-      secondary: "rgba(255, 255, 255, 0.7)"
-
-    }
   },
-
+/*
   textColor: fullWhite,
   secondaryTextColor: grey[700],
   alternateTextColor: '#303030',
@@ -71,10 +71,11 @@ const theme = createMuiTheme({
   pickerHeaderColor: grey[100],
   clockCircleColor: grey[100],
 
-  successColor: cyan[700],
+  successColor: cyan[700],*/
   typography:{
     fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif"
   },
+  /*
   raisedButton: {
     color: grey[700],
   },
@@ -85,7 +86,7 @@ const theme = createMuiTheme({
   dialog: {
     bodyFontSize: 18,
     bodyColor: fullWhite,
-  },
+  },*/
   shape: {
     borderRadius: 10
   }

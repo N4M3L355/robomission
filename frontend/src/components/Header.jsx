@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  Fullscreen, FullscreenExit, Feedback as FeedbackIcon,
-  Help as HelpIcon, Person as UserIcon, Menu as MenuIcon
+  Fullscreen, FullscreenExit, FeedbackOutlined as FeedbackIcon,
+  HelpOutlined as HelpIcon, PersonOutlined as UserIcon, MenuOutlined as MenuIcon
 } from '@material-ui/icons';
 import logo from '../images/logo.png'
 import Instructable from '../containers/Instructable';
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor:'rgba(0,0,0,0)',
   },
   appBar: {
-    backgroundColor: 'rgba(0,0,0,1)',
+    //backgroundColor: 'rgba(0,0,0,1)',
   }
 }));
 
@@ -128,9 +128,8 @@ export default function Header(props) {
       );
     }
     return (
-      <AppBar position="static" color='primary' className={classes.appBar}>
+      <AppBar position="static" color='transparent' elevation={0} className={classes.appBar}>
         <Toolbar >
-
           <IconButton edge="start" onClick={props.onMenuIconTouchTap}>
             <Instructable instruction="env-menu" position="bottom">
               <MenuIcon/>

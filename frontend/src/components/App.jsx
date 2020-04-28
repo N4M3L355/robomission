@@ -19,11 +19,12 @@ const propTypes = {
 
 export default function App(props) {
   return (
+
     <div
       style={{
-        backgroundImage: `url(${backgroundPath})`,
-        backgroundSize: '500px auto',
-        backgroundColor: '#111122',
+        //backgroundImage: `url(${backgroundPath})`,
+        //backgroundSize: '500px auto',
+        backgroundColor: '#000',        //TODO: unhardcode
         paddingBottom: 25,
         overflowX: 'hidden',
       }}
