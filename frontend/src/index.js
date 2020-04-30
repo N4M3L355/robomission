@@ -16,7 +16,9 @@ import PrivateRoute from './containers/PrivateRoute';
 
 //TODO: setup service worker to work in production
 // (see create-react-app for details)
-//import registerServiceWorker from './registerServiceWorker';
+import register from './registerServiceWorker';
+
+register();
 
 globalConfiguration();
 
@@ -42,4 +44,3 @@ const app = (
 
 const mountElement = document.getElementById('flocsApp');
 ReactDOM.render(app, mountElement);
-//registerServiceWorker();

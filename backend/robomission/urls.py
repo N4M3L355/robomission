@@ -5,7 +5,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.views.generic.base import RedirectView
+from django.views.generic.base import RedirectView, TemplateView
 import learn
 from learn import social
 
@@ -27,6 +27,15 @@ urlpatterns = [
             url=staticfiles_storage.url('public/robots.txt'),
             permanent=False),
         name='robots.txt'),
+    url(r'^manifest.json$',
+        RedirectView.as_view(
+            url=staticfiles_storage.url('public/manifest.json'),
+            permanent=False),
+        name='manifest.json'),
+    url(r'^service-worker.js', (TemplateView.as_view(
+                                  template_name="service-worker.js",
+                                  content_type='application/javascript',
+                              )), name='service-worker.js'),
 
     url(r'^learn/', include('learn.urls')),
     url(r'^monitoring/', include('monitoring.urls')),
