@@ -94,24 +94,27 @@ class AppContainer extends React.Component {
       );
     }
     return (
-      <App
-        showLoginModal={this.props.showLoginModal}
-        loginFailed={this.props.loginFailed}
-        showSignUpModal={this.props.showSignUpModal}
-        signUpModalErrors={this.props.signUpModalErrors}
-        credentials={this.props.credentials}
-        profile={this.props.profile}
-        changeCredentials={this.changeCredentials}
-        changeProfile={this.changeProfile}
-        login={this.login}
-        signUp={this.signUp}
-        closeLoginModal={this.closeLoginModal}
-        closeSignUpModal={this.closeSignUpModal}
-        openSignUpModal={this.openSignUpModal}
-        snackbarMessageId={this.props.snackbarMessageId}
-      >
-        {this.props.children}
-      </App>
+        <div style={{height:"100vh"}}>
+          <App
+              showLoginModal={this.props.showLoginModal}
+              loginFailed={this.props.loginFailed}
+              showSignUpModal={this.props.showSignUpModal}
+              signUpModalErrors={this.props.signUpModalErrors}
+              credentials={this.props.credentials}
+              profile={this.props.profile}
+              changeCredentials={this.changeCredentials}
+              changeProfile={this.changeProfile}
+              login={this.login}
+              signUp={this.signUp}
+              closeLoginModal={this.closeLoginModal}
+              closeSignUpModal={this.closeSignUpModal}
+              openSignUpModal={this.openSignUpModal}
+              snackbarMessageId={this.props.snackbarMessageId}
+          >
+            {this.props.children}
+          </App>
+        </div>
+
     );
   }
 }

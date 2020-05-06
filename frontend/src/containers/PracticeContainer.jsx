@@ -59,7 +59,11 @@ class PracticeContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{
+        flex:1,
+        display: "flex",
+        flexDirection: "column"
+      }}>
         <div style={this.props.containerStyle}>
           <TaskEnvironmentContainer taskEnvironmentId={this.props.taskEnvironmentId} />
         </div>

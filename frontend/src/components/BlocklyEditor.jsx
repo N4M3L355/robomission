@@ -104,17 +104,6 @@ export default class BlocklyEditor extends React.Component {
       this.checkLengthLimit(roboAst);
     };
     return (
-      <div
-        style={{
-          display: 'inline-block',
-          position: 'absolute',
-          top: '0px',
-          bottom: '0px',
-          left: '0px',
-          right: '0px',
-          color: 'green',
-        }}
-      >
         <ReactBlocklyComponent.BlocklyEditor
           ref={ this.blocklyEditor }
           workspaceConfiguration={workspaceConfiguration}
@@ -123,7 +112,6 @@ export default class BlocklyEditor extends React.Component {
           xmlDidChange={xmlDidChange}
           wrapperDivClassName="flocs-blockly"
         />
-      </div>
     );
   }
 }

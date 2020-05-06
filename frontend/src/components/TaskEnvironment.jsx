@@ -6,7 +6,8 @@ import CodeEditorContainer from '../containers/CodeEditorContainer';
 import BlocklyEditorContainer from '../containers/BlocklyEditorContainer';
 import SpaceGameContainer from '../containers/SpaceGameContainer';
 import { theme } from '../theme';
-
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
 
 export default class TaskEnvironment extends React.Component {
   constructor(props) {
@@ -33,57 +34,30 @@ export default class TaskEnvironment extends React.Component {
             gamePanelWidth,
             controls } = this.props;
     return (
-      <SplitPane
-        split="vertical"
-        minSize={200}
-        maxSize={-400}
-        size={gamePanelWidth}
-        resizerStyle={{
-          backgroundColor: '#aaa',
-          width: 4,
-          cursor: 'col-resize',
-        }}
-        onChange={this.onGamePanelWidthChange}
-      >
-        <Scrollbars
-          style={{
-            display: 'inline-block',
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            backgroundColor: theme.palette.canvasColor,
-            color: theme.palette.textColor,
-          }}
-        >
-          <SpaceGameContainer
-            taskEnvironmentId={taskEnvironmentId}
-            controls={controls}
-          />
-        </Scrollbars>
-        <span
-          style={{
-            display: 'inline-block',
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-          }}
-        >
-          { editorType === 'code' &&
-            <CodeEditorContainer taskEnvironmentId={taskEnvironmentId} />
-          }
-          { editorType === 'blockly' &&
-            <BlocklyEditorContainer
-              taskEnvironmentId={taskEnvironmentId}
-              //ref={ref => { this.blocklyEditor = ref ? ref.getWrappedInstance() : null; }}
-              ref = {this.blocklyEditor}
-            />
-          }
-        </span>
-      </SplitPane>
+            <Grid container spacing={0} alignItems={"stretch"} style={{
+                flex:1,
+                display: "flex",
+            }}>
+                <Grid item xs={6}>
+                    <SpaceGameContainer
+                        taskEnvironmentId={taskEnvironmentId}
+                        controls={controls}
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    {editorType === 'code' &&
+                    <CodeEditorContainer taskEnvironmentId={taskEnvironmentId}/>
+                    }
+                    {editorType === 'blockly' &&
+                    <BlocklyEditorContainer
+                        taskEnvironmentId={taskEnvironmentId}
+                        //ref={ref => { this.blocklyEditor = ref ? ref.getWrappedInstance() : null; }}
+                        ref={this.blocklyEditor}
+                    />
+                    }
+                </Grid>
+            </Grid>
+
     );
   }
 }

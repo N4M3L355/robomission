@@ -13,19 +13,21 @@ function getProps(state, props) {
 class PracticePage extends React.Component {
   render() {
     return (
-      <div
-        style={{
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-        }}
-      >
-        <PracticeContainer
-          taskEnvironmentId={practicePageTaskEnvironmentId}
-          taskId={this.props.taskId}
-        />
-      </div>
+        <div style={{
+            flex:1,
+            display: "flex",
+            flexDirection: "column"
+        }}>
+            <PracticeContainer
+                containerStyle={{
+                    flex:1,
+                    display: "flex",
+                    flexDirection: "column"
+                }}
+                taskEnvironmentId={practicePageTaskEnvironmentId}
+                taskId={this.props.taskId}
+            />
+        </div>
     );
   }
 }

@@ -21,13 +21,15 @@ export default function App(props) {
   return (
 
     <div
-      style={{
-        //backgroundImage: `url(${backgroundPath})`,
-        //backgroundSize: '500px auto',
-        backgroundColor: '#000',        //TODO: unhardcode
-        paddingBottom: 25,
-        overflowX: 'hidden',
-      }}
+        style={{
+            //backgroundImage: `url(${backgroundPath})`,
+            //backgroundSize: '500px auto',
+            backgroundColor: '#000',        //TODO: unhardcode
+            //overflowX: 'hidden',
+            minHeight: "100%",
+            display: "flex",
+            flexDirection: "column",
+        }}
     >
       <InstructionsContainer />
       <HeaderContainer />
