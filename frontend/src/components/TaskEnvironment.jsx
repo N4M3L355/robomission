@@ -38,13 +38,13 @@ export default class TaskEnvironment extends React.Component {
                 flex:1,
                 display: "flex",
             }}>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                     <SpaceGameContainer
                         taskEnvironmentId={taskEnvironmentId}
                         controls={controls}
                     />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={8}>
                     {editorType === 'code' &&
                     <CodeEditorContainer taskEnvironmentId={taskEnvironmentId}/>
                     }

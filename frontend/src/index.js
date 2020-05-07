@@ -17,6 +17,7 @@ import PrivateRoute from './containers/PrivateRoute';
 //TODO: setup service worker to work in production
 // (see create-react-app for details)
 import register from './registerServiceWorker';
+import {CssBaseline} from "@material-ui/core";
 
 register();
 
@@ -25,20 +26,23 @@ globalConfiguration();
 const store = createFlocsStore();
 const app = (
   <Provider store={store}>
-    <FlocsThemeProvider>
-      <BrowserRouter>
-        <AppContainer>
-          <Switch>
-            <Route exact path='/' component={HomePage}/>
-            <Route exact path="/tasks" component={TasksTableContainer} />
-            <Route exact path="/task-editor" component={TaskEditorPage} />
-            <Route path="/task/:taskId" component={PracticePage} />
-            <Route exact path="/login" component={LoginPage} />
-            <PrivateRoute exact path="/monitoring" component={MonitoringPage} />
-          </Switch>
-        </AppContainer>
-      </BrowserRouter>
-    </FlocsThemeProvider>
+      <FlocsThemeProvider>
+        <BrowserRouter>
+          <CssBaseline>
+          <AppContainer>
+            <Switch>
+              <Route exact path='/' component={HomePage}/>
+              <Route exact path="/tasks" component={TasksTableContainer} />
+              <Route exact path="/task-editor" component={TaskEditorPage} />
+              <Route path="/task/:taskId" component={PracticePage} />
+              <Route exact path="/login" component={LoginPage} />
+              <PrivateRoute exact path="/monitoring" component={MonitoringPage} />
+            </Switch>
+          </AppContainer>
+          </CssBaseline>
+        </BrowserRouter>
+      </FlocsThemeProvider>
+
   </Provider>
 );
 

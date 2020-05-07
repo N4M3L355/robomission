@@ -16,9 +16,6 @@ const useStyles = makeStyles(theme => ({
   fontAwesomeIcon: {
     boxShadow: 'none',
     backgroundColor:'rgba(0,0,0,0)',
-  },
-  appBar: {
-    //backgroundColor: 'rgba(0,0,0,1)',
   }
 }));
 

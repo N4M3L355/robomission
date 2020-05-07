@@ -4,36 +4,30 @@ import GameObject from './GameObject';
 import SpaceBackgroundGrid from './SpaceBackgroundGrid';
 import Instructable from '../containers/Instructable';
 
-export default function SpaceWorld({ fields, width, pastActions, pauseLength }) {
+export default function SpaceWorld({ fields, pastActions, pauseLength }) {
   const { cols, backgrounds, objects, rows } = prepareFields(fields);
-  const fieldSize = width / cols;
-  const height = fieldSize * rows;
-  console.log(pastActions,pastActions[pastActions.length-1]);
-  /*const worldStyle = {
-    display: 'block',
-    position: 'relative',
-  };*/
+
   return (
     <Instructable instruction="task-space-world" position="bottom">
-      <svg width={width} height={height}>
-        <SpaceBackgroundGrid backgroundColors={backgrounds} fieldSize={fieldSize} width={width} height={height}/>
-        <svg width={width} height={height}>
+      <div>
+        <svg width="100%" viewBox={`0 0 ${cols} ${rows}`}>
+          <SpaceBackgroundGrid backgroundColors={backgrounds}/>
           {objects.map((object, index) =>
-            <GameObject
-              pauseLength={pauseLength}
-              // The key must change if the object type changes in order to
-              // unregister old instructable and register the new one.
-              lastAction = {pastActions[pastActions.length-1]}
-              key={`${index}-${object.imageId}`}
-              imageId={object.imageId}
-              width={fieldSize}
-              height={fieldSize}
-              y={object.row * fieldSize}
-              x={object.col * fieldSize}
-            />
+              <GameObject
+                  pauseLength={pauseLength}
+                  // The key must change if the object type changes in order to
+                  // unregister old instructable and register the new one.
+                  lastAction = {pastActions[pastActions.length-1]}
+                  key={`${index}-${object.imageId}`}
+                  imageId={object.imageId}
+                  cols={cols}
+                  rows={rows}
+                  y={object.row}
+                  x={object.col}
+              />
           )}
         </svg>
-      </svg>
+      </div>
     </Instructable>
   );
 }

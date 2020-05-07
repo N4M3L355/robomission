@@ -57,8 +57,6 @@ TaskTable.defaultProps = {
 function MissionOverview({ mission, urlBase, recommendation, levelStatus }) {
   const tasks = flatten(mission.phases.map(phase => phase.tasks));
   const isRecommended = recommendation.mission === mission.id
-  let badgeTextColor = theme.canvasColor;
-  let badgeBackgroundColor = theme.disabledColor;
   let badgeColor;
 
   if (isRecommended) {

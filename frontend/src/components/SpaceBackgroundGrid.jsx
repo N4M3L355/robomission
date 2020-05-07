@@ -4,26 +4,26 @@ import FieldBackground from './FieldBackground';
 import spaceBackgroundPath from '../images/background-space.png';
 import FieldGrid from "./FieldGrid";
 
-export default function SpaceBackgroundGrid({backgroundColors, fieldSize, width, height}) {
+export default function SpaceBackgroundGrid({backgroundColors}) {
   return (
-    <svg width={width} height={height}>
+    <svg width="5">
       <defs>
-        <pattern id="bgimg" x="0" y="0" width={width} height={width}
-                 patternUnits="userSpaceOnUse" preserveAspectRatio="xMinYMin slice">
-          <image x="0" y="0" width={width} height={width}
+        <pattern id="bgimg" x="0" y="0" width="5" height="5"
+                 patternUnits="userSpaceOnUse" preserveAspectRatio="xMidYMid slice">
+          <image x="0" y="0" width="5"
                  href={spaceBackgroundPath}/>
         </pattern>
       </defs>
-      <rect fill="url(#bgimg)" width={width} height={height}/>
+      <rect fill="url(#bgimg)" width="5" height={backgroundColors.length}/>
       {backgroundColors.map((backgroundsRow, index) =>
         backgroundsRow.map((background, bgIndex) => (
-            <FieldBackground keyX={bgIndex} keyY={index} color={background} size={fieldSize}/>
+            <FieldBackground keyX={bgIndex} keyY={index} color={background}/>
           )
         )
       )}
       {backgroundColors.map((backgroundsRow, index) =>
         backgroundsRow.map((background, bgIndex) => (
-            <FieldGrid keyX={bgIndex} keyY={index} size={fieldSize}/>
+            <FieldGrid keyX={bgIndex} keyY={index}/>
           )
         )
       )}
@@ -32,5 +32,4 @@ export default function SpaceBackgroundGrid({backgroundColors, fieldSize, width,
 }
 SpaceBackgroundGrid.propTypes = {
   backgroundColors: PropTypes.array.isRequired,
-  fieldSize: PropTypes.number.isRequired,
 };

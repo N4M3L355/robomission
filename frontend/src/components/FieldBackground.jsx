@@ -5,7 +5,7 @@ import redBackgroundPath from '../images/background-red.png';
 import greenBackgroundPath from '../images/background-green.png';
 import yellowBackgroundPath from '../images/background-yellow.png';
 
-export default function FieldBackground({ color, size, keyX, keyY }) {
+export default function FieldBackground({ color, keyX, keyY }) {
   const backgroundImgPath = {
     r: redBackgroundPath,
     g: greenBackgroundPath,
@@ -13,11 +13,10 @@ export default function FieldBackground({ color, size, keyX, keyY }) {
     y: yellowBackgroundPath,
   }[color];
   return (
-    <image width={size} height={size} x={keyX*size} y={keyY*size} href={backgroundImgPath} />
+    <image width="1" height="1" x={keyX} y={keyY} href={backgroundImgPath} />
   )
 }
 
 FieldBackground.propTypes = {
   color: PropTypes.string.isRequired,
-  size: PropTypes.number.isRequired,
 };

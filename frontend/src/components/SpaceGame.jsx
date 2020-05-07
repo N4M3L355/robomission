@@ -55,14 +55,18 @@ export default function SpaceGame({
     />
   );
   return (
-    <span style={{ display: 'inline-block', verticalAlign: 'top' }}>
+    <span style={{ display: 'inline-block', verticalAlign: 'top'}}>
       {showHeader && gameStatus}
-      <SpaceWorld
-        fields={fields}
-        pastActions = {pastActions}
-        width={width}
-        pauseLength = {pauseLength}
-      />
+        <div style={{width:"100%"}}>
+             <SpaceWorld
+                 fields={fields}
+                 pastActions = {pastActions}
+                 width={width}
+                 pauseLength = {pauseLength}
+             />
+
+        </div>
+
       <GameControls
         controls={controlsSetting}
         speed={speed}

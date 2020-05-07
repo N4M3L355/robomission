@@ -144,11 +144,8 @@ export default function Home(props) {
                   <Text id='excellent-task-solved' />
                 </p>
 
-                <h3>
-                  <Text id="intro.game-driven-by-ai" />
-                  <br />
-                  <Text id="intro.adapting-to-your-skills" />
-                </h3>
+                <Typography variant="h3"><Text id="intro.game-driven-by-ai" /></Typography>
+                <Typography variant="h3"><Text id="intro.adapting-to-your-skills" /></Typography>
 
           </div>
         ),

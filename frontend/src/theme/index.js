@@ -18,7 +18,7 @@ function setGlobalFonts() {
   const webFontScriptElement = document.createElement('script');
   webFontScriptElement.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
   webFontScriptElement.type = 'text/javascript';
-  webFontScriptElement.async = 'true';
+  webFontScriptElement.async = true;
   const s = document.getElementsByTagName('script')[0];
   s.parentNode.insertBefore(webFontScriptElement, s);
 }
