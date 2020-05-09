@@ -38,7 +38,11 @@ export default class TaskEnvironment extends React.Component {
                 flex:1,
                 display: "flex",
             }}>
-                <Grid item xs={4}>
+                <Grid item xs={4} style={{
+                    flex:1,
+                    display: "flex",
+                    flexDirection: "column"
+                }}>
                     <SpaceGameContainer
                         taskEnvironmentId={taskEnvironmentId}
                         controls={controls}

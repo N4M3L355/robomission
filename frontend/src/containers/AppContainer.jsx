@@ -89,7 +89,7 @@ class AppContainer extends React.Component {
             backgroundColor: 'rgb(58, 58, 58)',
           }}
         >
-          <LoadingIndicator />;
+          <LoadingIndicator />
         </div>
       );
     }

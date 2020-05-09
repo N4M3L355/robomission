@@ -9,7 +9,7 @@ export default function SpaceWorld({ fields, pastActions, pauseLength }) {
 
   return (
     <Instructable instruction="task-space-world" position="bottom">
-      <div>
+      <div style={{position: "absolute", top: 0, bottom: 0, left: 0, right:0, overflowY: "auto"}}>
         <svg width="100%" viewBox={`0 0 ${cols} ${rows}`}>
           <SpaceBackgroundGrid backgroundColors={backgrounds}/>
           {objects.map((object, index) =>

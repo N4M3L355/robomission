@@ -5,13 +5,15 @@ import SvgImage from './SvgImage';
 export default function Icon({ name, style }) {
   const iconStyle = {
     height: '1em',
+    width: '1em',
     position: 'relative',
-    top: '0.1em',
     ...style,
   };
 
   return (
-    <SvgImage imageId={`icon-${name}.svg`} style={iconStyle} />
+      <svg style={iconStyle}>
+        <SvgImage imageId={`icon-${name}.svg`}  />
+      </svg>
   );
 }
 

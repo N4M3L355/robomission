@@ -47,21 +47,19 @@ export default function Home(props) {
       <Scroll.Element key={index} name={`intro-slide-${index}`}>
         <section
           style={{
-            ...slideStyle,
             height: (index === 0) ? '90vh' : '100vh',
+              display: "flex",
+              justifyContent: "space-evenly",
+              flexDirection: "column",
+              alignItems: "center",
+              alignContent: "center",
+              textAlign: "center",
+
             ...style,
           }}
         >
-          <div style={{ display: 'table-row' }}>
-            <div style={slideContentStyle}>
-              {content}
-            </div>
-          </div>
-          {footer && (
-            <div style={slideFooterStyle}>
-              {footer}
-            </div>
-          )}
+          {content}
+            {footer}
         </section>
       </Scroll.Element>
     );
@@ -96,23 +94,19 @@ export default function Home(props) {
     const slides = [
       // slide 0
       {
-        style: {
-          backgroundColor: "#000",
-          color: '#FFF',
-        },
         content: (
           <div>
             <Sky/>
-            <Grid container>
-              <Grid item sm={12} md={6}>
+            <Grid container justify={"space-around"}>
+              <Grid item sm={12} md={4} style={{flexBasis:"45%"}}>
                 <Typography variant="h1" className={classes.banner}><Text id="intro.learn-programming" /></Typography>
-                <span style={{ marginRight: 20 }}><NextTaskButtonContainer /></span>
+                <NextTaskButtonContainer />
                 <Link to="/tasks">
                   <Button className={classes.button} variant='outlined'><Text id="Tasks" /></Button>
                 </Link>
 
               </Grid>
-              <Grid item sm={12} md={6}>
+              <Grid item sm={12} md={4}>
                 <svg width="100%" height="100%" id="rocket">
                 </svg>
               </Grid>
@@ -129,7 +123,6 @@ export default function Home(props) {
       },
       // slide 1
       {
-        style: {},
         content: (
           <div>
                 <h2><Text id="intro.explore-universe" /><br /><Text id="intro.collect-diamonds" /></h2>
@@ -207,31 +200,21 @@ export default function Home(props) {
           backgroundSize: 'cover',
         },
         content: (
-          <Paper
-            style={{
-              display: 'inline-block',
-              paddingTop: 10,
-              paddingBottom: 40,
-              paddingLeft: 50,
-              paddingRight: 50,
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            }}
-            zDepth={1}
-          >
-            <h2>
-              <Text id="intro.developed-by-alg" />
-              <br />
-              <Text id="intro.at-fi-mu" />
-            </h2>
-            <span style={{ marginRight: 20 }}>
+            <div>
+                <h2>
+                    <Text id="intro.developed-by-alg" />
+                    <br />
+                    <Text id="intro.at-fi-mu" />
+                </h2>
+                <span>
               <a href="https://www.fi.muni.cz/adaptivelearning/?a=projects" target="_blank" rel="noreferrer noopener">
                 <Button className={classes.button} variant='outlined'>{<Text id="ALG" />}</Button>
               </a>
             </span>
-            <a href="https://www.fi.muni.cz/about/index.xhtml.cs" target="_blank" rel="noreferrer noopener">
-              <Button className={classes.button} variant='outlined' style={{ minWidth: 265 }} ><Text id="FI-MU" /></Button>
-            </a>
-          </Paper>
+                <a href="https://www.fi.muni.cz/about/index.xhtml.cs" target="_blank" rel="noreferrer noopener">
+                    <Button className={classes.button} variant='outlined'><Text id="FI-MU" /></Button>
+                </a>
+            </div>
         ),
         footer: (
           <Scroll.Link to="intro-slide-4" smooth={true} duration={500}>
@@ -243,11 +226,6 @@ export default function Home(props) {
       },
       // slide 5
       {
-        style: {
-          backgroundImage: `url(${spaceBackgroundPath})`,
-          backgroundSize: '500px auto',
-          backgroundColor: '#111122'
-        },
         content: (
           <div>
             <h2><Text id="intro.fly-into-space" /></h2>
@@ -270,41 +248,8 @@ export default function Home(props) {
   */
 
   return (
-      <div style={longPageStyle}>
+      <div>
         {slides.map(renderSlide)}
       </div>
     );
 }
-
-const longPageStyle = {
-  width: '100%',
-  height: '100%',
-  margin: 0,
-};
-
-const slideStyle = {
-  width: '100%',
-  padding: '0 7%',
-  display: 'table',
-  margin: 0,
-  height: '100vh',
-};
-
-const slideContentStyle = {
-  display: 'table-cell',
-  verticalAlign: 'middle',
-  maxWidth: 1000,
-  margin: '20px auto',
-  textAlign: 'center',
-  lineHeight: 1.3,
-};
-
-
-const slideFooterStyle = {
-  display: 'table-row',
-  verticalAlign: 'bottom',
-  maxWidth: 1000,
-  margin: '0 auto',
-  height: 90,
-  textAlign: 'center',
-};

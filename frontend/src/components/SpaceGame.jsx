@@ -55,9 +55,14 @@ export default function SpaceGame({
     />
   );
   return (
-    <span style={{ display: 'inline-block', verticalAlign: 'top'}}>
+    <div style={{
+        flex:1,
+        display: "flex",
+        flexDirection: "column"
+    }}>
       {showHeader && gameStatus}
-        <div style={{width:"100%"}}>
+        <div style={{width:"100%",
+            height:"100%", position:"relative"}}>
              <SpaceWorld
                  fields={fields}
                  pastActions = {pastActions}
@@ -72,7 +77,7 @@ export default function SpaceGame({
         speed={speed}
         onClick={onControlClicked}
       />
-    </span>
+    </div>
   );
 }
 
