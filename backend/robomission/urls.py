@@ -10,11 +10,6 @@ import learn
 import os
 from learn import social
 
-# The precache-manifest may be generated with a new name, so we need to get it manually
-files_in_root = []
-for file in os.listdir(os.path.join(settings.REPO_DIR,'frontend', 'build')):
-    files_in_root.append(file)
-precache_manifest_path = [f for f in files_in_root if ("precache-manifest" in f)][0]
 
 urlpatterns = [
     # Top-level public assets (such as favicon.ico and robots.txt) starts in
@@ -47,10 +42,6 @@ urlpatterns = [
                 url=staticfiles_storage.url('public/index.html'),
                 permanent=False),
             name='index.html'),
-    url('^'+precache_manifest_path+'$', (
-            TemplateView.as_view(template_name=precache_manifest_path,
-                                 content_type='application/javascript', )),
-             name=precache_manifest_path),
 
     url(r'^learn/', include('learn.urls')),
     url(r'^monitoring/', include('monitoring.urls')),
@@ -63,6 +54,21 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^($|about|task|monitoring)', learn.views.frontend_app, name='frontend_app'),
 ]
+
+
+
+if os.path.exists(os.path.join(settings.REPO_DIR,'frontend', 'build')):     # if build has been generated, we need to redirect requests of precache-manifest. Its name is generated, so we need to find it first.
+    # The precache-manifest may be generated with a new name, so we need to get it manually
+    files_in_root = []
+    for file in os.listdir(os.path.join(settings.REPO_DIR,'frontend', 'build')):
+        files_in_root.append(file)
+    precache_manifest_path = [f for f in files_in_root if ("precache-manifest" in f)][0]
+
+    urlpatterns += url('^'+precache_manifest_path+'$', (
+            TemplateView.as_view(template_name=precache_manifest_path,
+                                 content_type='application/javascript', )),
+             name=precache_manifest_path)
+
 
 # Set up media serving for development.
 if settings.DEVELOPMENT:
