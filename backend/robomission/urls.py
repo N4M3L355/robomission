@@ -64,10 +64,10 @@ if os.path.exists(os.path.join(settings.REPO_DIR,'frontend', 'build')):     # if
         files_in_root.append(file)
     precache_manifest_path = [f for f in files_in_root if ("precache-manifest" in f)][0]
 
-    urlpatterns += url('^'+precache_manifest_path+'$', (
-            TemplateView.as_view(template_name=precache_manifest_path,
-                                 content_type='application/javascript', )),
-             name=precache_manifest_path)
+    urlpatterns += [url('^'+precache_manifest_path+'$',
+    (TemplateView.as_view(template_name=precache_manifest_path,content_type='application/javascript')),
+    name=precache_manifest_path
+    )]
 
 
 # Set up media serving for development.
