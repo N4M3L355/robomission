@@ -1,13 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SplitPane from 'react-split-pane';
-import { Scrollbars } from 'react-custom-scrollbars';
 import CodeEditorContainer from '../containers/CodeEditorContainer';
 import BlocklyEditorContainer from '../containers/BlocklyEditorContainer';
 import SpaceGameContainer from '../containers/SpaceGameContainer';
-import { theme } from '../theme';
 import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
 
 export default class TaskEnvironment extends React.Component {
   constructor(props) {
@@ -31,7 +27,6 @@ export default class TaskEnvironment extends React.Component {
   render() {
     const { taskEnvironmentId,
             editorType,
-            gamePanelWidth,
             controls } = this.props;
     return (
             <Grid container spacing={0} alignItems={"stretch"} style={{

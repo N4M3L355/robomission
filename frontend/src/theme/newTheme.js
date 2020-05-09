@@ -1,7 +1,5 @@
 import {createMuiTheme, responsiveFontSizes} from "@material-ui/core";
-import {amber, cyan, grey} from "@material-ui/core/colors";
-let fullWhite = "#FFF";
-
+import {amber, cyan} from "@material-ui/core/colors";
 //TODO: clean unused colors and reuse existing
 
 const theme = createMuiTheme({

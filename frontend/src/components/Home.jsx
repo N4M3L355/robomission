@@ -1,8 +1,7 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import {Paper, Fab, Button} from '@material-ui/core';
-import { useTheme, makeStyles } from '@material-ui/styles';
+import {Fab, Button} from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import Scroll from 'react-scroll';
 import SpaceGameContainer from '../containers/SpaceGameContainer';
@@ -10,11 +9,8 @@ import SpaceGameContainer from '../containers/SpaceGameContainer';
 import NextTaskButtonContainer from '../containers/NextTaskButtonContainer';
 //import neuronsBackgroundPath from '../images/neurons-tile.png';
 import fiBackgroundPath from '../images/fi-slide.jpg';
-import spaceBackgroundPath from '../images/background-space.png';
+//import spaceBackgroundPath from '../images/background-space.png';
 //import spaceshipInSpaceWorldPath from '../images/banner-image.png';
-import rocketWithFlame from '../images/RocketWithFlame.svg';
-import asteroid from '../images/asteroid.svg';
-import meteoroid from '../images/meteoroid.svg';
 //import diamond from '../images/diamond.svg';
 import Text from '../localization/Text';
 import Grid from "@material-ui/core/Grid";
@@ -37,8 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function Home(props) {
-  
-  const theme = useTheme();
+
   const classes = useStyles();
 
 
