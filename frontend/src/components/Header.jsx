@@ -16,6 +16,11 @@ const useStyles = makeStyles(theme => ({
   fontAwesomeIcon: {
     boxShadow: 'none',
     backgroundColor:'rgba(0,0,0,0)',
+  },
+  logo: {
+    [theme.breakpoints.down('xs')]:{
+      display: "none"
+    }
   }
 }));
 
@@ -44,6 +49,7 @@ export default function Header(props) {
       <img
         key='header-logo'
         alt='RoboMission logo'
+        className={classes.logo}
         src={logo}
         style={{
           height: '3rem',
@@ -72,7 +78,7 @@ export default function Header(props) {
       userIcon = props.user.initial;
     }
     const avatar = (
-      <IconButton style={{padding: 0}} onClick={handleMenu}>
+      <IconButton onClick={handleMenu}>
         <Avatar>
           {userIcon}
         </Avatar>
@@ -138,8 +144,7 @@ export default function Header(props) {
           {props.mode !== 'monitoring' && [(
             <Instructable key="levelbar" instruction="env-levelbar" position="bottom">
               <div
-                key="levelbar"
-                style={{marginRight: 10}}>
+                key="levelbar">
                 <LevelBar mini {...props.levelInfo} />
               </div>
             </Instructable>
