@@ -13,6 +13,7 @@ export default class FeedbackModal extends React.Component {
         <Button
           color='primary'
           variant='contained'
+          key='close'
           onClick={this.props.closeFeedbackModal}>{translate('Close')}</Button>,
       ];
       return (

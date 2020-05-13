@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Fullscreen, FullscreenExit, FeedbackOutlined as FeedbackIcon,
-  HelpOutlined as HelpIcon, PersonOutlined as UserIcon, MenuOutlined as MenuIcon
+  HelpOutline as HelpIcon, PersonOutlined as UserIcon, MenuOutlined as MenuIcon
 } from '@material-ui/icons';
 import logo from '../images/logo.png'
 import Instructable from '../containers/Instructable';
@@ -30,18 +30,19 @@ export default function Header(props) {
   const classes = useStyles();
 
   const [isFullscreen, setIsFullscreen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorElForUserMenu, setAnchorElForUserMenu] = React.useState(null);
+  const [anchorElForHelp, setAnchorElForHelp] = React.useState(null);
 
   const toggleFullscreen = () => isFullscreen ? document.exitFullscreen() : document.documentElement.requestFullscreen();
 
   const showNewInstructions = props.showInstructions.bind(this, {onlyNew: true});
   const showAllInstructions = props.showInstructions.bind(this, {onlyNew: false});
 
-  function handleMenu(event) {
-    setAnchorEl(event.currentTarget);
+  function handleMenu({currentTarget}) {
+    setAnchorElForUserMenu(currentTarget);
   }
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorElForUserMenu(null);
   };
 
   function renderTitle() {
@@ -78,7 +79,7 @@ export default function Header(props) {
       userIcon = props.user.initial;
     }
     const avatar = (
-      <IconButton onClick={handleMenu}>
+      <IconButton onClick={({currentTarget}) => setAnchorElForUserMenu(currentTarget)}>
         <Avatar>
           {userIcon}
         </Avatar>
@@ -91,10 +92,10 @@ export default function Header(props) {
           {avatar}
           <Menu
             id="user-menu"
-            anchorEl={anchorEl}
+            anchorEl={anchorElForUserMenu}
             keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
+            open={Boolean(anchorElForUserMenu)}
+            onClose={() => setAnchorElForUserMenu(null)}
             anchorOrigin={{
               vertical: 'top',
               horizontal: 'right',
@@ -122,7 +123,7 @@ export default function Header(props) {
     );
     if (!props.user.isLazy) {
       userMenu = (
-        <Menu iconButtonElement={avatar}>
+        <Menu iconButtonElement={avatar}>  //TODO: this will be broken as iconButtonElement is not used anymore
           <MenuItem
             primaryText={translate('user.logout')}
             onClick={props.logout}
@@ -150,7 +151,7 @@ export default function Header(props) {
             </Instructable>
           )
           ]}
-          <div key="user-toolbar">
+          <div key="user-toolbar"  style={{display: "flex"}}>
             <Instructable key="fullscreen" instruction="env-fullscreen" position="bottom">
 
               <IconButton
@@ -161,30 +162,43 @@ export default function Header(props) {
                   return toggleFullscreen();
                 }}
               >
-                {isFullscreen ? <FullscreenExit color={theme.palette.secondary.main}/> : <Fullscreen color={theme.palette.secondary.main}/>}
+                {isFullscreen ? <FullscreenExit/> : <Fullscreen/>}
               </IconButton>
 
 
             </Instructable>
             <Instructable key="help" instruction="env-help" position="bottom">
-              <Menu
-                iconButtonElement={
-                  <IconButton tooltip={translate('Help')} className = {classes.fontAwesomeIcon}>
-                    <HelpIcon color={(nNewInstructions > 0) ?
+              <div>
+                <IconButton onClick={({currentTarget}) => setAnchorElForHelp(currentTarget)} tooltip={translate('Help')} className = {classes.fontAwesomeIcon}>
+                  <HelpIcon color={(nNewInstructions > 0) ?
                       theme.palette.secondary.main : 'white'}/>
-                  </IconButton>
-                }
-              >
-                <MenuItem
-                  primaryText={`${translate('New instructions')} (${nNewInstructions})`}
-                  onClick={showNewInstructions}
-                  disabled={nNewInstructions === 0}
-                />
-                <MenuItem
-                  primaryText={translate('All instructions')}
-                  onClick={showAllInstructions}
-                />
-              </Menu>
+                </IconButton>
+                <Menu
+                    open={false}
+                    anchorEl={anchorElForHelp}
+                    keepMounted
+                    open={Boolean(anchorElForHelp)}
+                    onClose={() => setAnchorElForHelp(null)}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                >
+                  <MenuItem
+                      onClick={showNewInstructions}
+                      disabled={nNewInstructions === 0}
+                  >
+                    {`${translate('New instructions')} (${nNewInstructions})`}
+                  </MenuItem>
+                  <MenuItem onClick={showAllInstructions}>
+                    {translate('All instructions')}
+                  </MenuItem>
+                </Menu>
+              </div>
             </Instructable>
             <Instructable key="feedback" instruction="env-feedback" position="bottom">
               <IconButton

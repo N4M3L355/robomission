@@ -49,8 +49,8 @@ export default function GameObject({ imageId, position, x, y, lastAction, pauseL
 
 GameObject.propTypes = {
   imageId: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
+  //width: PropTypes.number.isRequired,
+ // height: PropTypes.number.isRequired,
   position: PropTypes.string,
   bottom: PropTypes.number,
   left: PropTypes.number,

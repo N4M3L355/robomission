@@ -17,13 +17,13 @@ export default function SpaceBackgroundGrid({backgroundColors}) {
       <rect fill="url(#bgimg)" width="5" height={backgroundColors.length}/>
       {backgroundColors.map((backgroundsRow, index) =>
         backgroundsRow.map((background, bgIndex) => (
-            <FieldBackground keyX={bgIndex} keyY={index} color={background}/>
+            <FieldBackground key={`${bgIndex}|${bgIndex}bg`} keyX={bgIndex} keyY={index} color={background}/>
           )
         )
       )}
       {backgroundColors.map((backgroundsRow, index) =>
         backgroundsRow.map((background, bgIndex) => (
-            <FieldGrid keyX={bgIndex} keyY={index}/>
+            <FieldGrid key={`${bgIndex}|${bgIndex}grid`} keyX={bgIndex} keyY={index}/>
           )
         )
       )}
