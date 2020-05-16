@@ -7,7 +7,7 @@ import logo from '../images/logo.png'
 import Instructable from '../containers/Instructable';
 import LevelBar from '../components/LevelBar';
 import {translate} from '../localization';
-import {Menu, Avatar, IconButton, MenuItem, AppBar, Toolbar} from "@material-ui/core";
+import {Menu, Avatar, IconButton, MenuItem, AppBar, Toolbar, Tooltip} from "@material-ui/core";
 
 import {makeStyles, useTheme} from '@material-ui/styles';
 
@@ -123,12 +123,28 @@ export default function Header(props) {
     );
     if (!props.user.isLazy) {
       userMenu = (
-        <Menu iconButtonElement={avatar}>  //TODO: this will be broken as iconButtonElement is not used anymore
-          <MenuItem
-            primaryText={translate('user.logout')}
-            onClick={props.logout}
-          />
-        </Menu>
+          <div>
+            {avatar}
+            <Menu
+                id="user-menu"
+                anchorEl={anchorElForUserMenu}
+                keepMounted
+                open={Boolean(anchorElForUserMenu)}
+                onClose={() => setAnchorElForUserMenu(null)}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+            >
+              <MenuItem onClick={props.logout}>
+                {translate('user.logout')}
+              </MenuItem>
+            </Menu>
+          </div>
       );
     }
     return (
@@ -153,26 +169,29 @@ export default function Header(props) {
           ]}
           <div key="user-toolbar"  style={{display: "flex"}}>
             <Instructable key="fullscreen" instruction="env-fullscreen" position="bottom">
+              <Tooltip title={isFullscreen ? translate('Exit fullscreen') : translate('Fullscreen')}>
+                <IconButton
+                    className={classes.fontAwesomeIcon}
+                    onClick={() => {
+                      setIsFullscreen(!isFullscreen);
+                      return toggleFullscreen();
+                    }}
+                >
+                  {isFullscreen ? <FullscreenExit/> : <Fullscreen/>}
+                </IconButton>
+              </Tooltip>
 
-              <IconButton
-                className={classes.fontAwesomeIcon}
-                tooltip={isFullscreen ? translate('Exit fullscreen') : translate('Fullscreen')}
-                onClick={() => {
-                  setIsFullscreen(!isFullscreen);
-                  return toggleFullscreen();
-                }}
-              >
-                {isFullscreen ? <FullscreenExit/> : <Fullscreen/>}
-              </IconButton>
 
 
             </Instructable>
             <Instructable key="help" instruction="env-help" position="bottom">
               <div>
-                <IconButton onClick={({currentTarget}) => setAnchorElForHelp(currentTarget)} tooltip={translate('Help')} className = {classes.fontAwesomeIcon}>
-                  <HelpIcon color={(nNewInstructions > 0) ?
-                      theme.palette.secondary.main : 'white'}/>
-                </IconButton>
+                <Tooltip title={translate('Help')}>
+                  <IconButton onClick={({currentTarget}) => setAnchorElForHelp(currentTarget)} className = {classes.fontAwesomeIcon}>
+                    <HelpIcon color={(nNewInstructions > 0) ?
+                        theme.palette.secondary.main : 'white'}/>
+                  </IconButton>
+                </Tooltip>
                 <Menu
                     open={false}
                     anchorEl={anchorElForHelp}
@@ -201,13 +220,15 @@ export default function Header(props) {
               </div>
             </Instructable>
             <Instructable key="feedback" instruction="env-feedback" position="bottom">
-              <IconButton
-                tooltip={translate('Feedback')}
-                onClick={props.openFeedbackModal}
-                className={classes.fontAwesomeIcon}
-              >
-                <FeedbackIcon/>
-              </IconButton>
+              <Tooltip title={translate('Feedback')}>
+                <IconButton
+                    onClick={props.openFeedbackModal}
+                    className={classes.fontAwesomeIcon}
+                >
+                  <FeedbackIcon/>
+                </IconButton>
+              </Tooltip>
+
             </Instructable>
           </div>
           <div>

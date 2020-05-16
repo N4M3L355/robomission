@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Slider from '@material-ui/core/Slider';
 import SvgImage from '../components/SvgImage';
 import Text from '../localization/Text';
+import {withTheme} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 
 const propTypes = {
@@ -29,26 +31,24 @@ class SpeedControl extends React.Component {
 
   render() {
     return (
-      <div className="text" style={{ marginTop: 15 }}>
-        <SvgImage
-          imageId="speedometer"
-          style={{ height: 35, marginRight: 10, float: 'left' }} />
-        <div
-          style={{ height: 35, float: 'left' }}
-        >
-          <Text id="Speed" />
-          {`: ${this.props.speed}`}
-          <Slider
-            min={this.props.min}
-            max={this.props.max}
-            step={1}
-            value={this.props.speed}
-            onChange={this.handleChange}
-            style={{ width: 120 }}
-            sliderStyle={{ marginTop: 2, marginBottom: 0 }}
-          />
+        <div style={{display: "flex", flex: 1}}>
+            <svg style={{height:35, width: 35}}>
+                <SvgImage style={{height: '100%'}} imageId="speedometer"/>
+            </svg>
+            <div style={{display: "flex", flex: 1, flexDirection: 'column'}}>
+                <Typography id="Speed" variant="body1">
+                    <Text id="Speed" />{`: ${this.props.speed}`}</Typography>
+
+                <Slider
+                    min={this.props.min}
+                    max={this.props.max}
+                    step={1}
+                    value={this.props.speed}
+                    onChange={this.handleChange}
+                />
+            </div>
         </div>
-      </div>
+
     );
   }
 }
@@ -57,4 +57,4 @@ class SpeedControl extends React.Component {
 SpeedControl.propTypes = propTypes;
 SpeedControl.defaultProps = defaultProps;
 
-export default SpeedControl;
+export default withTheme(SpeedControl);

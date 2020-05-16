@@ -1,67 +1,74 @@
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
-import FlatButton from '@material-ui/core/Button';
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { translate } from '../localization';
+import {translate} from '../localization';
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
 
 
-export default class SignUpModal extends React.Component {
-  render() {
-    const changeEmail = (event) => {
-      const credentials = {...this.props.credentials, email: event.target.value};
-      this.props.changeCredentials(credentials);
-    }
-    const changePassword = (event) => {
-      const credentials = {...this.props.credentials, password: event.target.value};
-      this.props.changeCredentials(credentials);
-    }
-    const changeNickname = (event) => {
-      this.props.changeProfile({ nickname: event.target.value });
-    }
-    const signup = () => {
-      this.props.signup(this.props.profile, this.props.credentials);
-    };
-    const actions = [
-      <FlatButton
-        label={translate('user.signup')}
-        primary={true}
-        onClick={signup}
-      />,
-    ];
-    return (
-      <Dialog
-        title={translate('user.signup')}
-        actions={actions}
-        open={this.props.open}
-        onRequestClose={this.props.closeSignUpModal}
-        contentStyle={{ width: 500 }}
-      >
-        <TextField
-          id='signup-email'
-          floatingLabelText={translate('user.email')}
-          value={this.props.credentials.email}
-          onChange={changeEmail}
-          fullWidth={true}
-          type="email"
-          errorText={this.props.fieldErrors.email}
-        />
-        <TextField
-          id='signup-nickname'
-          floatingLabelText={translate('user.nickname')}
-          value={this.props.profile.nickname}
-          onChange={changeNickname}
-          fullWidth={true}
-        />
-        <TextField
-          id='signup-password'
-          floatingLabelText={translate('user.password')}
-          value={this.props.credentials.password}
-          onChange={changePassword}
-          fullWidth={true}
-          type="password"
-          errorText={this.props.fieldErrors.password}
-        />
-      </Dialog>
-    );
+export default function SignUpModal(props) {
+  const changeEmail = (event) => {
+    const credentials = {...props.credentials, email: event.target.value};
+    props.changeCredentials(credentials);
   }
+  const changePassword = (event) => {
+    const credentials = {...props.credentials, password: event.target.value};
+    props.changeCredentials(credentials);
+  }
+  const changeNickname = (event) => {
+    props.changeProfile({nickname: event.target.value});
+  }
+  const signup = () => {
+    props.signup(props.profile, props.credentials);
+  };
+  const actions = [
+    <Button
+        color="primary"
+        onClick={signup}>{translate('user.signup')}</Button>,
+  ];
+  return (
+
+      <Dialog
+          open={props.open}
+          onClose={props.closeSignUpModal}
+          //maxWidth={}
+      >
+        <DialogTitle>{translate('user.signup')}</DialogTitle>
+        <DialogContent>
+          <TextField
+              id='signup-email'
+              label={translate('user.email')}
+              value={props.credentials.email}
+              onChange={changeEmail}
+              fullWidth
+              type="email"
+              required
+              helperText={props.fieldErrors.email}
+          />
+          <TextField
+              id='signup-nickname'
+              label={translate('user.nickname')}
+              value={props.profile.nickname}
+              onChange={changeNickname}
+              fullWidth
+          />
+          <TextField
+              id='signup-password'
+              label={translate('user.password')}
+              value={props.credentials.password}
+              onChange={changePassword}
+              fullWidth
+              type="password"
+              required
+              helperText={props.fieldErrors.password}
+          />
+        </DialogContent>
+        <DialogActions>
+          {actions}
+
+        </DialogActions>
+      </Dialog>
+  );
 }

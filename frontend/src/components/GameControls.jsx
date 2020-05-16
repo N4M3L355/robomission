@@ -4,8 +4,10 @@ import Button from '@material-ui/core/Button';
 import SpeedControl from '../components/SpeedControl';
 import { translate } from '../localization';
 import Instructable from '../containers/Instructable';
+import Grid from "@material-ui/core/Grid";
+import {withTheme} from "@material-ui/styles";
 
-export default function GameControls({ controls, speed, onClick }) {
+function GameControls({ controls, speed, onClick, theme }) {
   function visible(controlName) {
     return controls[controlName] === 'active' || controls[controlName] === 'passive';
   }
@@ -28,7 +30,7 @@ export default function GameControls({ controls, speed, onClick }) {
         style={{ margin: 2, minWidth }}
         onClick={() => onClick(name)}
         color="primary"
-        variant='contained'
+        variant='outlined'
       >
         {label}
       </Button>
@@ -56,19 +58,23 @@ export default function GameControls({ controls, speed, onClick }) {
   }
 
   return (
-    <span style={{ display: 'block', margin: '5px 4px' }}>
-      {(visible('fly') || visible('left') || visible('right') || visible('shoot')) &&
-        <span style={{ display: 'block', marginBottom: '2px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+        {(visible('fly') || visible('left') || visible('right') || visible('shoot')) &&
+        <div style={{display: 'flex', justifyContent: 'center', flex: 1}}>
           {conditionallyRenderControlButton('left', '↖', 'primary')}
           {conditionallyRenderControlButton('fly', '↑', 'primary')}
           {conditionallyRenderControlButton('right', '↗', 'primary')}
           {conditionallyRenderControlButton('shoot', '★', 'primary')}
-        </span>
-      }
-      {conditionallyRenderControlButton('run', translate('Run'), 'primary', 88)}
-      {conditionallyRenderControlButton('reset', 'Reset', 'accent', false, 88)}
-      {conditionallyRenderSpeedControl()}
-    </span>
+        </div>
+        }
+      <div style={{display: 'flex', justifyContent: 'center', flex: 1, padding: `0 ${theme.spacing(2)}px`}}>
+
+        {conditionallyRenderControlButton('run', translate('Run'), 'primary', 88)}
+        {conditionallyRenderControlButton('reset', 'Reset', 'secondary', false, 88)}
+        {conditionallyRenderSpeedControl()}
+      </div>
+
+    </div>
   );
 }
 
@@ -81,3 +87,4 @@ GameControls.defaultProps = {
   controls: { commands: 'active', run: 'active', reset: 'hidden' },
   onClick: null,
 };
+export default withTheme(GameControls)

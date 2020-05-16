@@ -9,12 +9,8 @@ const theme = createMuiTheme({
       outlined:{
         color: "rgba(255, 255, 255, 0.7)",
         borderColor: "rgba(255, 255, 255, 0.7)",
-        borderWidth: '2px'
+        borderWidth: '2px !important'     //im sorry for !important, but this was the most sane way of doing so and we probably won't need to change it
       },
-      outlinedPrimary:{
-        borderWidth: '2px'
-
-      }
     },
     MuiGridListTile:{
       root:{

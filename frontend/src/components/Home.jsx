@@ -16,6 +16,7 @@ import Text from '../localization/Text';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Sky from "./Sky";
+import GitHubIcon from "./GitHubIcon";
 
 
 const useStyles = makeStyles(theme => ({
@@ -42,9 +43,9 @@ export default function Home(props) {
       <Scroll.Element key={index} name={`intro-slide-${index}`}>
         <section
           style={{
-            height: (index === 0) ? '90vh' : '100vh',
+            height:'100vh',
               display: "flex",
-              justifyContent: "space-evenly",
+              justifyContent: "space-around",
               flexDirection: "column",
               alignItems: "center",
               alignContent: "center",
@@ -90,8 +91,8 @@ export default function Home(props) {
       // slide 0
       {
         content: (
-          <div>
-            <Sky/>
+          <div style={{width: "100%"}}>
+              <Sky/>
             <Grid container justify={"space-around"}>
               <Grid item sm={12} md={4} style={{flexBasis:"45%"}}>
                 <Typography variant="h1" className={classes.banner}><Text id="intro.learn-programming" /></Typography>
@@ -119,23 +120,30 @@ export default function Home(props) {
       // slide 1
       {
         content: (
-          <div>
-                <h2><Text id="intro.explore-universe" /><br /><Text id="intro.collect-diamonds" /></h2>
-                <div>
-                  <SpaceGameContainer
-                    taskEnvironmentId="home-commands"
-                    showHeader={false}
-                    controls={['fly', 'left', 'right', 'reset']}
-                  />
-                </div>
-                <p style={{ visibility: props.spaceWorldDemoSolved ? 'visible' : 'hidden' }}>
-                  <Text id='excellent-task-solved' />
-                </p>
+                <Grid container direction="column" justify="space-between" alignContent="center" alignItems="center" style={{flex:1}}>
+                    <Grid item xs={4}>
+                        <h2><Text id="intro.explore-universe"/><br/><Text id="intro.collect-diamonds"/></h2>
+                    </Grid>
+                    <Grid item container xs={4} justify="center">
+                        <Grid item container xs={12} sm={8} md={6}>
+                            <SpaceGameContainer
+                                taskEnvironmentId="home-commands"
+                                showHeader={false}
+                                controls={['fly', 'left', 'right', 'reset']}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={4}>
 
-                <Typography variant="h3"><Text id="intro.game-driven-by-ai" /></Typography>
-                <Typography variant="h3"><Text id="intro.adapting-to-your-skills" /></Typography>
+                        <p style={{visibility: props.spaceWorldDemoSolved ? 'visible' : 'hidden'}}>
+                            <Text id='excellent-task-solved'/>
+                        </p>
 
-          </div>
+                        <Typography variant="h3"><Text id="intro.game-driven-by-ai"/></Typography>
+                        <Typography variant="h3"><Text id="intro.adapting-to-your-skills"/></Typography>
+                    </Grid>
+
+                </Grid>
         ),
         footer: (
           <Scroll.Link to="intro-slide-2" smooth={true} duration={500}>

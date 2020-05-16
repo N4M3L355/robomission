@@ -61,8 +61,7 @@ export default function SpaceGame({
         flexDirection: "column"
     }}>
       {showHeader && gameStatus}
-        <div style={{width:"100%",
-            height:"100%", position:"relative"}}>
+        <div style={{flex:1, position:"relative"}}>
              <SpaceWorld
                  fields={fields}
                  pastActions = {pastActions}

@@ -59,6 +59,7 @@ export default function App(props) {
         open={props.snackbarMessageId !== null}
         message={props.snackbarMessageId ? translate(props.snackbarMessageId) : ''}
         autoHideDuration={4000}
+        onClose={() => props.snackbarMessageId = null}
       />
     </div>
   );

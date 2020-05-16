@@ -6,6 +6,8 @@ import TextField from '@material-ui/core/TextField';
 import EmailIcon from '@material-ui/icons/Email';
 import { FacebookLoginButton, GoogleLoginButton } from 'react-social-login-buttons';
 import { translate } from '../localization';
+import DialogActions from "@material-ui/core/DialogActions";
+import Grid from "@material-ui/core/Grid";
 
 
 export default class LoginModal extends React.Component {
@@ -27,12 +29,6 @@ export default class LoginModal extends React.Component {
     const loginViaGoogle = () => {
       this.props.login({ provider: 'google' });
     };
-    const buttonStyle = {
-      boxShadow: 'none',
-      margin: 0,
-      marginBottom: 10,
-      height: 50,
-    };
     return (
       <Dialog
         open={this.props.open}
@@ -44,64 +40,54 @@ export default class LoginModal extends React.Component {
         </DialogTitle>
         <DialogContent>
 
+          <Grid container>
+            <Grid item>
+              <GoogleLoginButton
+                  variant='outlined'
+                  text={translate('user.via-google')}
+                  onClick={loginViaGoogle}
+              />
+            </Grid>
+            <Grid item>
+              <FacebookLoginButton
+                  variant='outlined'
 
-        <GridList
-          cellHeight="auto"
-          cols={2}
-          padding={20}
-        >
-          <GridTile>
-            <GoogleLoginButton
-              text={translate('user.via-google')}
-              style={buttonStyle}
-              onClick={loginViaGoogle}
-            />
-            <FacebookLoginButton
-              text={translate('user.via-facebook')}
-              style={buttonStyle}
-              onClick={loginViaFacebook}
-            />
-            <Button
-              color='primary'
-              variant='contained'
-              style={{ height: 50 }}
-              buttonStyle={{ textAlign: 'left' }}
-              fullWidth={true}
-              onClick={this.props.openSignUpModal}
-            >
-              <EmailIcon />
-              {translate('user.signup')}
-            </Button>
-          </GridTile>
-          <GridTile>
+                  text={translate('user.via-facebook')}
+                  onClick={loginViaFacebook}
+              />
+            </Grid>
+          </Grid>
             <TextField
               id='login-email'
-              floatingLabelText={translate('user.email')}
+              label={translate('user.email')}
               value={this.props.credentials.email}
               onChange={changeEmail}
               fullWidth={true}
               type="email"
-              style={{ marginTop: -20 }}
             />
             <TextField
               id='login-password'
-              floatingLabelText={translate('user.password')}
+              label={translate('user.password')}
               value={this.props.credentials.password}
               onChange={changePassword}
               fullWidth={true}
               type="password"
               errorText={this.props.loginFailed ? translate('user.login-failed') : null}
             />
-            <Button
-              color='primary'
-              variant='contained'
-              onClick={login}
-              fullWidth={true}
-              style={{ marginTop: 10 }}>{translate('user.login')}</Button>
 
-          </GridTile>
-        </GridList>
         </DialogContent>
+        <DialogActions>
+          <Button
+              color='primary'
+              onClick={login}>{translate('user.login')}</Button>
+          <Button
+              color='primary'
+              onClick={this.props.openSignUpModal}
+          >
+            <EmailIcon />
+            {translate('user.signup')}
+          </Button>
+        </DialogActions>
       </Dialog>
     );
   }

@@ -102,7 +102,7 @@ export default function Menu(props) {
             <ListItemText primary={translate("Practice")}/>
           </ListItem>
         </Link>}
-        <Link to="/tasks">
+        <Link href="/tasks">
           <ListItem button key="tasks">
             <ListItemIcon>
               <TasksOverviewIcon/>
@@ -111,7 +111,7 @@ export default function Menu(props) {
           </ListItem>
         </Link>
         <Divider />
-        <Link to="/task-editor">
+        <Link href="/task-editor">
           <ListItem button key="task-editor">
             <ListItemIcon>
               <TaskEditorIcon/>
