@@ -79,7 +79,9 @@ export default function Menu(props) {
       open={props.open}
       onClose={handleDrawerClose}
     >
-      <Image imageId="menu-banner" style={{ width: "100%", marginBottom: -12 }} aria-controls="simple-menu" aria-haspopup="true"/>
+      <Link href="/">
+        <Image imageId="menu-banner" style={{ width: "100%", marginBottom: -12 }} aria-controls="simple-menu" aria-haspopup="true"/>
+      </Link>
       <List>
       { /* Note that disabling auto focus on menu is important to avoid
       material-ui bug of menu steeling focus to text fields when typing, see

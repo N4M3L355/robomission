@@ -1,6 +1,7 @@
 {
   "short_name": "RoboMission",
   "name": "RoboMission",
+  "description": "Web application for introductory programming",
   "icons": [
     {
       "src": "favicon.ico",
@@ -9,7 +10,7 @@
     }
   ],
   "start_url": "./index.html",
-  "display": "standalone",
+  "display": "fullscreen",
   "theme_color": "#000000",
   "background_color": "#ffffff"
 }
