@@ -17,10 +17,8 @@ services:
       - ./frontend/.env.development:/code/frontend/.env.development
       - ./frontend/package.json:/code/frontend/package.json
       - ./Makefile:/code/Makefile
-    ports:
-      - "8000:8000"
     labels:
-      traefik.frontend.rule: "Host:robomission.xn--krl-fla.com"
+      traefik.frontend.rule: "Host:www.robomission.xn--krl-fla.com,robomission.xn--krl-fla.com"
       traefik.docker.network: traefik_default
 
 

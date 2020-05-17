@@ -21,3 +21,4 @@ WORKDIR /code/frontend/
 RUN npm run build
 
 WORKDIR /code/
+EXPOSE 8000
