@@ -27,8 +27,9 @@ frontend-dependencies:
 server:
 	python backend/manage.py runserver 0.0.0.0:8000
 
+
 .PHONY: sslserver
-server:
+sslserver:
 	python backend/manage.py runserver 0.0.0.0:443
 
 
