@@ -10,6 +10,7 @@ import {translate} from '../localization';
 import {Menu, Avatar, IconButton, MenuItem, AppBar, Toolbar, Tooltip} from "@material-ui/core";
 
 import {makeStyles, useTheme} from '@material-ui/styles';
+import Link from "@material-ui/core/Link";
 
 
 const useStyles = makeStyles(theme => ({
@@ -46,7 +47,7 @@ export default function Header(props) {
   };
 
   function renderTitle() {
-    const logoImg = (
+    let logoImg = (
       <img
         key='header-logo'
         alt='RoboMission logo'
@@ -58,6 +59,9 @@ export default function Header(props) {
         }}
       />
     );
+    logoImg = <Link href="/">
+      {logoImg}
+    </Link>
     let modeTitleText = '';
     if (props.mode === 'monitoring') {
       modeTitleText = 'Monitoring';

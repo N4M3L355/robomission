@@ -20,13 +20,13 @@ import GitHubIcon from "./GitHubIcon";
 
 
 const useStyles = makeStyles(theme => ({
-  fab: {
+  /*fab: {
     borderWidth: '2px',
     borderStyle: 'solid',
     borderColor: theme.palette.secondary.main,
     boxShadow: 'none',
     backgroundColor:'rgba(0,0,0,0)',
-  },
+  },*/
   banner: {
     fontWeight: '200'
   }
@@ -111,9 +111,10 @@ export default function Home(props) {
         ),
         footer: (
           <Scroll.Link to="intro-slide-1" smooth={true} duration={500}>
-            <Fab color='secondary' className={classes.fab}>
-              <ArrowDown color='secondary'/>
-            </Fab>
+
+                  <Fab color='secondary' className={classes.fab}>
+                      <ArrowDown/>
+                  </Fab>
           </Scroll.Link>
         ),
       },
@@ -147,8 +148,8 @@ export default function Home(props) {
         ),
         footer: (
           <Scroll.Link to="intro-slide-2" smooth={true} duration={500}>
-            <Fab color='secondary' disabled={!props.spaceWorldDemoSolved} className={classes.fab}>
-              <ArrowDown color='secondary'/>
+            <Fab color='secondary' disabled={!props.spaceWorldDemoSolved}>
+              <ArrowDown/>
             </Fab>
           </Scroll.Link>
         ),

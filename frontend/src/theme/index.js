@@ -13,7 +13,7 @@ export function initGlobalTheme() {
 
 function setGlobalFonts() {
   global.WebFontConfig = {
-    google: { families: ['Roboto:400,300,500,700:latin', 'Lato:200:latin'] },
+    google: { families: ['Righteous:400:latin', 'Roboto:300,400,600,700:latin'] },
   };
   const webFontScriptElement = document.createElement('script');
   webFontScriptElement.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';

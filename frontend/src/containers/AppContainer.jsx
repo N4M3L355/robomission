@@ -84,7 +84,6 @@ class AppContainer extends React.Component {
           <meta property="og:description"        content="Learn to code while playing a space game!" />
           <meta property="og:image"              content={`url(${mediaBanner})`} />
           <meta charSet="utf-8"/>
-          <title>My Title</title>
           <link rel="canonical" href="https://robomise.cz/"/>
         </Helmet>
     );
