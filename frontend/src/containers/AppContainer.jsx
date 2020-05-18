@@ -22,7 +22,8 @@ import {
   toggleLoginModal,
   toggleSignUpModal
   } from '../actions';
-
+import {Helmet} from "react-helmet";
+import mediaBanner from "../images/mediaBanner.png";
 
 const propTypes = {
   loaded: PropTypes.bool.isRequired,
@@ -75,7 +76,20 @@ class AppContainer extends React.Component {
     this.props.history.listen((location, action) => {
       this.props.changeLocation(location);
     });
+    this.head = (
+        <Helmet>
+          <meta property="og:url"                content="https://robomise.cz/" />
+          <meta property="og:type"               content="website" />
+          <meta property="og:title"              content="Robomission" />
+          <meta property="og:description"        content="Learn to code while playing a space game!" />
+          <meta property="og:image"              content={`url(${mediaBanner})`} />
+          <meta charSet="utf-8"/>
+          <title>My Title</title>
+          <link rel="canonical" href="https://robomise.cz/"/>
+        </Helmet>
+    );
   }
+
 
   render() {
     if (!this.props.loaded) {
@@ -89,12 +103,14 @@ class AppContainer extends React.Component {
             backgroundColor: 'rgb(58, 58, 58)',
           }}
         >
+          {this.head}
           <LoadingIndicator />
         </div>
       );
     }
     return (
         <div style={{height:"100vh"}}>
+          {this.head}
           <App
               showLoginModal={this.props.showLoginModal}
               loginFailed={this.props.loginFailed}

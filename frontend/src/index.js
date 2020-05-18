@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import AppContainer from './containers/AppContainer';
-import { Provider } from 'react-intl-redux';
-import { globalConfiguration } from './config';
-import { createFlocsStore } from './store';
+import {Provider} from 'react-intl-redux';
+import {globalConfiguration} from './config';
+import {createFlocsStore} from './store';
 import FlocsThemeProvider from './theme/FlocsThemeProvider';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
