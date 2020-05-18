@@ -23,21 +23,26 @@ urlpatterns = [
             url=staticfiles_storage.url('public/favicon.ico'),
             permanent=False),
         name='favicon.ico'),
-    url(r'^robots.txt$',
+    url(r'^mediaBanner.png$',               # mediabanner is in index.html head, in meta tags.
+        RedirectView.as_view(               # It needs to be loaded pre-webpack and pre-react
+            url=staticfiles_storage.url('public/mediaBanner.png'),
+            permanent=False),
+        name='favicon.ico'),
+    url(r'^robots.txt$',                    # robots.txt are for search engine crawling
         RedirectView.as_view(
             url=staticfiles_storage.url('public/robots.txt'),
             permanent=False),
         name='robots.txt'),
-    url(r'^manifest.json$',
+    url(r'^manifest.json$',                 # manifest.json is for PWA manifestation
         RedirectView.as_view(
             url=staticfiles_storage.url('public/manifest.json'),
             permanent=False),
         name='manifest.json'),
-    url(r'^service-worker.js$', (TemplateView.as_view(
+    url(r'^service-worker.js$', (TemplateView.as_view(                  # service-worker is for PWA
                                   template_name="service-worker.js",
                                   content_type='application/javascript',
                               )), name='service-worker.js'),
-    url(r'^index.html$',
+    url(r'^index.html$',                    # the main site
             RedirectView.as_view(
                 url=staticfiles_storage.url('public/index.html'),
                 permanent=False),
