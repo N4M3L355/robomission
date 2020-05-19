@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {Fab, Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
@@ -17,6 +16,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Sky from "./Sky";
 import GitHubIcon from "./GitHubIcon";
+import Link from "@material-ui/core/Link";
 
 
 const useStyles = makeStyles(theme => ({
@@ -62,30 +62,6 @@ export default function Home(props) {
   }
 
 
-  let styleSheet = document.styleSheets[0];
-
-  let animationName = `animation${Math.round(Math.random() * 2**16)}`;
-  animationName = "abc";
-  let keyframes =
-    `@-webkit-keyframes ${animationName} {
-        0% {-webkit-transform:translate(-5%, -5%)} 
-        100% {-webkit-transform:translate(105%, 105%)}
-    }`;
-  styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
-  keyframes =
-    `@-webkit-keyframes rocketAnimation {
-        0% {-webkit-transform: translate(0px, 0px)} 
-        50% {-webkit-transform: translate(-50px, 50px)}
-        100% {-webkit-transform: translate(0px, 0px)}
-    }`;
-  styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
-  keyframes =
-    `@-webkit-keyframes diamondAnimation {
-        0% {-webkit-transform:translate(-5%, -5%)} 
-        100% {-webkit-transform:translate(105%, 105%)}
-    }`;
-
-  styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
 
     const slides = [
       // slide 0
@@ -97,7 +73,7 @@ export default function Home(props) {
               <Grid item sm={12} md={4} style={{flexBasis:"45%"}}>
                 <Typography variant="h1" className={classes.banner}><Text id="intro.learn-programming" /></Typography>
                 <NextTaskButtonContainer />
-                <Link to="/tasks">
+                <Link href="/tasks">
                   <Button className={classes.button} variant='outlined'><Text id="Tasks" /></Button>
                 </Link>
 
@@ -211,13 +187,13 @@ export default function Home(props) {
                     <Text id="intro.at-fi-mu" />
                 </h2>
                 <span>
-              <a href="https://www.fi.muni.cz/adaptivelearning/?a=projects" target="_blank" rel="noreferrer noopener">
+              <Link href="https://www.fi.muni.cz/adaptivelearning/?a=projects">
                 <Button className={classes.button} variant='outlined'>{<Text id="ALG" />}</Button>
-              </a>
+              </Link>
             </span>
-                <a href="https://www.fi.muni.cz/about/index.xhtml.cs" target="_blank" rel="noreferrer noopener">
+                <Link href="https://www.fi.muni.cz/about/index.xhtml.cs">
                     <Button className={classes.button} variant='outlined'><Text id="FI-MU" /></Button>
-                </a>
+                </Link>
             </div>
         ),
         footer: (

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TaskIcon from '@material-ui/icons/PlayArrow';
 import Instructable from '../containers/Instructable';
 import TaskName from './TaskName';
+import Link from "@material-ui/core/Link";
 
 
 export default function NextTaskButton({ task }) {
@@ -24,7 +24,7 @@ export default function NextTaskButton({ task }) {
     //);
   }
   return (
-    <Link to={task.url}>
+    <Link href={task.url}>
       <Instructable instruction="env-recommended-task-button" position="top">
         <Button
           color='primary'

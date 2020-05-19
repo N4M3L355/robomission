@@ -66,15 +66,17 @@ const theme = createMuiTheme({
         },
         borderWidth: '2px !important'     //im sorry for !important, but this was the most sane way of doing so and we probably won't need to change it
       },
-      disabled:{
-        color: fade(grey[500], 0.7),
-        borderColor: fade(grey[500], 0.7),
-        "&:hover":{
-          color: grey[500],
-          borderColor: grey[500]
-        },
-        borderWidth: '2px !important'     //im sorry for !important, but this was the most sane way of doing so and we probably won't need to change it
+      root:{
+        "&$disabled": {
+          color: fade(grey[500], 0.7),
+          borderColor: fade(grey[500], 0.7),
+          "&:hover": {
+            color: grey[500],
+            borderColor: grey[500]
+          },
+          borderWidth: '2px !important'     //im sorry for !important, but this was the most sane way of doing so and we probably won't need to change it
 
+        }
       }
     },
     MuiGridListTile:{
