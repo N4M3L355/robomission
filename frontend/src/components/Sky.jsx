@@ -37,7 +37,7 @@ export default function Sky() {
             top: 0,
             left: 0
         }}>
-            <filter id="blur3">
+            <filter id="blur3" x="-50%" y="-50%" width="200%" height="200%">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="1" />
             </filter>
         </svg>)
@@ -62,7 +62,6 @@ export default function Sky() {
     animation-delay:${Math.round(-distance*2**7*Math.random())}s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    -webkit-transform: translateZ(0);
     ` );
             container.appendChild(circle);
         }
