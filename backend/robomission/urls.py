@@ -10,7 +10,6 @@ import learn
 import os
 from learn import social
 
-
 urlpatterns = [
     # Top-level public assets (such as favicon.ico and robots.txt) starts in
     # frontend public directory, then arecopied into frontend build directory,
@@ -18,36 +17,10 @@ urlpatterns = [
     # To make sure they work (even during development, although that is not
     # necessary), redirects are created to them. In production, nginx should be
     # configured to directly access these files (for performance reasons).
-    url(r'^favicon.ico$',
-        RedirectView.as_view(
-            url=staticfiles_storage.url('public/favicon.ico'),
-            permanent=False),
-        name='favicon.ico'),
-    url(r'^mediaBanner.png$',               # mediabanner is in index.html head, in meta tags.
-        RedirectView.as_view(               # It needs to be loaded pre-webpack and pre-react
-            url=staticfiles_storage.url('public/mediaBanner.png'),
-            permanent=False),
-        name='favicon.ico'),
-    url(r'^robots.txt$',                    # robots.txt are for search engine crawling
-        RedirectView.as_view(
-            url=staticfiles_storage.url('public/robots.txt'),
-            permanent=False),
-        name='robots.txt'),
-    url(r'^manifest.json$',                 # manifest.json is for PWA manifestation
-        RedirectView.as_view(
-            url=staticfiles_storage.url('public/manifest.json'),
-            permanent=False),
-        name='manifest.json'),
     url(r'^service-worker.js$', (TemplateView.as_view(                  # service-worker is for PWA
                                   template_name="service-worker.js",
                                   content_type='application/javascript',
                               )), name='service-worker.js'),
-    url(r'^index.html$',                    # the main site
-            RedirectView.as_view(
-                url=staticfiles_storage.url('public/index.html'),
-                permanent=False),
-            name='index.html'),
-
     url(r'^learn/', include('learn.urls')),
     url(r'^monitoring/', include('monitoring.urls')),
     url(r'^rest-framework-auth/', include('rest_framework.urls')),
@@ -61,6 +34,12 @@ urlpatterns = [
 ]
 
 
+for file in os.listdir(os.path.join(settings.REPO_DIR,'frontend', 'public')):
+    urlpatterns += [url('^'+file+'$',
+    RedirectView.as_view(
+                url=staticfiles_storage.url('public/'+file),
+                permanent=False),
+            name='manifest.json')]
 
 if os.path.exists(os.path.join(settings.REPO_DIR,'frontend', 'build')):     # if build has been generated, we need to redirect requests of precache-manifest. Its name is generated, so we need to find it first.
     # The precache-manifest may be generated with a new name, so we need to get it manually
