@@ -70,7 +70,7 @@ export default function Home(props) {
           <div style={{width: "100%"}}>
               <Sky/>
             <Grid container justify={"space-around"}>
-              <Grid item sm={12} md={4} style={{flexBasis:"45%"}}>
+              <Grid item sm={12} md={6} style={{flexBasis:"45%"}}>
                 <Typography variant="h1" className={classes.banner}><Text id="intro.learn-programming" /></Typography>
                 <NextTaskButtonContainer />
                 <Link href="/tasks">

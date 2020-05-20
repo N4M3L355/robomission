@@ -91,7 +91,7 @@ export default function Sky() {
         container.appendChild(rocket);
 
 
-    })
+    },[])
     return <div style={{position: "absolute", left: 0,right: 0,top: 0,bottom: 0, overflow: "hidden"}}>
         {svg}
     </div>
