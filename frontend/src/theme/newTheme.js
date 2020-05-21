@@ -3,6 +3,8 @@ import {amber, cyan, grey} from "@material-ui/core/colors";
 import {fade} from '@material-ui/core/styles/colorManipulator';
 //TODO: clean unused colors and reuse existing
 
+const defaultTheme = createMuiTheme();    //well, apparently this is the only way to use theme spacing in the declaration below
+
 const theme = createMuiTheme({
 
   overrides: {
@@ -67,7 +69,8 @@ const theme = createMuiTheme({
         borderWidth: '2px !important'     //im sorry for !important, but this was the most sane way of doing so and we probably won't need to change it
       },
       root:{
-        "&$disabled": {
+        margin:defaultTheme.spacing(2),
+        "&$disabled":{
           color: fade(grey[500], 0.7),
           borderColor: fade(grey[500], 0.7),
           "&:hover": {

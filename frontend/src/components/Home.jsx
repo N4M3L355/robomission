@@ -1,6 +1,6 @@
 import React from 'react';
-import {Fab, Button} from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import {Button, Fab} from '@material-ui/core';
+import {makeStyles} from '@material-ui/styles';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import Scroll from 'react-scroll';
 import SpaceGameContainer from '../containers/SpaceGameContainer';
@@ -15,8 +15,11 @@ import Text from '../localization/Text';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Sky from "./Sky";
-import GitHubIcon from "./GitHubIcon";
 import Link from "@material-ui/core/Link";
+import rocketWithFlame from "../images/RocketWithFlame.svg";
+import Paper from "@material-ui/core/Paper";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 
 
 const useStyles = makeStyles(theme => ({
@@ -51,11 +54,19 @@ export default function Home(props) {
               alignContent: "center",
               textAlign: "center",
 
+              perspectiveOriginX: "100%",
+              position: "relative",
+              transformStyle: "preserve-3d",
             ...style,
           }}
         >
           {content}
-            {footer}
+            {footer&&(
+                <div style={{flex: 0.5, display: "flex", justifyContent: "center", flexDirection: "column"}}>
+                    {footer}
+                </div>
+            )}
+
         </section>
       </Scroll.Element>
     );
@@ -68,19 +79,17 @@ export default function Home(props) {
       {
         content: (
           <div style={{width: "100%"}}>
-              <Sky/>
             <Grid container justify={"space-around"}>
               <Grid item sm={12} md={6} style={{flexBasis:"45%"}}>
                 <Typography variant="h1" className={classes.banner}><Text id="intro.learn-programming" /></Typography>
                 <NextTaskButtonContainer />
                 <Link href="/tasks">
-                  <Button className={classes.button} variant='outlined'><Text id="Tasks" /></Button>
+                    <Button className={classes.button} variant='outlined'><Text id="Tasks" /></Button>
                 </Link>
 
               </Grid>
               <Grid item sm={12} md={4}>
-                <svg width="100%" height="100%" id="rocket">
-                </svg>
+                  <img src={rocketWithFlame}/>
               </Grid>
             </Grid>
           </div>
@@ -97,11 +106,12 @@ export default function Home(props) {
       // slide 1
       {
         content: (
-                <Grid container direction="column" justify="space-between" alignContent="center" alignItems="center" style={{flex:1}}>
-                    <Grid item xs={4}>
-                        <h2><Text id="intro.explore-universe"/><br/><Text id="intro.collect-diamonds"/></h2>
+                <Grid container justify="space-between" alignContent="center" alignItems="center" style={{flex:1}}>
+                    <Grid item xs={12} md={6}>
+                        <Typography variant="h5"><Text id="intro.explore-universe"/></Typography>
+                        <Typography variant="h5"><Text id="intro.collect-diamonds"/></Typography>
                     </Grid>
-                    <Grid item container xs={4} justify="center">
+                    <Grid item container xs={12} md={6} justify="center" style={{minHeight:"40vh"}}>
                         <Grid item container xs={12} sm={8} md={6}>
                             <SpaceGameContainer
                                 taskEnvironmentId="home-commands"
@@ -110,14 +120,14 @@ export default function Home(props) {
                             />
                         </Grid>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12}>
 
                         <p style={{visibility: props.spaceWorldDemoSolved ? 'visible' : 'hidden'}}>
                             <Text id='excellent-task-solved'/>
                         </p>
 
-                        <Typography variant="h3"><Text id="intro.game-driven-by-ai"/></Typography>
-                        <Typography variant="h3"><Text id="intro.adapting-to-your-skills"/></Typography>
+                        <Typography variant="h5"><Text id="intro.game-driven-by-ai"/></Typography>
+                        <Typography variant="h5"><Text id="intro.adapting-to-your-skills"/></Typography>
                     </Grid>
 
                 </Grid>
@@ -179,25 +189,26 @@ export default function Home(props) {
           backgroundImage: `url(${fiBackgroundPath})`,
           backgroundSize: 'cover',
         },
-        content: (
-            <div>
-                <h2>
-                    <Text id="intro.developed-by-alg" />
-                    <br />
-                    <Text id="intro.at-fi-mu" />
-                </h2>
-                <span>
-              <Link href="https://www.fi.muni.cz/adaptivelearning/?a=projects">
-                <Button className={classes.button} variant='outlined'>{<Text id="ALG" />}</Button>
-              </Link>
-            </span>
-                <Link href="https://www.fi.muni.cz/about/index.xhtml.cs">
-                    <Button className={classes.button} variant='outlined'><Text id="FI-MU" /></Button>
-                </Link>
-            </div>
-        ),
-        footer: (
-          <Scroll.Link to="intro-slide-4" smooth={true} duration={500}>
+          content: (
+              <Paper>
+                  <Card elevation={3}>
+                      <CardContent>
+                          <Typography variant="h5"><Text id="intro.developed-by-alg"/></Typography>
+                          <Typography variant="h5"><Text id="intro.at-fi-mu"/></Typography>
+                          <Link href="https://www.fi.muni.cz/adaptivelearning/?a=projects">
+                              <Button className={classes.button} color="secondary" variant='outlined'>{<Text
+                                  id="ALG"/>}</Button>
+                          </Link>
+                          <Link href="https://www.fi.muni.cz/about/index.xhtml.cs">
+                              <Button className={classes.button} color="secondary" variant='outlined'><Text id="FI-MU"/></Button>
+                          </Link>
+                      </CardContent>
+                  </Card>
+              </Paper>
+
+          ),
+          footer: (
+              <Scroll.Link to="intro-slide-4" smooth={true} duration={500}>
             <Fab color='secondary' className={classes.fab}>
               <ArrowDown color='secondary' />
             </Fab>
@@ -228,7 +239,9 @@ export default function Home(props) {
   */
 
   return (
-      <div>
+      <div style={{perspective: "1px"}}>
+
+          <Sky/>
         {slides.map(renderSlide)}
       </div>
     );

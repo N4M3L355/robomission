@@ -83,10 +83,6 @@ export default function Sky() {
         }
         const rocketContainer = document.getElementById( 'rocket' );
         let rocket = document.createElementNS(svgns, 'image');
-        rocket.setAttributeNS(null,'href', rocketWithFlame);
-        rocket.setAttributeNS(null,'x', "55%");     //TODO: magic numbers
-        rocket.setAttributeNS(null,'y', "35%");
-        rocket.setAttributeNS(null,"width","25%");
         rocketContainer&&rocketContainer.appendChild(rocket);
         container.appendChild(rocket);
 
