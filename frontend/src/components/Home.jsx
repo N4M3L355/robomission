@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import {Button, Fab} from '@material-ui/core';
 import {makeStyles} from '@material-ui/styles';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import Scroll from 'react-scroll';
-import SpaceGameContainer from '../containers/SpaceGameContainer';
 //import TaskEnvironmentContainer from '../containers/TaskEnvironmentContainer';
 import NextTaskButtonContainer from '../containers/NextTaskButtonContainer';
 //import neuronsBackgroundPath from '../images/neurons-tile.png';
@@ -21,6 +20,7 @@ import Paper from "@material-ui/core/Paper";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
+const SpaceGameContainer = React.lazy(() => import('../containers/SpaceGameContainer'));
 
 const useStyles = makeStyles(theme => ({
   /*fab: {
@@ -43,30 +43,33 @@ export default function Home(props) {
 
   function renderSlide({ style, content, footer }, index) {
     return (
-      <Scroll.Element key={index} name={`intro-slide-${index}`}>
-        <section
-          style={{
-            height:'100vh',
-            width:'100vw',
-              display: "flex",
-              justifyContent: "space-around",
-              flexDirection: "column",
-              alignItems: "center",
-              alignContent: "center",
-              textAlign: "center",
+        <Suspense fallback="...">
+            <Scroll.Element key={index} name={`intro-slide-${index}`}>
+                <section
+                    style={{
+                        height:'100vh',
+                        width:'100vw',
+                        display: "flex",
+                        justifyContent: "space-around",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        alignContent: "center",
+                        textAlign: "center",
 
-            ...style,
-          }}
-        >
-          {content}
-            {footer&&(
-                <div style={{flex: 0.25, display: "flex", justifyContent: "center", flexDirection: "column"}}>
-                    {footer}
-                </div>
-            )}
+                        ...style,
+                    }}
+                >
+                    {content}
+                    {footer&&(
+                        <div style={{flex: 0.25, display: "flex", justifyContent: "center", flexDirection: "column"}}>
+                            {footer}
+                        </div>
+                    )}
 
-        </section>
-      </Scroll.Element>
+                </section>
+            </Scroll.Element>
+        </Suspense>
+
     );
   }
 
