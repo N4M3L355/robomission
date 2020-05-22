@@ -76,23 +76,8 @@ class AppContainer extends React.Component {
     });
   }
 
-
   render() {
-    if (!this.props.loaded) {
-      return (
-        <div
-          style={{
-            width: '100%',
-            display: 'table',
-            margin: 0,
-            height: '100vh',
-            backgroundColor: 'rgb(58, 58, 58)',
-          }}
-        >
-          <LoadingIndicator />
-        </div>
-      );
-    }
+    if (!this.props.loaded) return;   //we can do this as the suspense in index.js is already showing loading
     return (
         <div style={{height:"100vh"}}>
           <App

@@ -1,24 +1,25 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import AppContainer from './containers/AppContainer';
 import {Provider} from 'react-intl-redux';
 import {globalConfiguration} from './config';
 import {createFlocsStore} from './store';
 import FlocsThemeProvider from './theme/FlocsThemeProvider';
-import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
-import PracticePage from './pages/PracticePage';
-import TaskEditorPage from './pages/TaskEditorPage';
-import TasksTableContainer from './containers/TasksTableContainer';
-import MonitoringPage from './containers/MonitoringPage';
-import PrivateRoute from './containers/PrivateRoute';
 
 //TODO: setup service worker to work in production
 // (see create-react-app for details)
 import register from './registerServiceWorker';
 import {CssBaseline} from "@material-ui/core";
+import LoadingIndicator from "./components/LoadingIndicator";
 
+const AppContainer = React.lazy(() => import('./containers/AppContainer'));
+const HomePage = React.lazy(() => import('./pages/HomePage'));
+const LoginPage = React.lazy(() => import('./pages/LoginPage'));
+const PracticePage = React.lazy(() => import('./pages/PracticePage'));
+const TaskEditorPage = React.lazy(() => import('./pages/TaskEditorPage'));
+const TasksTableContainer = React.lazy(() => import('./containers/TasksTableContainer'));
+const MonitoringPage = React.lazy(() => import('./containers/MonitoringPage'));
+const PrivateRoute = React.lazy(() => import('./containers/PrivateRoute'));
 register();
 
 globalConfiguration();
@@ -29,16 +30,18 @@ const app = (
       <FlocsThemeProvider>
         <BrowserRouter>
           <CssBaseline>
-          <AppContainer>
-            <Switch>
-              <Route exact path='/' component={HomePage}/>
-              <Route exact path="/tasks" component={TasksTableContainer} />
-              <Route exact path="/task-editor" component={TaskEditorPage} />
-              <Route path="/task/:taskId" component={PracticePage} />
-              <Route exact path="/login" component={LoginPage} />
-              <PrivateRoute exact path="/monitoring" component={MonitoringPage} />
-            </Switch>
-          </AppContainer>
+            <Suspense fallback={<LoadingIndicator/>}>
+              <AppContainer>
+                <Switch>
+                  <Route exact path='/' component={HomePage}/>
+                  <Route exact path="/tasks" component={TasksTableContainer}/>
+                  <Route exact path="/task-editor" component={TaskEditorPage}/>
+                  <Route path="/task/:taskId" component={PracticePage}/>
+                  <Route exact path="/login" component={LoginPage}/>
+                  <PrivateRoute exact path="/monitoring" component={MonitoringPage}/>
+                </Switch>
+              </AppContainer>
+            </Suspense>
           </CssBaseline>
         </BrowserRouter>
       </FlocsThemeProvider>

@@ -65,6 +65,7 @@ export default class CompleteTaskModal extends React.Component {
         variant='outlined'
         onClick={this.showLevelProgress}
         disabled={!active}
+
       >Pokračovat</Button>
     );
   }

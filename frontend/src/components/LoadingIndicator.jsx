@@ -1,32 +1,25 @@
 import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const wrapperStyle = {
-  display: 'inline-block',
-  position: 'absolute',
-  width: 40,
-  height: 40,
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  margin: 'auto',
-};
-
-const indicatorStyle = {};
-
 
 export default function LoadingIndicator() {
   return (
-    <div style={wrapperStyle}>
-      <CircularProgress
-        size={40}
-        left={0}
-        top={0}
-        status="loading"
-        style={indicatorStyle}
-        color="primary"
-      />
-    </div>
+
+      <div
+          style={{
+            display: "flex",
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgb(58, 58, 58)',
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+      >
+        <div style={{
+          display: 'flex'
+        }}>
+          <CircularProgress/>
+        </div>
+      </div>
   );
 }
