@@ -77,7 +77,7 @@ class AppContainer extends React.Component {
   }
 
   render() {
-    if (!this.props.loaded) return;   //we can do this as the suspense in index.js is already showing loading
+    if (!this.props.loaded) return null;   //we can do this as the suspense in index.js is already showing loading
     return (
         <div style={{height:"100vh"}}>
           <App
