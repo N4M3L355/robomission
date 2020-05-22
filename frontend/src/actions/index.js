@@ -248,6 +248,7 @@ export function closeTaskCompletionDialog(taskEnvironmentId) {
 
 
 export function showInstructions({show = true, onlyNew = false}) {
+  console.log("showInstructions");
   return action(at.SHOW_INSTRUCTIONS, { show, onlyNew });
 }
 

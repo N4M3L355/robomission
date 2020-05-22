@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import meteoroid from "../images/meteoroid.svg";
 import asteroid from "../images/asteroid.svg";
-import rocketWithFlame from "../images/RocketWithFlame.svg";
 
 export default function Sky() {
 
@@ -32,10 +31,14 @@ export default function Sky() {
 
 
     let svg =(
-        <svg width="100vw" height="100vh" id="sky" style={{
-            position: "absolute",
+        <svg id="sky" style={{
+            position: "relative",/*
             top: 0,
-            left: 0
+            left: 0,*/
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flex: 1
         }}>
             <filter id="blur3" x="-50%" y="-50%" width="200%" height="200%">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="1" />
@@ -51,7 +54,7 @@ export default function Sky() {
             let distance = 2+1/Math.random();
             let circle = document.createElementNS(svgns, 'circle');
             circle.setAttributeNS(null, 'cy', Math.random()*200-100+"%");
-            circle.setAttributeNS(null, 'r', Math.round(radius/distance));
+            circle.setAttributeNS(null, 'r', Math.ceil(radius/distance));
             circle.setAttributeNS(null, 'filter', "url(#blur3)");
             circle.setAttributeNS(null, 'style', `
     fill: white; 
@@ -81,15 +84,9 @@ export default function Sky() {
         ` );
             container.appendChild(stone);
         }
-        const rocketContainer = document.getElementById( 'rocket' );
-        let rocket = document.createElementNS(svgns, 'image');
-        rocketContainer&&rocketContainer.appendChild(rocket);
-        container.appendChild(rocket);
 
 
     },[])
-    return <div style={{position: "absolute", left: 0,right: 0,top: 0,bottom: 0, overflow: "hidden"}}>
-        {svg}
-    </div>
+    return svg
 
 }

@@ -47,6 +47,7 @@ export default function Home(props) {
         <section
           style={{
             height:'100vh',
+            width:'100vw',
               display: "flex",
               justifyContent: "space-around",
               flexDirection: "column",
@@ -54,15 +55,12 @@ export default function Home(props) {
               alignContent: "center",
               textAlign: "center",
 
-              perspectiveOriginX: "100%",
-              position: "relative",
-              transformStyle: "preserve-3d",
             ...style,
           }}
         >
           {content}
             {footer&&(
-                <div style={{flex: 0.5, display: "flex", justifyContent: "center", flexDirection: "column"}}>
+                <div style={{flex: 0.25, display: "flex", justifyContent: "center", flexDirection: "column"}}>
                     {footer}
                 </div>
             )}
@@ -78,18 +76,27 @@ export default function Home(props) {
       // slide 0
       {
         content: (
-          <div style={{width: "100%"}}>
-            <Grid container justify={"space-around"}>
-              <Grid item sm={12} md={6} style={{flexBasis:"45%"}}>
-                <Typography variant="h1" className={classes.banner}><Text id="intro.learn-programming" /></Typography>
-                <NextTaskButtonContainer />
-                <Link href="/tasks">
-                    <Button className={classes.button} variant='outlined'><Text id="Tasks" /></Button>
-                </Link>
+          <div style={{width: "100%", flex: "1"}}>
+            <Grid container justify={"space-around"} style={{height:"100%"}}>
+              <Grid item container sm={12} md={6} style={{flexBasis:"45%"}} direction="column" justify="center">
+                  <Grid item>
+                      <Typography variant="h1" className={classes.banner}><Text id="intro.learn-programming" /></Typography>
+                      <NextTaskButtonContainer />
+                      <Link href="/tasks">
+                          <Button className={classes.button} variant='outlined'><Text id="Tasks" /></Button>
+                      </Link>
+                  </Grid>
 
               </Grid>
-              <Grid item sm={12} md={4}>
-                  <img src={rocketWithFlame}/>
+              <Grid item container sm={12} md={4} direction="column" justify="flex-end">
+                  <Grid item style={{
+                      flex:"0.9",
+                      backgroundImage: `url(${rocketWithFlame})`,
+                      backgroundSize: "contain",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
+                  }}>
+                  </Grid>
               </Grid>
             </Grid>
           </div>
@@ -239,10 +246,42 @@ export default function Home(props) {
   */
 
   return (
-      <div style={{perspective: "1px"}}>
+      <div style={{             //TODO: there are few unused properties in this parallax
+          position: "relative",
+      }}>
+          <div className="parallax-container" style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              overflowX: "hidden",
+              overflowY: "scroll",
+              perspective: "1px",
+              perspectiveOrigin: "0%",
+              display: "flex",
+          }}>
+              <div className="background" style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  transform: "translateZ(0px)",
+              }}>
+                <Sky/>
 
-          <Sky/>
-        {slides.map(renderSlide)}
+              </div>
+              <div className="foreground" style={{
+                  transformOrigin: 0,
+                  transform:"translateZ(0.5px) scale(0.5)",
+              }}>
+                  <div className="foreground__content">
+                      {slides.map(renderSlide)}
+                  </div>
+              </div>
+          </div>
+
       </div>
     );
 }

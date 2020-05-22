@@ -34,6 +34,9 @@ class InstructionsContainer extends React.Component {
     this.muiTheme = props.muiTheme;
     this.joyride = React.createRef();
   }
+    UNSAFE_componentWillReceiveProps(nextProps) {       //TODO: this should be migrated to new version and mechanics
+        this.setInstructions(nextProps.scheduledInstructions);
+    }
 
   componentDidUpdate(prevProps) {
     this.setInstructions(prevProps.scheduledInstructions);
@@ -47,7 +50,8 @@ class InstructionsContainer extends React.Component {
       content: translate(`instruction.${instruction.id}`),
       target: instruction.selector,  // '.instructable-task-spaceworld',
       placement: instruction.position, // 'bottom-left',
-      event: 'hover'
+      event: 'hover',
+        disableBeacon: true
     }));
   }
     getHelpers = (helpers) => {
@@ -66,23 +70,25 @@ class InstructionsContainer extends React.Component {
     /*if (!this.props.shown) {
       return null;
     }*/
+      console.log(this.steps);
     return (
           <Joyride
               callback={this.handleJoyrideCallback}
-              steps={this.steps}
               continuous={true}
-              showProgress={true}
-              run={true}
+              debug={true}
               getHelpers={this.getHelpers}
-              scrollToFirstStep={true}
-              debug={false}
               locale={{
-                back: translate('Previous'),
-                close: translate('I understand'),
-                next: translate('I understand'),
-                last: translate('I understand'),
-                skip: 'Skip',
+                  back: translate('Previous'),
+                  close: translate('I understand'),
+                  next: translate('I understand'),
+                  last: translate('I understand'),
+                  skip: 'Skip',
               }}
+              run={true}
+              steps={this.steps}
+              showProgress={true}
+              scrollToFirstStep={true}
+
               styles = {{
                   options: {
                       primaryColor: this.props.theme.palette.primary.main,

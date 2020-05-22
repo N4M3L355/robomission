@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import SpeedControl from '../components/SpeedControl';
 import { translate } from '../localization';
 import Instructable from '../containers/Instructable';
-import Grid from "@material-ui/core/Grid";
 import {withTheme} from "@material-ui/styles";
 
 function GameControls({ controls, speed, onClick, theme }) {

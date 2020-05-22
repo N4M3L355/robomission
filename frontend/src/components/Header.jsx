@@ -9,7 +9,7 @@ import LevelBar from '../components/LevelBar';
 import {translate} from '../localization';
 import {Menu, Avatar, IconButton, MenuItem, AppBar, Toolbar, Tooltip} from "@material-ui/core";
 
-import {makeStyles, useTheme} from '@material-ui/styles';
+import {makeStyles} from '@material-ui/styles';
 import Link from "@material-ui/core/Link";
 
 
@@ -27,10 +27,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function Header(props) {
 
-  const theme = useTheme();
   const classes = useStyles();
 
-  const [isFullscreen, setIsFullscreen] = React.useState(false);
+  const [isFullscreen, setIsFullscreen] = React.useState(document.fullscreenElement !== null);
   const [anchorElForUserMenu, setAnchorElForUserMenu] = React.useState(null);
   const [anchorElForHelp, setAnchorElForHelp] = React.useState(null);
 
@@ -38,13 +37,6 @@ export default function Header(props) {
 
   const showNewInstructions = props.showInstructions.bind(this, {onlyNew: true});
   const showAllInstructions = props.showInstructions.bind(this, {onlyNew: false});
-
-  function handleMenu({currentTarget}) {
-    setAnchorElForUserMenu(currentTarget);
-  }
-  const handleClose = () => {
-    setAnchorElForUserMenu(null);
-  };
 
   function renderTitle() {
     let logoImg = (
@@ -193,11 +185,10 @@ export default function Header(props) {
                 <Tooltip title={translate('Help')}>
                   <IconButton onClick={({currentTarget}) => setAnchorElForHelp(currentTarget)} className = {classes.fontAwesomeIcon}>
                     <HelpIcon color={(nNewInstructions > 0) ?
-                        theme.palette.secondary.main : 'white'}/>
+                        'secondary' : 'inherit'}/>
                   </IconButton>
                 </Tooltip>
                 <Menu
-                    open={false}
                     anchorEl={anchorElForHelp}
                     keepMounted
                     open={Boolean(anchorElForHelp)}

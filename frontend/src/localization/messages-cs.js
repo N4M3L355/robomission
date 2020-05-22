@@ -130,9 +130,9 @@ export default {
 
   'blockly.start': 'start',
   'blockly.fly': 'leť',
-  'blockly.ahead': 'vpřed',
-  'blockly.left': 'vlevo',
-  'blockly.right': 'vpravo',
+  'blockly.ahead': '↑vpřed',
+  'blockly.left': '↖vlevo',
+  'blockly.right': '↗vpravo',
   'blockly.shoot': 'vystřel',
   'blockly.color': 'barva',
   'blockly.position': 'pozice',

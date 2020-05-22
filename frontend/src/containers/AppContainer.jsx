@@ -22,7 +22,6 @@ import {
   toggleLoginModal,
   toggleSignUpModal
   } from '../actions';
-import mediaBanner from "../images/mediaBanner.png";
 
 const propTypes = {
   loaded: PropTypes.bool.isRequired,
