@@ -19,7 +19,6 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import {translate} from "../localization";
-import Button from "@material-ui/core/Button";
 //import {makeStyles, useTheme} from '@material-ui/styles';
 
 export default function Menu(props) {

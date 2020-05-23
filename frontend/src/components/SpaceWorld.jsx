@@ -4,12 +4,12 @@ import GameObject from './GameObject';
 import SpaceBackgroundGrid from './SpaceBackgroundGrid';
 import Instructable from '../containers/Instructable';
 
-export default function SpaceWorld({ fields, pastActions, pauseLength }) {
+export default function SpaceWorld({ fields, pastActions, pauseLength, scrollable }) {
   const { cols, backgrounds, objects, rows } = prepareFields(fields);
 
   return (
     <Instructable instruction="task-space-world" position="bottom">
-      <div style={{position: "absolute", top: 0, bottom: 0, left: 0, right:0}}>
+      <div style={scrollable?{position: "absolute", top: 0, bottom: 0, left: 0, right:0, display: "flex", alignItems: "start"}:{display: "flex"}}>
         <svg width="100%" viewBox={`0 0 ${cols} ${rows}`}>
           <SpaceBackgroundGrid backgroundColors={backgrounds}/>
           {objects.map((object, index) =>

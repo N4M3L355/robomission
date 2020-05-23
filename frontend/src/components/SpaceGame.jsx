@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import GameStatus from './GameStatus';
 import SpaceWorld from './SpaceWorld';
 import GameControls from './GameControls';
+import {Box} from "@material-ui/core";
 
 
 export default class SpaceGame extends React.Component {
@@ -10,7 +11,7 @@ export default class SpaceGame extends React.Component {
         let spacegameBB = document.querySelector('#spaceWorldContainer');
         spacegameBB.scrollBy(0,spacegameBB.scrollTopMax);                       //TODO: this is hack so the user sees bottom of the simulator.
         /*
-        let spacegameBB = document.querySelector('#spaceWorldContainer').getBoundingClientRect();
+        let spacegameBB = document.querySelector('#spaceWorldContainer').getBoundingClientRect();       //this wanted to be scrolling to rocket on every command, but it didn't work well
         let spaceshipBB = document.querySelector('.instructable-task-spaceship').getBoundingClientRect();
         console.log(spaceshipBB.bottom - spacegameBB.bottom, spacegameBB.top - spaceshipBB.top)
         if (spaceshipBB.bottom - spacegameBB.bottom > 0) document.querySelector('#spaceWorldContainer').scrollBy(0, spaceshipBB.bottom - spacegameBB.bottom)
@@ -30,6 +31,7 @@ export default class SpaceGame extends React.Component {
             pauseLength,
             onControlClicked,
             showHeader,
+            scrollable
         } = this.props;
         const {fields, stage, diamonds, energy} = gameState;
         const gameOver = (stage === 'solved' || stage === 'dead');
@@ -67,11 +69,15 @@ export default class SpaceGame extends React.Component {
                 dead={stage === 'dead'}
             />
         );
-        const loadHandler = (e) => {
-
-        }
-
-
+        const spaceWorld = (
+            <SpaceWorld
+                fields={fields}
+                pastActions={pastActions}
+                width={width}
+                pauseLength={pauseLength}
+                scrollable={scrollable}
+            />
+            )
         return (
             <div style={{
                 flex: 1,
@@ -79,21 +85,21 @@ export default class SpaceGame extends React.Component {
                 flexDirection: "column"
             }}>
                 {showHeader && gameStatus}
-                <div id="spaceWorldContainer" onLoad={loadHandler} style={{flex: 1, position: "relative", overflowY: "auto"}}>
-                    <SpaceWorld
-                        fields={fields}
-                        pastActions={pastActions}
-                        width={width}
-                        pauseLength={pauseLength}
+                {scrollable ?
+                    <div id="spaceWorldContainer" style={{flex: 1, position: "relative", overflowY: "auto"}}>
+                        {spaceWorld}
+                    </div> :
+                    <div id="spaceWorldContainer" style={{position: "relative"}}>
+                        {spaceWorld}
+                    </div>
+                }
+                <Box m={1}>
+                    <GameControls
+                        controls={controlsSetting}
+                        speed={speed}
+                        onClick={onControlClicked}
                     />
-
-                </div>
-
-                <GameControls
-                    controls={controlsSetting}
-                    speed={speed}
-                    onClick={onControlClicked}
-                />
+                </Box>
             </div>
         );
     }
@@ -108,6 +114,7 @@ SpaceGame.propTypes = {
   speed: PropTypes.number.isRequired,
   width: PropTypes.number,
   showHeader: PropTypes.bool,
+  scrollable: PropTypes.bool,
 };
 
 SpaceGame.defaultProps = {
@@ -116,6 +123,7 @@ SpaceGame.defaultProps = {
   controls: [],
   width: 280,
   showHeader: false,
+  scrollable: true,
 };
 
 

@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 import {Button, Fab} from '@material-ui/core';
 import {makeStyles} from '@material-ui/styles';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
@@ -54,7 +54,7 @@ export default function Home(props) {
                 >
                     {content}
                     {footer&&(
-                        <div style={{flex: 0.25, display: "flex", justifyContent: "center", flexDirection: "column"}}>
+                        <div style={{flex: 0.2, display: "flex", justifyContent: "center", flexDirection: "column"}}>
                             {footer}
                         </div>
                     )}
@@ -72,8 +72,8 @@ export default function Home(props) {
       {
         content: (
           <div style={{width: "100%", flex: "1"}}>
-            <Grid container justify={"space-around"} style={{height:"100%"}}>
-              <Grid item container sm={12} md={6} style={{flexBasis:"45%"}} direction="column" justify="center">
+            <Grid container justify={"space-evenly"} style={{height:"100%"}}>
+              <Grid item container sm={12} md={6} direction="column" justify="center">
                   <Grid item>
                       <Typography variant="h1" className={classes.banner}><Text id="intro.learn-programming" /></Typography>
                       <NextTaskButtonContainer />
@@ -109,23 +109,24 @@ export default function Home(props) {
       {
         content: (
                 <Grid container justify="space-evenly" alignContent="center" alignItems="center" style={{flex:1}}>
-                    <Grid item container xs={12} sm={6} md={4} lg={3} justify="space-evenly" alignItems="center" direction="column" style={{height: "100%"}}>
+                    <Grid item container xs={12} sm={6} md={4} lg={3} justify="center" alignItems="center" direction="column" style={{height: "100%"}}>
                         <Grid item container justify="center" alignItems="center" direction="column" >
                             <Typography variant="h5"><Text id="intro.explore-universe"/></Typography>
                             <Typography variant="h5"><Text id="intro.collect-diamonds"/></Typography>
+                            <p aria-hidden={!props.spaceWorldDemoSolved} style={{visibility: props.spaceWorldDemoSolved ? 'visible' : 'hidden'}}>
+                                <Typography variant="body">
+                                    <Text id='excellent-task-solved'/>
+                                </Typography>
+                            </p>
                         </Grid>
                         <Grid item container style={{minHeight:"40vh"}}>
                             <SpaceGameContainer
                                 taskEnvironmentId="home-commands"
                                 showHeader={false}
+                                scrollable={false}
                                 controls={['fly', 'left', 'right', 'reset']}
                             />
                         </Grid>
-                        <p style={{visibility: props.spaceWorldDemoSolved ? 'visible' : 'hidden'}}>
-                            <Typography variant="body">
-                                <Text id='excellent-task-solved'/>
-                            </Typography>
-                        </p>
                     </Grid>
                     <Grid item xs={12} md={6}>
 

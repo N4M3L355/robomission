@@ -71,8 +71,8 @@ function GameControls({ controls, speed, onClick, theme }) {
 
         {conditionallyRenderControlButton('run', translate('Run'), 'primary', 88)}
         {conditionallyRenderControlButton('reset', 'Reset', 'secondary', false, 88)}
-        {conditionallyRenderSpeedControl()}
       </div>
+      {conditionallyRenderSpeedControl()}
 
     </div>
   );

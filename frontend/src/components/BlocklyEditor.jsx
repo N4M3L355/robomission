@@ -8,6 +8,11 @@ import { countStatements } from '../core/roboCodeSyntaxChecker';
 
 
 const workspaceConfiguration = {
+  zoom:{
+    controls: true,
+    wheel: true,
+    scaleSpeed: 2**(1/6)
+  },
   trashcan: true,
 };
 

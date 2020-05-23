@@ -41,6 +41,7 @@ export default class TaskEnvironment extends React.Component {
                     <SpaceGameContainer
                         taskEnvironmentId={taskEnvironmentId}
                         controls={controls}
+                        scrollable={true}
                     />
                 </Grid>
                 <Grid item xs={12} sm={8}>

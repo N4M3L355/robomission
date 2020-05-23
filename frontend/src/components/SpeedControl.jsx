@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from '@material-ui/core/Slider';
-import SvgImage from '../components/SvgImage';
 import Text from '../localization/Text';
 import {withTheme} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
+import speedometer from "../images/speedometer.png"
 
 
 const propTypes = {
@@ -31,11 +31,9 @@ class SpeedControl extends React.Component {
 
   render() {
     return (
-        <div style={{display: "flex", flex: 1}}>
-            <svg style={{height:35, width: 35}}>
-                <SvgImage style={{height: '100%'}} imageId="speedometer"/>
-            </svg>
-            <div style={{display: "flex", flex: 1, flexDirection: 'column'}}>
+        <div style={{display: "flex", flex: 1, justifyContent: "space-evenly"}}>
+            <img key='Speed-icon' alt='Speed icon' src={speedometer} style={{display: "flex", flex: 0.1, padding: this.props.theme.spacing(1) }}/>
+            <div style={{display: "flex", flex: 0.8, padding: this.props.theme.spacing(1), flexDirection: 'column'}}>
                 <Typography id="Speed" variant="body1">
                     <Text id="Speed" />{`: ${this.props.speed}`}</Typography>
 

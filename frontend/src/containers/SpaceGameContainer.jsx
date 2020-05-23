@@ -63,6 +63,7 @@ class SpaceGameWrapper extends React.Component {
         pauseLength={this.props.pauseLength}
         onControlClicked={this.handleControlClicked}
         showHeader={this.props.showHeader}
+        scrollable={this.props.scrollable}
       />
     );
   }
@@ -83,10 +84,12 @@ SpaceGameWrapper.propTypes = {
   doActionMove: PropTypes.func.isRequired,
   createTaskEnvironment: PropTypes.func.isRequired,
   showHeader: PropTypes.bool,
+  scrollable: PropTypes.bool,
 };
 
 SpaceGameWrapper.defaultProps = {
   showHeader: true,
+  scrollable: true,
 }
 
 function mapStateToProps(state, props) {
