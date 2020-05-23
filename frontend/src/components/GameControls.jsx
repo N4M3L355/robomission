@@ -25,6 +25,7 @@ function GameControls({ controls, speed, onClick, theme }) {
     }
     let button = (
       <Button
+        aria-label={label}
         disabled={disabled(name)}
         style={{ margin: 2, minWidth }}
         onClick={() => onClick(name)}

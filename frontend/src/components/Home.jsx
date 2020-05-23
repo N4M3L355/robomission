@@ -19,17 +19,11 @@ import rocketWithFlame from "../images/RocketWithFlame.svg";
 import Paper from "@material-ui/core/Paper";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import SpaceGameContainer from '../containers/SpaceGameContainer';
+import {translate} from "../localization";
 
-const SpaceGameContainer = React.lazy(() => import('../containers/SpaceGameContainer'));
 
 const useStyles = makeStyles(theme => ({
-  /*fab: {
-    borderWidth: '2px',
-    borderStyle: 'solid',
-    borderColor: theme.palette.secondary.main,
-    boxShadow: 'none',
-    backgroundColor:'rgba(0,0,0,0)',
-  },*/
   banner: {
     fontWeight: '200'
   }
@@ -43,7 +37,6 @@ export default function Home(props) {
 
   function renderSlide({ style, content, footer }, index) {
     return (
-        <Suspense fallback="...">
             <Scroll.Element key={index} name={`intro-slide-${index}`}>
                 <section
                     style={{
@@ -68,7 +61,6 @@ export default function Home(props) {
 
                 </section>
             </Scroll.Element>
-        </Suspense>
 
     );
   }
@@ -86,7 +78,7 @@ export default function Home(props) {
                       <Typography variant="h1" className={classes.banner}><Text id="intro.learn-programming" /></Typography>
                       <NextTaskButtonContainer />
                       <Link href="/tasks">
-                          <Button className={classes.button} variant='outlined'><Text id="Tasks" /></Button>
+                          <Button aria-label={translate("Tasks")} className={classes.button} variant='outlined'><Text id="Tasks" /></Button>
                       </Link>
                   </Grid>
 
@@ -107,7 +99,7 @@ export default function Home(props) {
         footer: (
           <Scroll.Link to="intro-slide-1" smooth={true} duration={500}>
 
-                  <Fab color='secondary' className={classes.fab}>
+                  <Fab color='secondary' aria-label="scroll to next slide" className={classes.fab}>
                       <ArrowDown/>
                   </Fab>
           </Scroll.Link>
@@ -143,8 +135,8 @@ export default function Home(props) {
                 </Grid>
         ),
         footer: (
-          <Scroll.Link to="intro-slide-2" smooth={true} duration={500}>
-            <Fab color='secondary' disabled={!props.spaceWorldDemoSolved}>
+          <Scroll.Link to="intro-slide-2" smooth={true} duration={500} aria-disabled={!props.spaceWorldDemoSolved} disabled={!props.spaceWorldDemoSolved}>
+            <Fab color='secondary' aria-label="scroll to next slide" aria-disabled={!props.spaceWorldDemoSolved} disabled={!props.spaceWorldDemoSolved}>
               <ArrowDown/>
             </Fab>
           </Scroll.Link>
@@ -206,11 +198,11 @@ export default function Home(props) {
                           <Typography variant="h5"><Text id="intro.developed-by-alg"/></Typography>
                           <Typography variant="h5"><Text id="intro.at-fi-mu"/></Typography>
                           <Link href="https://www.fi.muni.cz/adaptivelearning/?a=projects">
-                              <Button className={classes.button} color="secondary" variant='outlined'>{<Text
+                              <Button aria-label={translate("ALG")} className={classes.button} color="secondary" variant='outlined'>{<Text
                                   id="ALG"/>}</Button>
                           </Link>
                           <Link href="https://www.fi.muni.cz/about/index.xhtml.cs">
-                              <Button className={classes.button} color="secondary" variant='outlined'><Text id="FI-MU"/></Button>
+                              <Button aria-label={translate("FI-MU")} className={classes.button} color="secondary" variant='outlined'><Text id="FI-MU"/></Button>
                           </Link>
                       </CardContent>
                   </Card>
@@ -219,7 +211,7 @@ export default function Home(props) {
           ),
           footer: (
               <Scroll.Link to="intro-slide-4" smooth={true} duration={500}>
-            <Fab color='secondary' className={classes.fab}>
+            <Fab color='secondary' aria-label="scroll to next slide" className={classes.fab}>
               <ArrowDown color='secondary' />
             </Fab>
           </Scroll.Link>
@@ -261,7 +253,7 @@ export default function Home(props) {
               overflowX: "hidden",
               overflowY: "scroll",
               perspective: "1px",
-              perspectiveOrigin: "0%",
+              perspectiveOrigin: "center center",
               display: "flex",
           }}>
               <div className="background" style={{
@@ -270,14 +262,14 @@ export default function Home(props) {
                   left: 0,
                   width: "100%",
                   height: "100%",
-                  transform: "translateZ(0px)",
+                  transform: "translateZ(-2px) scale(3)",
               }}>
                 <Sky/>
 
               </div>
               <div className="foreground" style={{
                   transformOrigin: 0,
-                  transform:"translateZ(0.5px) scale(0.5)",
+                  transform:"translateZ(0)",
               }}>
                   <div className="foreground__content">
                       {slides.map(renderSlide)}

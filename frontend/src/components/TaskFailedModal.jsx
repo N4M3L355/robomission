@@ -8,6 +8,7 @@ export default class TaskFailedModal extends React.Component {
   render() {
     const actions = [
       <Button
+        aria-label="reset"
         variant='outlined'
         secondary={true}
         keyboardFocused={true}
@@ -18,7 +19,6 @@ export default class TaskFailedModal extends React.Component {
         open={this.props.open}
         onClose={this.props.resetGame}
         overlayStyle={{ backgroundColor: 'transparent' }}
-        //contentStyle={{ width: 500 }}   TODO: remove this entirely
       >
         <DialogTitle/>
         <DialogContent>

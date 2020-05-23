@@ -37,6 +37,7 @@ export default function SignUpModal(props) {
   };
   const actions = [
     <Button
+        aria-label={translate('user.signup')}
         color="primary"
         onClick={signup}>{translate('user.signup')}</Button>,
   ];

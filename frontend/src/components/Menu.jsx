@@ -19,6 +19,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import {translate} from "../localization";
+import Button from "@material-ui/core/Button";
 //import {makeStyles, useTheme} from '@material-ui/styles';
 
 export default function Menu(props) {
@@ -37,6 +38,7 @@ export default function Menu(props) {
       (<Subheader key="subheader-admin" >Admin</Subheader>),
       (
         <ListItem button
+          aria-label="admin"
           value="admin"
           key="admin"
           leftIcon={<DBIcon />}
@@ -48,6 +50,7 @@ export default function Menu(props) {
         </ListItem>
       ), (
         <ListItem button
+          aria-label="monitoring"
           value="monitoring"
           key="monitoring"
           leftIcon={<EyeIcon />}
@@ -57,6 +60,7 @@ export default function Menu(props) {
         </ListItem>
       ), (
         <ListItem button
+          aria-label="github"
           value="github"
           key="github"
           leftIcon={<GHIcon />}
@@ -88,7 +92,7 @@ export default function Menu(props) {
       https://github.com/callemall/material-ui/issues/4387 */ }
         <Divider style={{ marginTop: 0 }} />
         <Link href="/">
-          <ListItem button key="intro">
+          <ListItem aria-label={translate("Intro")} button key="intro">
             <ListItemIcon>
               <HomeIcon/>
             </ListItemIcon>
@@ -97,7 +101,7 @@ export default function Menu(props) {
         </Link>
         {practiceTaskUrl &&
         <Link href={practiceTaskUrl}>
-          <ListItem button key="task">
+          <ListItem aria-label={translate("Practice")} button key="task">
             <ListItemIcon>
               <TaskIcon/>
             </ListItemIcon>
@@ -105,7 +109,7 @@ export default function Menu(props) {
           </ListItem>
         </Link>}
         <Link href="/tasks">
-          <ListItem button key="tasks">
+          <ListItem aria-label={translate("Tasks")} button key="tasks">
             <ListItemIcon>
               <TasksOverviewIcon/>
             </ListItemIcon>
@@ -114,14 +118,14 @@ export default function Menu(props) {
         </Link>
         <Divider />
         <Link href="/task-editor">
-          <ListItem button key="task-editor">
+          <ListItem aria-label={translate("Task Editor")} button key="task-editor">
             <ListItemIcon>
               <TaskEditorIcon/>
             </ListItemIcon>
             <ListItemText primary={translate("Task Editor")}/>
           </ListItem>
         </Link>
-        <ListItem button key="feedback" onClick={openFeedbackModal}>
+        <ListItem aria-label={translate("Feedback")} button key="feedback" onClick={openFeedbackModal}>
           <ListItemIcon>
             <FeedbackIcon/>
           </ListItemIcon>

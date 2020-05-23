@@ -108,9 +108,12 @@ export default function LoginModal(props) {
         </DialogContent>
         <DialogActions>
           <Button
+              aria-label={translate('user.login')}
               color='primary'
               onClick={login}>{translate('user.login')}</Button>
           <Button
+
+              aria-label={translate('user.signup')}
               color='primary'
               onClick={props.openSignUpModal}
           >

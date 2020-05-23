@@ -5,6 +5,7 @@ import TaskIcon from '@material-ui/icons/PlayArrow';
 import Instructable from '../containers/Instructable';
 import TaskName from './TaskName';
 import Link from "@material-ui/core/Link";
+import {translate} from "../localization";
 
 
 export default function NextTaskButton({ task }) {
@@ -27,6 +28,7 @@ export default function NextTaskButton({ task }) {
     <Link href={task.url}>
       <Instructable instruction="env-recommended-task-button" position="top">
         <Button
+          aria-label={translate(`task.${task.taskId}`)}
           color='primary'
           variant="outlined"
         >

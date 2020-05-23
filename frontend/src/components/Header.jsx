@@ -51,7 +51,7 @@ export default function Header(props) {
         }}
       />
     );
-    logoImg = <Link href="/">
+    logoImg = <Link href="/" aria-label={translate('Intro')}>
       {logoImg}
     </Link>
     let modeTitleText = '';
@@ -75,7 +75,7 @@ export default function Header(props) {
       userIcon = props.user.initial;
     }
     const avatar = (
-      <IconButton onClick={({currentTarget}) => setAnchorElForUserMenu(currentTarget)}>
+      <IconButton aria-label="User Menu" onClick={({currentTarget}) => setAnchorElForUserMenu(currentTarget)}>
         <Avatar>
           {userIcon}
         </Avatar>
@@ -146,7 +146,7 @@ export default function Header(props) {
     return (
       <AppBar position="static" color='transparent' elevation={0} className={classes.appBar}>
         <Toolbar >
-          <IconButton edge="start" onClick={props.onMenuIconTouchTap}>
+          <IconButton edge="start" aria-label="menu" onClick={props.onMenuIconTouchTap}>
             <Instructable instruction="env-menu" position="bottom">
               <MenuIcon/>
             </Instructable>
@@ -167,6 +167,7 @@ export default function Header(props) {
             <Instructable key="fullscreen" instruction="env-fullscreen" position="bottom">
               <Tooltip title={isFullscreen ? translate('Exit fullscreen') : translate('Fullscreen')}>
                 <IconButton
+                    aria-label={isFullscreen ? translate('Exit fullscreen') : translate('Fullscreen')}
                     className={classes.fontAwesomeIcon}
                     onClick={() => {
                       setIsFullscreen(!isFullscreen);
@@ -183,7 +184,7 @@ export default function Header(props) {
             <Instructable key="help" instruction="env-help" position="bottom">
               <div>
                 <Tooltip title={translate('Help')}>
-                  <IconButton onClick={({currentTarget}) => setAnchorElForHelp(currentTarget)} className = {classes.fontAwesomeIcon}>
+                  <IconButton aria-label={translate('Help')} onClick={({currentTarget}) => setAnchorElForHelp(currentTarget)} className = {classes.fontAwesomeIcon}>
                     <HelpIcon color={(nNewInstructions > 0) ?
                         'secondary' : 'inherit'}/>
                   </IconButton>
@@ -205,6 +206,7 @@ export default function Header(props) {
                   <MenuItem
                       onClick={showNewInstructions}
                       disabled={nNewInstructions === 0}
+                      aria-disabled={nNewInstructions === 0}
                   >
                     {`${translate('New instructions')} (${nNewInstructions})`}
                   </MenuItem>
@@ -217,6 +219,7 @@ export default function Header(props) {
             <Instructable key="feedback" instruction="env-feedback" position="bottom">
               <Tooltip title={translate('Feedback')}>
                 <IconButton
+                    aria-label={translate('Feedback')}
                     onClick={props.openFeedbackModal}
                     className={classes.fontAwesomeIcon}
                 >

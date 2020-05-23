@@ -65,8 +65,9 @@ export default class CompleteTaskModal extends React.Component {
         variant='outlined'
         onClick={this.showLevelProgress}
         disabled={!active}
-
-      >Pokračovat</Button>
+        aria-disabled={!active}
+        aria-label="Pokračovat"
+      >Pokračovat</Button>      //TODO: translate?
     );
   }
 
@@ -94,7 +95,7 @@ export default class CompleteTaskModal extends React.Component {
       actions = [
         <NextTaskButtonContainer />,
         <Link to="/tasks">
-          <Button variant="outlined">{<Text id="Tasks" />}</Button>
+          <Button variant="outlined" aria-label={translate('Tasks')}>{<Text id="Tasks" />}</Button>
         </Link>
       ];
     }

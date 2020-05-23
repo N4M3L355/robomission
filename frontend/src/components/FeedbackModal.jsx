@@ -11,6 +11,7 @@ export default class FeedbackModal extends React.Component {
     if (this.props.justSent) {
       const actions = [
         <Button
+          aria-label={translate('Close')}
           color='primary'
           variant='contained'
           key='close'
@@ -53,6 +54,7 @@ export default class FeedbackModal extends React.Component {
     };
     const actions = [
       <Button
+        aria-label={translate('feedback.submit')}
         color='primary'
         variant='contained'
         onClick={submitFeedback}>{translate('feedback.submit')}</Button>,
