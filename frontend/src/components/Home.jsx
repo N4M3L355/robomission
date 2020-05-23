@@ -108,28 +108,30 @@ export default function Home(props) {
       // slide 1
       {
         content: (
-                <Grid container justify="space-between" alignContent="center" alignItems="center" style={{flex:1}}>
-                    <Grid item xs={12} md={6}>
-                        <Typography variant="h5"><Text id="intro.explore-universe"/></Typography>
-                        <Typography variant="h5"><Text id="intro.collect-diamonds"/></Typography>
-                    </Grid>
-                    <Grid item container xs={12} md={6} justify="center" style={{minHeight:"40vh"}}>
-                        <Grid item container xs={12} sm={8} md={6}>
+                <Grid container justify="space-evenly" alignContent="center" alignItems="center" style={{flex:1}}>
+                    <Grid item container xs={12} sm={6} md={4} lg={3} justify="space-evenly" alignItems="center" direction="column" style={{height: "100%"}}>
+                        <Grid item container justify="center" alignItems="center" direction="column" >
+                            <Typography variant="h5"><Text id="intro.explore-universe"/></Typography>
+                            <Typography variant="h5"><Text id="intro.collect-diamonds"/></Typography>
+                        </Grid>
+                        <Grid item container style={{minHeight:"40vh"}}>
                             <SpaceGameContainer
                                 taskEnvironmentId="home-commands"
                                 showHeader={false}
                                 controls={['fly', 'left', 'right', 'reset']}
                             />
                         </Grid>
-                    </Grid>
-                    <Grid item xs={12}>
-
                         <p style={{visibility: props.spaceWorldDemoSolved ? 'visible' : 'hidden'}}>
-                            <Text id='excellent-task-solved'/>
+                            <Typography variant="body">
+                                <Text id='excellent-task-solved'/>
+                            </Typography>
                         </p>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
 
-                        <Typography variant="h5"><Text id="intro.game-driven-by-ai"/></Typography>
-                        <Typography variant="h5"><Text id="intro.adapting-to-your-skills"/></Typography>
+
+                        <Typography variant="h4"><Text id="intro.game-driven-by-ai"/></Typography>
+                        <Typography variant="h4"><Text id="intro.adapting-to-your-skills"/></Typography>
                     </Grid>
 
                 </Grid>
