@@ -31,9 +31,11 @@ class SpeedControl extends React.Component {
 
   render() {
     return (
-        <div style={{display: "flex", flex: 1, justifyContent: "space-evenly"}}>
-            <img key='Speed-icon' alt='Speed icon' src={speedometer} style={{display: "flex", flex: 0.1, padding: this.props.theme.spacing(1) }}/>
-            <div style={{display: "flex", flex: 0.8, padding: this.props.theme.spacing(1), flexDirection: 'column'}}>
+        <div style={{display: "flex", flex: 1, justifyContent: "center", alignItems: "center"}}>
+            <div style={{display: "flex", flex: 0.1, padding: this.props.theme.spacing(1) }}>
+                <img key='Speed-icon' alt='Speed icon' src={speedometer} style={{width:"100%"}} />
+            </div>
+            <div style={{display: "flex", flex: 1, padding: this.props.theme.spacing(1), flexDirection: 'column'}}>
                 <Typography id="Speed" variant="body1">
                     <Text id="Speed" />{`: ${this.props.speed}`}</Typography>
 
