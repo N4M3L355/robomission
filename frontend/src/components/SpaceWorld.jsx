@@ -10,23 +10,23 @@ export default function SpaceWorld({ fields, pastActions, pauseLength, scrollabl
   return (
     <Instructable instruction="task-space-world" position="bottom">
       <div style={scrollable?{position: "absolute", top: 0, bottom: 0, left: 0, right:0, display: "flex", alignItems: "start"}:{display: "flex"}}>
-        <svg width="100%" style={{maxHeight: "40vh"}} viewBox={`0 0 ${cols} ${rows}`}>
-          <SpaceBackgroundGrid backgroundColors={backgrounds}/>
-          {objects.map((object, index) =>
-              <GameObject
-                  pauseLength={pauseLength}
-                  // The key must change if the object type changes in order to
-                  // unregister old instructable and register the new one.
-                  lastAction = {pastActions[pastActions.length-1]}
-                  key={`${index}-${object.imageId}`}
-                  imageId={object.imageId}
-                  cols={cols}
-                  rows={rows}
-                  y={object.row}
-                  x={object.col}
-              />
-          )}
-        </svg>
+          <svg width="100%"  style={{maxHeight: "100vh"}} viewBox={`0 0 ${cols} ${rows}`}>
+            <SpaceBackgroundGrid backgroundColors={backgrounds}/>
+            {objects.map((object, index) =>
+                <GameObject
+                    pauseLength={pauseLength}
+                    // The key must change if the object type changes in order to
+                    // unregister old instructable and register the new one.
+                    lastAction = {pastActions[pastActions.length-1]}
+                    key={`${index}-${object.imageId}`}
+                    imageId={object.imageId}
+                    cols={cols}
+                    rows={rows}
+                    y={object.row}
+                    x={object.col}
+                />
+            )}
+          </svg>
       </div>
 
     </Instructable>
