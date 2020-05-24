@@ -6,6 +6,7 @@ import { isPracticeOverviewInvalidated } from '../selectors/app';
 import { getPracticeOverviewUrl, getLevelStatus } from '../selectors/student';
 import { getMissionList } from '../selectors/problemSets';
 import LongPage from '../components/LongPage';
+import Sky from "../components/Sky";
 
 
 function getProps(state) {
@@ -46,6 +47,10 @@ class TasksTableContainer extends React.Component {
           urlBase="/task/"
           recommendation={this.props.recommendation}
         />
+        <div style={{position: "fixed", top: 0, bottom:0, left:0, right:0, pointerEvents: "none"}}>
+
+          <Sky/>
+        </div>
       </LongPage>
     );
   }

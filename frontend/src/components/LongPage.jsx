@@ -15,7 +15,7 @@ export default function LongPage(props){
     maxWidth: 1200,
     margin: '20px auto',
     minHeight: '90vh',
-    backgroundColor: theme.palette.canvasColor,
+    //backgroundColor: theme.palette.background,
   };
   return (
     <div style={longPageStyle}>
