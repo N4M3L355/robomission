@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
-import {Avatar, Card, CardContent, CardHeader} from '@material-ui/core';
+import {Avatar, Card, CardContent, CardHeader, withTheme} from '@material-ui/core';
 import TaskName from './TaskName';
 import Rating from './Rating';
 import {theme} from '../theme';
@@ -13,20 +13,23 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/core/styles";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
+    padding: theme.spacing(1)
+  },
+  noBackground: {
     background: "none",
     backgroundColor: "none"
   }
 }));
 
-export default function TaskTable({ urlBase, missions, recommendation, levelStatus }) {
+function TaskTable({ urlBase, missions, recommendation, levelStatus }) {
   return (
     <div>
       { missions.map(mission =>
@@ -55,6 +58,7 @@ TaskTable.defaultProps = {
 
 
 function MissionOverview({ mission, urlBase, recommendation, levelStatus }) {
+  const classes = useStyles();
   const tasks = flatten(mission.phases.map(phase => phase.tasks));
   const isRecommended = recommendation.mission === mission.id
   let badgeColor;
@@ -65,35 +69,56 @@ function MissionOverview({ mission, urlBase, recommendation, levelStatus }) {
     badgeColor = theme.palette.success.main;
   }
   return (
-    <Card variant={"outlined"} style={{margin: "1rem"}}>
-      <CardHeader
-        avatar={
-          <Instructable instruction="overview-levels" position="top">
-            <Avatar style={{borderColor:badgeColor, color: badgeColor}}
+
+      <Paper
+          variant={"outlined"}
+          style={{borderColor: badgeColor,margin: "1rem"}}
+          className={[classes.paper, classes.noBackground]}
+      >
+        <ExpansionPanel
+            className={classes.noBackground}
+            defaultExpanded={isRecommended}
+        >
+        <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon/>}
+            aria-label="Expand"
+            aria-controls="additional-actions1-content"
+            id="additional-actions1-header"
+        >
+            <Instructable instruction="overview-levels" position="top">
+            <Avatar style={{borderColor: badgeColor, color: badgeColor}}
             >
               L{mission.level}
             </Avatar>
-          </Instructable>}
-        title={`${translate(`ps.story.${mission.id}`)}`}
-        subheader={<FormattedMessage id={`ps.${mission.id}`} />}
-      />
-      <CardContent
-        //expandable={true}
-      >
+          </Instructable>
+          <Box mx={1}>
+            <Typography variant="body1">
+              {`${translate(`ps.story.${mission.id}`)}`}
+            </Typography>
+            <Typography variant="body2" style={{color:theme.palette.text.disabled}}>
+              {<FormattedMessage id={`ps.${mission.id}`}/>}
+            </Typography>
+          </Box>
+
+
+
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
           <Grid container
                 spacing={3}
-            //cols={Math.min(5, Math.ceil(window.innerWidth / 250))}
+              //cols={Math.min(5, Math.ceil(window.innerWidth / 250))}
           >
             {tasks.map(task => (
-              <TaskTile
-                key={task.id}
-                urlBase={urlBase}
-                task={task}
-                recommendation={recommendation}
-              />))}
+                <TaskTile
+                    key={task.id}
+                    urlBase={urlBase}
+                    task={task}
+                    recommendation={recommendation}
+                />))}
           </Grid>
-      </CardContent>
-    </Card>
+        </ExpansionPanelDetails>
+      </ExpansionPanel></Paper>
+
   );
 }
 
@@ -130,10 +155,10 @@ function TaskTile({ task, urlBase, recommendation, style }) {
       <Grid item
           key={<TaskName taskId={task.id}/>}
           style={style}
-            xs={3}
+            xs={6} sm={4} md={3}
       >
         <Link key={task.id} to={`${urlBase}${task.id}`} style={{color:"initial"}}>
-        <Paper className={classes.paper} variant={"outlined"} square={false} style={{borderColor: color}}>
+        <Paper className={[classes.paper, classes.noBackground]} variant={"outlined"} square={false} style={{borderColor: color, textAlign: 'center'}}>
           <Typography style={{color: color}}>{subtitle}</Typography>
           <Typography variant="h5">
             {<TaskName taskId={task.id} />}
@@ -172,3 +197,5 @@ function formatSolvingTime(time) {
   const paddedSeconds = ('0' + seconds).slice(-2);
   return `${minutes}:${paddedSeconds}`;
 }
+
+export default withTheme(TaskTable);
