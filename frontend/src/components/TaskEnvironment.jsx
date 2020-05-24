@@ -33,7 +33,7 @@ export default class TaskEnvironment extends React.Component {
                 flex:1,
                 display: "flex",
             }}>
-                <Grid item xs={12} sm={4} style={{
+                <Grid item xs={12} sm={5} md={4} lg={3} style={{
                     flex:1,
                     display: "flex",
                     flexDirection: "column"
@@ -44,7 +44,7 @@ export default class TaskEnvironment extends React.Component {
                         scrollable={true}
                     />
                 </Grid>
-                <Grid item xs={12} sm={8}>
+                <Grid item xs={12} sm={7} md={8} lg={9}>
                     {editorType === 'code' &&
                     <CodeEditorContainer taskEnvironmentId={taskEnvironmentId}/>
                     }

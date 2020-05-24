@@ -10,7 +10,7 @@ export default function SpaceWorld({ fields, pastActions, pauseLength, scrollabl
   return (
     <Instructable instruction="task-space-world" position="bottom">
       <div style={scrollable?{position: "absolute", top: 0, bottom: 0, left: 0, right:0, display: "flex", alignItems: "start"}:{display: "flex"}}>
-        <svg width="100%" viewBox={`0 0 ${cols} ${rows}`}>
+        <svg width="100%" style={{maxHeight: "40vh"}} viewBox={`0 0 ${cols} ${rows}`}>
           <SpaceBackgroundGrid backgroundColors={backgrounds}/>
           {objects.map((object, index) =>
               <GameObject

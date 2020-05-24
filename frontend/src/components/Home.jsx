@@ -109,7 +109,7 @@ export default function Home(props) {
       {
         content: (
                 <Grid container justify="space-evenly" alignContent="center" alignItems="center" style={{flex:1}}>
-                    <Grid item container xs={12} sm={6} md={4} lg={3} justify="center" alignItems="center" direction="column" style={{height: "100%"}}>
+                    <Grid item container xs={12} sm={6} md={4} lg={3} justify="center" alignItems="center" direction="column">
                         <Grid item container justify="center" alignItems="center" direction="column" >
                             <Typography variant="h5"><Text id="intro.explore-universe"/></Typography>
                             <Typography variant="h5"><Text id="intro.collect-diamonds"/></Typography>
