@@ -256,16 +256,16 @@ export default function Home(props) {
               overflowX: "hidden",
               overflowY: "scroll",
               perspective: "1px",
-              perspectiveOrigin: "center center",
+              perspectiveOrigin: "bottom",
               display: "flex",
           }}>
               <div className="background" style={{
                   position: "absolute",
-                  top: 0,
+                  bottom: 0,
                   left: 0,
                   width: "100%",
-                  height: "100%",
-                  transform: "translateZ(-2px) scale(3)",
+                  height: "200vh",
+                  transform: "translateZ(-3px) scale(4)",
               }}>
                 <Sky/>
 

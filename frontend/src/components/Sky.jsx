@@ -11,7 +11,7 @@ export default function Sky() {
     let keyframes =
         `@-webkit-keyframes ${animationName} {
         0% {-webkit-transform:translate(-5%, -5%)} 
-        100% {-webkit-transform:translate(105%, 105%)}
+        100% {-webkit-transform:translate(105%, 55%)}
     }`;
     styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
     keyframes =
@@ -24,7 +24,7 @@ export default function Sky() {
     keyframes =
         `@-webkit-keyframes diamondAnimation {
         0% {-webkit-transform:translate(-5%, -5%)} 
-        100% {-webkit-transform:translate(105%, 105%)}
+        100% {-webkit-transform:translate(105%, 55%)}
     }`;
 
     styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
@@ -49,7 +49,7 @@ export default function Sky() {
 
         const svgns = "http://www.w3.org/2000/svg";
         const container = document.getElementById( 'sky' );
-        for(let i = 0;i<120;i++){
+        for(let i = 0;i<document.getElementById( 'sky' ).getBoundingClientRect().width/12;i++){         //the wider the container, the more stars we want... maybe HiDPI displays will go bonkers,
             let radius=12;
             let distance = 2+1/Math.random();
             let circle = document.createElementNS(svgns, 'circle');
@@ -57,18 +57,18 @@ export default function Sky() {
             circle.setAttributeNS(null, 'r', Math.ceil(radius/distance));
             circle.setAttributeNS(null, 'filter', "url(#blur3)");
             circle.setAttributeNS(null, 'style', `
-    fill: white; 
-    stroke: none; 
-    stroke-width: 1px; 
-    animation-name: abc; 
-    animation-duration:${Math.round(distance*2**7)}s; 
-    animation-delay:${Math.round(-distance*2**7*Math.random())}s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    ` );
+                fill: white; 
+                stroke: none; 
+                stroke-width: 1px; 
+                animation-name: abc; 
+                animation-duration:${Math.round(distance*2**7)}s; 
+                animation-delay:${Math.round(-distance*2**7*Math.random())}s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            ` );
             container.appendChild(circle);
         }
-        for(let i = 0;i<5;i++){
+        for(let i = 0;i<6;i++){
             let radius=Math.random();
             let distance = 1/(radius)+1;
             let stone = document.createElementNS(svgns, 'image');
@@ -76,12 +76,12 @@ export default function Sky() {
             stone.setAttributeNS(null, 'y', Math.random()*200-100+"%");
             stone.setAttributeNS(null,'width', radius*200+"px");
             stone.setAttributeNS(null, 'style', `
-        animation-name: abc; 
-        animation-duration:${1/distance*32}s; 
-        animation-delay:${-1/distance*32*Math.random()}s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-        ` );
+                animation-name: abc; 
+                animation-duration:${1/distance*64}s; 
+                animation-delay:${-1/distance*64*Math.random()}s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            ` );
             container.appendChild(stone);
         }
 
