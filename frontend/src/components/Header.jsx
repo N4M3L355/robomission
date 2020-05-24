@@ -11,6 +11,7 @@ import {Menu, Avatar, IconButton, MenuItem, AppBar, Toolbar, Tooltip} from "@mat
 
 import {makeStyles} from '@material-ui/styles';
 import Link from "@material-ui/core/Link";
+import Box from "@material-ui/core/Box";
 
 
 const useStyles = makeStyles(theme => ({
@@ -46,14 +47,17 @@ export default function Header(props) {
         className={classes.logo}
         src={logo}
         style={{
-          height: '3rem',
-          boxSizing: 'border-box',
+          height: '3rem'
         }}
       />
     );
-    logoImg = <Link href="/" aria-label={translate('Intro')}>
-      {logoImg}
-    </Link>
+    logoImg =
+        <Box style={{overflow: "hidden"}}>
+
+          <Link href="/" aria-label={translate('Intro')}>
+            {logoImg}
+          </Link>
+        </Box>
     let modeTitleText = '';
     if (props.mode === 'monitoring') {
       modeTitleText = 'Monitoring';

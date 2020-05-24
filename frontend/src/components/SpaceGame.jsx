@@ -9,7 +9,11 @@ import {Box} from "@material-ui/core";
 export default class SpaceGame extends React.Component {
     componentDidMount() {
         let spacegameBB = document.querySelector('#spaceWorldContainer');
-        setTimeout(() => spacegameBB.scrollBy({top:spacegameBB.scrollHeight,left:0, behavior:"smooth"}), 2000);                       //TODO: this is hack so the user sees bottom of the simulator.
+        setTimeout(() => spacegameBB.scrollBy(
+            {
+                top:spacegameBB.scrollHeight-spacegameBB.getBoundingClientRect().height,
+                left:0,
+                behavior:"smooth"}), 2000);                       //TODO: this is hack so the user sees bottom of the simulator.
         /*
         let spacegameBB = document.querySelector('#spaceWorldContainer').getBoundingClientRect();       //this wanted to be scrolling to rocket on every command, but it didn't work well
         let spaceshipBB = document.querySelector('.instructable-task-spaceship').getBoundingClientRect();

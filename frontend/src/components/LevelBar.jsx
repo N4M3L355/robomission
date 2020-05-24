@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Line as ProgressBar } from 'rc-progress';
 import {useTheme} from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
+import {Box} from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 
 
 const propTypes = {
@@ -20,12 +22,6 @@ const defaultProps = {
 export default function LevelBar(props) {
   const theme = useTheme();
 
-    const styleDefault = {
-      display: 'inline-block',
-      width: 250,
-      marginLeft: 8,
-      marginRight: 8,
-    };
     const styleMini = {
       display: 'inline-block',
       width: 54,
@@ -38,42 +34,43 @@ export default function LevelBar(props) {
     if (percent === undefined || percent === null) {
       percent = Math.floor(100 * props.activeCredits / props.maxCredits);
     }
-    if (props.mini) {
+    if (true||props.mini) {
       return (
-        <span>
-          <Typography>
-            L{ props.level }
-          <span style={styleMini}>
-            {props.activeCredits} / {props.maxCredits}
-            <ProgressBar
+        <Grid container alignContent="center" alignItems="center" wrap="nowrap" style={{width: props.mini?"100px":"100%"}}>
+          <Grid item>
+            <Box m={1}>
+              <Typography variant="h6">
+                L{props.level}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item container style={{flexDirection: "column", alignItems: "center"}}>
+            <Typography variant="body2">
+              {props.activeCredits} / {props.maxCredits}
+            </Typography>
+            { props.mini?
+                <ProgressBar
                 percent={percent}
                 strokeWidth={8}
                 strokeColor="#E3E3E3"
                 trailColor="#F3F3F3"
-            />
-          </span>
-          </Typography>
+            /> :
+                <ProgressBar
+                    percent={percent}
+                    strokeWidth={5}
+                    trailWidth={5}
+                    strokeColor={theme.palette.secondary.main}
+                    trailColor="#a3a3a3"
+                />
 
-        </span>
+            }
+
+          </Grid>
+
+
+        </Grid>
       );
     }
-    return (
-      <span>
-        <span style={{ fontSize: 18 }}>
-          L{ props.level }
-        </span>
-        <span style={styleDefault}>
-          <ProgressBar
-            percent={percent}
-            strokeWidth={5}
-            trailWidth={5}
-            strokeColor={theme.palette.secondary.main}
-            trailColor="#a3a3a3"
-          />
-        </span>
-        {props.activeCredits} / {props.maxCredits}
-      </span>
-    );
 }
 
 
