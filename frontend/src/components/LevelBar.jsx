@@ -36,7 +36,7 @@ export default function LevelBar(props) {
     }
     if (true||props.mini) {
       return (
-        <Grid container alignContent="center" alignItems="center" wrap="nowrap" style={{width: props.mini?"100px":"100%"}}>
+        <Grid container alignContent="center" alignItems="center" wrap="nowrap" style={{width: props.mini?"90px":"100%"}}>
           <Grid item>
             <Box m={1}>
               <Typography variant="h6">
@@ -45,7 +45,7 @@ export default function LevelBar(props) {
             </Box>
           </Grid>
           <Grid item container style={{flexDirection: "column", alignItems: "center"}}>
-            <Typography variant="body2">
+            <Typography variant="caption">
               {props.activeCredits} / {props.maxCredits}
             </Typography>
             { props.mini?
