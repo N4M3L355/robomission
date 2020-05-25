@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
-import {Avatar, Card, CardContent, CardHeader, withTheme} from '@material-ui/core';
+import {Avatar, withTheme} from '@material-ui/core';
 import TaskName from './TaskName';
 import Rating from './Rating';
 import {theme} from '../theme';

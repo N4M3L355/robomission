@@ -6,10 +6,10 @@ import FieldGrid from "./FieldGrid";
 
 export default function SpaceBackgroundGrid({backgroundColors}) {
   return (
-    <svg width="5">
+    <svg width={backgroundColors[0].length}>
       <defs>
         <pattern id="bgimg" x="0" y="0" width="5" height="5"
-                 /*patternUnits="userSpaceOnUse"*/ preserveAspectRatio="xMidYMid slice">
+                 patternUnits="userSpaceOnUse" preserveAspectRatio="xMidYMid slice">
           <image x="0" y="0" width="5" height="5"
                  href={spaceBackgroundPath}/>
         </pattern>

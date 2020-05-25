@@ -3,13 +3,11 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useTheme} from "@material-ui/styles";
 
 
 
 export default function LongPage(props){
 
-  const theme = useTheme();
   const { children } = props;
   const longPageStyle = {
     maxWidth: 1200,

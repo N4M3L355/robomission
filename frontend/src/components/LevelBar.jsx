@@ -22,19 +22,10 @@ const defaultProps = {
 export default function LevelBar(props) {
   const theme = useTheme();
 
-    const styleMini = {
-      display: 'inline-block',
-      width: 54,
-      marginLeft: 8,
-      fontSize: 12,
-      lineHeight: '9px',
-      textAlign: 'center',
-    };
     let percent = props.percent;
     if (percent === undefined || percent === null) {
       percent = Math.floor(100 * props.activeCredits / props.maxCredits);
     }
-    if (true||props.mini) {
       return (
         <Grid container alignContent="center" alignItems="center" wrap="nowrap" style={{width: props.mini?"90px":"100%"}}>
           <Grid item>
@@ -70,7 +61,6 @@ export default function LevelBar(props) {
 
         </Grid>
       );
-    }
 }
 
 
