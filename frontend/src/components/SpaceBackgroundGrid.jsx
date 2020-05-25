@@ -10,7 +10,7 @@ export default function SpaceBackgroundGrid({backgroundColors}) {
       <defs>
         <pattern id="bgimg" x="0" y="0" width="5" height="5"
                  /*patternUnits="userSpaceOnUse"*/ preserveAspectRatio="xMidYMid slice">
-          <image x="0" y="0" width="5"
+          <image x="0" y="0" width="5" height="5"
                  href={spaceBackgroundPath}/>
         </pattern>
       </defs>
