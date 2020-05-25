@@ -15,10 +15,18 @@ import Box from "@material-ui/core/Box";
 
 
 const useStyles = makeStyles(theme => ({
+    "@keyframes pulseAnimation": {
+        "0%": {transform: "scale(1)"},
+        "50%": {transform: "scale(1.5)"},
+        "100%": {transform: "scale(1)"},
+    },
   fontAwesomeIcon: {
     boxShadow: 'none',
     backgroundColor:'rgba(0,0,0,0)',
   },
+    pulse: {
+        animation: "1s $pulseAnimation linear 1s 2"
+    },
   logo: {
     [theme.breakpoints.down('xs')]:{
       display: "none"
@@ -189,8 +197,11 @@ export default function Header(props) {
               <div>
                 <Tooltip title={translate('Help')}>
                   <IconButton aria-label={translate('Help')} onClick={({currentTarget}) => setAnchorElForHelp(currentTarget)} className = {classes.fontAwesomeIcon}>
-                    <HelpIcon color={(nNewInstructions > 0) ?
-                        'secondary' : 'inherit'}/>
+                      {(nNewInstructions > 0) ?
+                          <HelpIcon className={classes.pulse} color='secondary'/> :
+                          <HelpIcon color='inherit'/>
+                      }
+
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -208,13 +219,13 @@ export default function Header(props) {
                     }}
                 >
                   <MenuItem
-                      onClick={showNewInstructions}
+                      onClick={() => {showNewInstructions();setAnchorElForHelp(null)}}
                       disabled={nNewInstructions === 0}
                       aria-disabled={nNewInstructions === 0}
                   >
                     {`${translate('New instructions')} (${nNewInstructions})`}
                   </MenuItem>
-                  <MenuItem onClick={showAllInstructions}>
+                  <MenuItem onClick={() => {showAllInstructions();setAnchorElForHelp(null)}}>
                     {translate('All instructions')}
                   </MenuItem>
                 </Menu>
