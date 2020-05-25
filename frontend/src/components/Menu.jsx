@@ -1,25 +1,17 @@
 import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
-import {ListItemText} from '@material-ui/core';
-import Divider from '@material-ui/core/Divider';
-import Subheader from '@material-ui/core/ListSubheader';
+import {ListItemText, Divider, ListSubheader as Subheader, Link, List, ListItem, ListItemIcon} from '@material-ui/core';
+
 import HomeIcon from '@material-ui/icons/Home';
 import TaskIcon from '@material-ui/icons/PlayArrow';
 import TasksOverviewIcon from '@material-ui/icons/ViewComfy';
-import TaskEditorIcon from '@material-ui/icons/NoteAdd';
+//import TaskEditorIcon from '@material-ui/icons/NoteAdd';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import EyeIcon from '@material-ui/icons/RemoveRedEye';
 import DBIcon from '@material-ui/icons/Storage';
-import Link from '@material-ui/core/Link';
 import GHIcon from '../components/GitHubIcon';
-//import Text from '../localization/Text';
-//import logoMenuPath from '../images/logo-menu.png';
 import Image from'../components/Image';
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import {translate} from "../localization";
-//import {makeStyles, useTheme} from '@material-ui/styles';
 
 export default function Menu(props) {
   let openFeedbackModal = props.openFeedbackModal.bind(this);
@@ -116,14 +108,16 @@ export default function Menu(props) {
           </ListItem>
         </Link>
         <Divider />
-        <Link href="/task-editor">
-          <ListItem aria-label={translate("Task Editor")} button key="task-editor">
-            <ListItemIcon>
-              <TaskEditorIcon/>
-            </ListItemIcon>
-            <ListItemText primary={translate("Task Editor")}/>
-          </ListItem>
-        </Link>
+        {/*
+          <Link href="/task-editor">
+            <ListItem aria-label={translate("Task Editor")} button key="task-editor">
+              <ListItemIcon>
+                <TaskEditorIcon/>
+              </ListItemIcon>
+              <ListItemText primary={translate("Task Editor")}/>
+            </ListItem>
+          </Link>
+        */}
         <ListItem aria-label={translate("Feedback")} button key="feedback" onClick={openFeedbackModal}>
           <ListItemIcon>
             <FeedbackIcon/>
