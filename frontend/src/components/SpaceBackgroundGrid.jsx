@@ -9,12 +9,12 @@ export default function SpaceBackgroundGrid({backgroundColors}) {
     <svg width="5">
       <defs>
         <pattern id="bgimg" x="0" y="0" width="5" height="5"
-                 patternUnits="userSpaceOnUse" preserveAspectRatio="xMidYMid slice">
+                 /*patternUnits="userSpaceOnUse"*/ preserveAspectRatio="xMidYMid slice">
           <image x="0" y="0" width="5"
                  href={spaceBackgroundPath}/>
         </pattern>
       </defs>
-      <rect fill="url(#bgimg)" width="5" height={backgroundColors.length}/>
+      <rect fill="url(#bgimg)" width={backgroundColors[0].length} height={backgroundColors.length} />
       {backgroundColors.map((backgroundsRow, index) =>
         backgroundsRow.map((background, bgIndex) => (
             <FieldBackground key={`${bgIndex}|${bgIndex}bg`} keyX={bgIndex} keyY={index} color={background}/>

@@ -70,7 +70,6 @@ class InstructionsContainer extends React.Component {
     /*if (!this.props.shown) {
       return null;
     }*/
-      console.log(this.steps);
     return (
           <Joyride
               callback={this.handleJoyrideCallback}
