@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import NextTaskButtonContainer from '../containers/NextTaskButtonContainer';
@@ -7,6 +6,7 @@ import LevelBar from '../components/LevelBar';
 import Text from '../localization/Text';
 import { translate } from '../localization';
 import {DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
+import Link from "@material-ui/core/Link";
 
 
 export default class CompleteTaskModal extends React.Component {
@@ -93,8 +93,8 @@ export default class CompleteTaskModal extends React.Component {
       //  bottomMessage = <Text id="easy-task-challenge" />
       //}
       actions = [
-        <NextTaskButtonContainer />,
-        <Link to="/tasks">
+        <NextTaskButtonContainer key="next-task" />,
+        <Link href="/tasks">
           <Button variant="outlined" aria-label={translate('Tasks')}>{<Text id="Tasks" />}</Button>
         </Link>
       ];

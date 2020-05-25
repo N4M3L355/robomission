@@ -57,13 +57,13 @@ export default class FeedbackModal extends React.Component {
         aria-label={translate('feedback.submit')}
         color='primary'
         variant='contained'
+        key="submit"
         onClick={submitFeedback}>{translate('feedback.submit')}</Button>,
     ];
     return (
       <Dialog
         open={this.props.open}
         onClose={this.props.closeFeedbackModal}
-        //contentStyle={{ width: 500 }} //TODO: remove this as it is not valid for new version
       >
         <DialogTitle>{translate('feedback.title')}</DialogTitle>
         <DialogContent>
@@ -74,7 +74,6 @@ export default class FeedbackModal extends React.Component {
           onChange={changeComment}
           rows={5}
           fullWidth={true}
-          //errortext={this.props.fieldErrors.comment} //TODO: remove this as it is not valid for new version
           multiline
         />
         <TextField
@@ -83,7 +82,6 @@ export default class FeedbackModal extends React.Component {
           placeholder={this.props.email}
           onChange={changeEmail}
           fullWidth={true}
-          //errorText={this.props.fieldErrors.email} //TODO: remove this as it is not valid for new version
         />
         </DialogContent>
         <DialogActions>

@@ -9,6 +9,7 @@ import IconDownload from '@material-ui/icons/MoveToInbox';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Instructable from '../containers/Instructable';
+import {theme} from '../theme';
 
 import 'brace/theme/solarized_dark';
 import 'brace/keybinding/vim';
@@ -41,7 +42,7 @@ function SettingEditor({
   return (
     <Instructable instruction="editor-setting" position="left">
       <div
-        style={{ overflowX: 'hidden', backgroundColor: muiTheme.palette.canvasColor }}
+        style={{ overflowX: 'hidden', backgroundColor: theme.palette.background.default }}
       >
         <div style={{ marginLeft: 5, marginBottom: 10 }}>
           <div>
@@ -148,7 +149,6 @@ SettingEditor.propTypes = {
   onExport: PropTypes.func.isRequired,
   blocklyEditorType: PropTypes.bool.isRequired,
   onEditorTypeChange: PropTypes.func.isRequired,
-  muiTheme: PropTypes.object.isRequired,
 };
 
 

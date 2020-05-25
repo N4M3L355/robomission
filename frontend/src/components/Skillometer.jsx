@@ -17,7 +17,7 @@ class Skillometer extends React.Component {
   getCircleBackgroundColor() {
     // TODO: Send the binary mastery decision from server.
     if (this.props.skill >= 0.95) {
-      return this.props.muiTheme.palette.successColor;
+      return this.props.muiTheme.palette.success.main;
     } else {
       return '#a3a3a3';
     }
@@ -44,7 +44,7 @@ class Skillometer extends React.Component {
             percent={percent}
             strokeWidth={15}
             trailWidth={15}
-            strokeColor={this.props.muiTheme.palette.successColor}
+            strokeColor={this.props.muiTheme.palette.success.main}
             trailColor="#737373"
           />
         </span>

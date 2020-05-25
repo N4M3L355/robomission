@@ -12,7 +12,7 @@ function getProps(state) {
 class NextTaskButtonContainer extends React.Component {
   render() {
     return (
-      <NextTaskButton task={this.props.task} />
+      <NextTaskButton task={this.props.task}/>
     );
   }
 }

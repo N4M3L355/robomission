@@ -12,7 +12,7 @@ export default function Icon({ name, style }) {
 
   return (
       <svg style={iconStyle}>
-        <SvgImage imageId={`icon-${name}.svg`}  />
+        <SvgImage style={iconStyle} imageId={`icon-${name}.svg`}  />
       </svg>
   );
 }

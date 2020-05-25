@@ -60,7 +60,7 @@ export default function Header(props) {
       />
     );
     logoImg =
-        <Box style={{overflow: "hidden"}}>
+        <Box style={{overflow: "hidden"}} key="logoImg">
 
           <Link href="/" aria-label={translate('Intro')}>
             {logoImg}

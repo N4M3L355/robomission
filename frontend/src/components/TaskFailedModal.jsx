@@ -9,6 +9,7 @@ export default class TaskFailedModal extends React.Component {
     const actions = [
       <Button
         aria-label="reset"
+        key="reset"
         variant='outlined'
         secondary={true}
         keyboardFocused={true}

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Snackbar from '@material-ui/core/Snackbar';
-//import backgroundPath from '../images/background-space.png';
 import HeaderContainer from '../containers/HeaderContainer';
 import MenuContainer from '../containers/MenuContainer';
 import InstructionsContainer from '../containers/InstructionsContainer';
@@ -22,8 +21,6 @@ export default function App(props) {
 
     <div
         style={{
-            //backgroundImage: `url(${backgroundPath})`,
-            //backgroundSize: '500px auto',
             backgroundColor: '#000',        //TODO: unhardcode
             //overflowX: 'hidden',
             minHeight: "100%",

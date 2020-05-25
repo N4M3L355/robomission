@@ -7,7 +7,7 @@ export default function SvgImage({ imageId, style, ...otherProps }) {
   // eslint-disable-next-line global-require
   const sourcePath = require(`../images/${name}`);
   return (
-    <image href={sourcePath} alt={imageId} style={style} {...otherProps} />
+    <image href={sourcePath} alt={imageId} aria-hidden={imageId === ""} aria-label={imageId} style={style} {...otherProps} />
   );
 }
 

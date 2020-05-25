@@ -1,23 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
-import {Avatar, withTheme} from '@material-ui/core';
+import {
+  Avatar, withTheme, ExpansionPanelDetails, ExpansionPanel,
+  ExpansionPanelSummary, Box, Link, Paper, Grid, Typography
+} from '@material-ui/core';
 import TaskName from './TaskName';
 import Rating from './Rating';
 import {theme} from '../theme';
 import {translate} from '../localization';
 import {flatten} from '../utils/arrays';
 import Instructable from '../containers/Instructable';
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/core/styles";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -157,7 +152,7 @@ function TaskTile({ task, urlBase, recommendation, style }) {
           style={style}
             xs={6} sm={4} md={3}
       >
-        <Link key={task.id} to={`${urlBase}${task.id}`} style={{color:"initial"}}>
+        <Link key={task.id} href={`${urlBase}${task.id}`} style={{color:"initial"}}>
         <Paper className={[classes.paper, classes.noBackground]} variant={"outlined"} square={false} style={{borderColor: color, textAlign: 'center'}}>
           <Typography style={{color: color}}>{subtitle}</Typography>
           <Typography variant="h5">

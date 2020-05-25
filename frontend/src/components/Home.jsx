@@ -1,29 +1,19 @@
 import React from 'react';
-import {Button, Fab} from '@material-ui/core';
-import {makeStyles} from '@material-ui/styles';
+import {Button, Fab, Grid, Typography, Link, Paper, Card, CardContent, makeStyles} from '@material-ui/core';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import Scroll from 'react-scroll';
-//import TaskEnvironmentContainer from '../containers/TaskEnvironmentContainer';
 import NextTaskButtonContainer from '../containers/NextTaskButtonContainer';
-//import neuronsBackgroundPath from '../images/neurons-tile.png';
 import fiBackgroundPath from '../images/fi-slide.jpg';
-//import spaceBackgroundPath from '../images/background-space.png';
-//import spaceshipInSpaceWorldPath from '../images/banner-image.png';
-//import diamond from '../images/diamond.svg';
 import Text from '../localization/Text';
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import Sky from "./Sky";
-import Link from "@material-ui/core/Link";
 import rocketWithFlame from "../images/RocketWithFlame.svg";
-import Paper from "@material-ui/core/Paper";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import SpaceGameContainer from '../containers/SpaceGameContainer';
 import {translate} from "../localization";
+//import neuronsBackgroundPath from '../images/neurons-tile.png';
+//import TaskEnvironmentContainer from '../containers/TaskEnvironmentContainer';
 
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   banner: {
     fontWeight: '200'
   }
@@ -97,7 +87,7 @@ export default function Home(props) {
           </div>
         ),
         footer: (
-          <Scroll.Link to="intro-slide-1" smooth={true} duration={500}>
+          <Scroll.Link to="intro-slide-1" smooth={true} duration={500} containerId="parallaxContainer" tabindex="0">
 
                   <Fab color='secondary' aria-label="scroll to next slide" className={classes.fab}>
                       <ArrowDown/>
@@ -137,9 +127,12 @@ export default function Home(props) {
 
                 </Grid>
         ),
-        footer: (
-          <Scroll.Link to="intro-slide-2" smooth={true} duration={500} aria-disabled={!props.spaceWorldDemoSolved} disabled={!props.spaceWorldDemoSolved}>
-            <Fab color='secondary' aria-label="scroll to next slide" aria-disabled={!props.spaceWorldDemoSolved} disabled={!props.spaceWorldDemoSolved}>
+          footer: (
+              <Scroll.Link to="intro-slide-2" smooth={true} duration={500} tabindex="0"
+                           aria-disabled={!props.spaceWorldDemoSolved} containerId="parallaxContainer"
+                           disabled={!props.spaceWorldDemoSolved}>
+                  <Fab color='secondary' aria-label="scroll to next slide" aria-disabled={!props.spaceWorldDemoSolved}
+                       disabled={!props.spaceWorldDemoSolved}>
               <ArrowDown/>
             </Fab>
           </Scroll.Link>
@@ -180,7 +173,7 @@ export default function Home(props) {
           </div>
         ),
         footer: (
-          <Scroll.Link to="intro-slide-3" smooth={true} duration={500}>
+          <Scroll.Link to="intro-slide-3" smooth={true} duration={500}  tabindex="0">
             <Fab secondary={true} disabled={!props.programDemoSolved} className={classes.fab}>
               <ArrowDown color='secondary'/>
             </Fab>
@@ -213,7 +206,7 @@ export default function Home(props) {
 
           ),
           footer: (
-              <Scroll.Link to="intro-slide-4" smooth={true} duration={500}>
+              <Scroll.Link to="intro-slide-4" smooth={true} duration={500} containerId="parallaxContainer" tabindex="0">
             <Fab color='secondary' aria-label="scroll to next slide" className={classes.fab}>
               <ArrowDown color='secondary' />
             </Fab>
@@ -247,7 +240,7 @@ export default function Home(props) {
       <div style={{             //TODO: there are few unused properties in this parallax
           position: "relative",
       }}>
-          <div className="parallax-container" style={{
+          <div id="parallaxContainer" className="parallax-container" style={{
               position: "fixed",
               top: 0,
               left: 0,

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SvgImage from './SvgImage';
 import Instructable from '../containers/Instructable';
-//import { Keyframes, Frame } from 'react-keyframes';
 
 export default function GameObject({ imageId, position, x, y, lastAction, pauseLength, cols, rows }) {
   let animationName = `animation${Math.round(Math.random() * 2 ** 16)}`;
@@ -38,7 +37,7 @@ export default function GameObject({ imageId, position, x, y, lastAction, pauseL
     WebkitTransform: "translate(0, 0)",
     position,
     animationName: animationName,
-    animationDuration: `${pauseLength*0.5}ms`,    //well the 0.5 is magic number, i am sorry but pauseLength*1 was glitchy with lower speeds of simulation
+    animationDuration: `${pauseLength*0.5}ms`,    //well the 0.5 is magic number, i am sorry but pauseLength*1 was glitchy with lower speeds of simulation TODO: well this could be better
   };
   return (
       <Instructable instruction={`task-${imageId}`} position="bottom-left">
@@ -49,11 +48,13 @@ export default function GameObject({ imageId, position, x, y, lastAction, pauseL
 
 GameObject.propTypes = {
   imageId: PropTypes.string.isRequired,
-  //width: PropTypes.number.isRequired,
- // height: PropTypes.number.isRequired,
   position: PropTypes.string,
   bottom: PropTypes.number,
   left: PropTypes.number,
+  x: PropTypes.number,
+  y: PropTypes.number,
+  cols: PropTypes.number,
+  rows: PropTypes.number,
 };
 
 GameObject.defaultProps = {
